@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "postinstall": "",
+    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "lint": "next lint"
   },
   "browser": {
@@ -32,6 +33,7 @@
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "24.0.3",
     "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6"
+    "@types/react-dom": "^19.1.6",
+    "pagefind": "^1.3.0"
   }
 }

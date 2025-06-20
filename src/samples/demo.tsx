@@ -255,7 +255,7 @@ export const ClusterSimple = () => {
 
   const addNode = useCallback(() => {
     const next = nodes.length + 2;
-    setNodes(prev => [
+    setNodes((prev: any) => [
       ...prev,
       {
         id: `${next}`,
