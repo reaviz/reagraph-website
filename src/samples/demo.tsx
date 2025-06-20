@@ -1,23 +1,42 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { GraphCanvas } from 'reagraph';
-import {
-  clusterNodes,
-  clusterEdges,
-  random,
-  singleNodeClusterNodes,
-  imbalancedClusterNodes,
-  manyClusterNodes
-} from './demo';
+import { complexEdges, complexNodes, simpleEdges, simpleNodes, treeEdges } from './data';
+import { NodePositionArgs } from 'reagraph';
 
-import { Icon, Sphere, lightTheme } from 'reagraph';
+export const SpecialCharacters = () => (
+  <GraphCanvas
+    labelType='all'
+    labelFontUrl='https://ey2pz3.csb.app/NotoSansSC-Regular.ttf'
+    nodes={[
+      {
+        id: '1',
+        label: '牡',
+      },
+      {
+        id: '2',
+        label: '牡',
+      },
+    ]}
+    edges={[
+      {
+        source: '1',
+        target: '2',
+        id: '1-2',
+        label: '牡 - 牡',
+      },
+      {
+        source: '2',
+        target: '1',
+        id: '2-1',
+        label: '牡 - 牡',
+      },
+    ]}
+  />
+);
 
-export default {
-  title: 'Demos/Cluster',
-  component: GraphCanvas
-};
 
-export const Simple = () => {
+export const ClusterSimple = () => {
   const [nodes, setNodes] = useState([
     {
       id: 'n-0',
@@ -275,141 +294,103 @@ export const Simple = () => {
   );
 };
 
-const clusterNodesWithSizes = clusterNodes.map(node => ({
-  ...node,
-  size: random(0, 50)
-}));
-
-export const Sizes = () => (
+export const CustomLayout = () => (
   <GraphCanvas
-    nodes={clusterNodesWithSizes}
-    draggable
-    edges={[]}
-    clusterAttribute="type"
-  />
-);
-
-export const SingleNodeClusters = () => (
-  <GraphCanvas
-    nodes={singleNodeClusterNodes}
-    draggable
-    edges={[]}
-    clusterAttribute="type"
-  />
-);
-
-export const ImbalancedClusters = () => (
-  <GraphCanvas
-    nodes={imbalancedClusterNodes}
-    draggable
-    edges={[]}
-    clusterAttribute="type"
-  />
-);
-
-export const LargeDataset = () => (
-  <GraphCanvas
-    nodes={manyClusterNodes}
-    draggable
-    edges={[]}
-    clusterAttribute="type"
-  />
-);
-
-export const Edges = () => (
-  <GraphCanvas
-    nodes={clusterNodes}
-    draggable
-    edges={clusterEdges}
-    clusterAttribute="type"
-  />
-);
-
-export const Selections = () => (
-  <GraphCanvas
-    nodes={clusterNodes}
-    selections={[clusterNodes[0].id]}
-    edges={clusterEdges}
-    clusterAttribute="type"
-  />
-);
-
-export const Events = () => (
-  <GraphCanvas
-    nodes={clusterNodes}
-    draggable
-    edges={clusterEdges}
-    clusterAttribute="type"
-    onClusterPointerOut={cluster => console.log('cluster pointer out', cluster)}
-    onClusterPointerOver={cluster =>
-      console.log('cluster pointer over', cluster)
-    }
-    onClusterClick={cluster => console.log('cluster click', cluster)}
-  />
-);
-
-export const NoBoundary = () => (
-  <GraphCanvas
-    theme={{
-      ...lightTheme,
-      cluster: null
-    }}
-    nodes={clusterNodes}
-    draggable
-    edges={clusterEdges}
-    clusterAttribute="type"
-  />
-);
-
-export const NoLabels = () => (
-  <GraphCanvas
-    theme={{
-      ...lightTheme,
-      cluster: {
-        ...lightTheme.cluster,
-        label: null
+    layoutType="custom"
+    layoutOverrides={{
+      getNodePosition: (id: string, { nodes }: NodePositionArgs) => {
+        const idx = nodes.findIndex(n => n.id === id);
+        const node = nodes[idx];
+        return {
+          x: 25 * idx,
+          y: idx % 2 === 0 ? 0 : 50,
+          z: 1
+        };
       }
-    }}
-    nodes={clusterNodes}
-    draggable
-    edges={clusterEdges}
-    clusterAttribute="type"
+    } as any}
+    nodes={simpleNodes}
+    edges={simpleEdges}
   />
 );
 
-export const LabelsOnly = () => (
+export const CustomLighting = () => (
   <GraphCanvas
-    theme={{
-      ...lightTheme,
-      cluster: {
-        ...lightTheme.cluster,
-        stroke: null
-      }
-    }}
-    nodes={clusterNodes}
-    draggable
-    edges={clusterEdges}
-    clusterAttribute="type"
-  />
-);
-
-export const ThreeDimensions = () => (
-  <GraphCanvas
-    nodes={clusterNodesWithSizes}
-    draggable
-    edges={[]}
+    nodes={simpleNodes}
+    edges={simpleEdges}
     layoutType="forceDirected3d"
-    clusterAttribute="type"
   >
     <directionalLight position={[0, 5, -4]} intensity={1} />
   </GraphCanvas>
 );
 
-export const Partial = () => (
+export const CentralitySizing = () => (
+  <GraphCanvas sizingType="centrality" nodes={simpleNodes} edges={simpleEdges} />
+);
+
+export const PageRankSizing = () => (
+  <GraphCanvas sizingType="pagerank" nodes={simpleNodes} edges={simpleEdges} />
+);
+
+export const AttributeSizing = () => (
   <GraphCanvas
-    nodes={clusterNodes}
-    draggable
-    edges={[]}
-    clusterAttribute="segment"
+    sizingType="attribute"
+    sizingAttribute="priority"
+    minNodeSize={2}
+    maxNodeSize={25}
+    nodes={simpleNodes}
+    edges={simpleEdges}
   />
+);
+
+export const ForceDirected2D = () => (
+  <GraphCanvas layoutType="forceDirected2d" nodes={complexNodes} edges={complexEdges} />
+);
+
+export const Circular2D = () => (
+  <GraphCanvas layoutType="circular2d" nodes={complexNodes} edges={complexEdges} />
+);
+
+export const TreeTopDown2D = () => (
+  <GraphCanvas layoutType="treeTd2d" nodes={simpleNodes} edges={treeEdges} />
+);
+
+export const ForceAtlas2D = () => (
+  <GraphCanvas layoutType="forceatlas2" nodes={complexNodes} edges={complexEdges} />
+);
+
+export const RadialOut2D = () => (
+  <GraphCanvas layoutType="radialOut2d" nodes={simpleNodes} edges={simpleEdges} />
+);
+
+export const NoOverlap2D = () => (
+  <GraphCanvas layoutType="nooverlap" nodes={simpleNodes} edges={simpleEdges} />
+);
+
+export const HierarchicalLeftRight2D = () => (
+  <GraphCanvas layoutType="hierarchicalLr" nodes={simpleNodes} edges={treeEdges} />
+);
+
+export const HierarchicalTopDown2D = () => (
+  <GraphCanvas layoutType="hierarchicalTd" nodes={simpleNodes} edges={treeEdges} />
+);
+
+
+export const ForceDirected3D = () => (
+  <GraphCanvas
+    layoutType='forceDirected3d'
+    nodes={complexNodes}
+    edges={complexEdges}
+  />
+);
+
+export const RadialOut3D = () => (
+  <GraphCanvas
+    layoutType='radialOut3d'
+    nodes={simpleNodes}
+    edges={simpleEdges}
+  />
+);
+
+export const TreeTopDown3D = () => (
+  <GraphCanvas layoutType='treeTd3d' nodes={simpleNodes} edges={simpleEdges} />
 );

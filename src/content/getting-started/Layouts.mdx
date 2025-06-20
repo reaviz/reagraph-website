@@ -1,18 +1,16 @@
 import {
-  ForceDirected as ForceDirected2D,
-  Circular as Circular2D,
-  TreeTopDown as TreeTopDown2D,
-  RadialOut as RadialOut2D,
-  HierarchicalTopDown as HierarchicalTopDown2D,
-  NoOverlap as NoOverlap2D,
-  ForceAtlas2 as ForceAtlas22D,
-  HierarchicalLeftRight as HierarchicalLeftRight2D,
-} from '../../stories/TwoLayouts.story';
-import {
-  ForceDirected as ForceDirected3D,
-  TreeTopDown as TreeTopDown3D,
-  RadialOut as RadialOut3D,
-} from '../../stories/ThreeLayouts.story';
+  ForceDirected2D,
+  Circular2D,
+  TreeTopDown2D,
+  RadialOut2D,
+  HierarchicalTopDown2D,
+  NoOverlap2D,
+  ForceAtlas2D,
+  HierarchicalLeftRight2D,
+  ForceDirected3D,
+  TreeTopDown3D,
+  RadialOut3D,
+} from '../../samples/demo';
 
 # Layouts
 reagraph has the following layout types:
@@ -292,7 +290,7 @@ export interface NoOverlapLayoutInputs extends LayoutFactoryProps {
 
 ### Force Atlas 2
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  <ForceAtlas22D />
+  <ForceAtlas2D />
 </div>
 
 This layout uses [graphology-layout-forceatlas2](https://graphology.github.io/standard-library/layout-forceatlas2.html).

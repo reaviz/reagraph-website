@@ -1,4 +1,4 @@
-import { PageRank, Centrality, Attribute } from '../../stories/Sizing.story';
+import { PageRankSizing, CentralitySizing, AttributeSizing } from '../../samples/demo';
 
 # Sizing
 reagraph supports the ability to dynamically size nodes. It supports
@@ -14,7 +14,7 @@ it uses [Graphology Metrics](https://graphology.github.io/standard-library/metri
 calculate the rank.
 
 <div style={{ height: 500, width: '100%', position: 'relative', margin: '0 auto', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  <PageRank />
+  <PageRankSizing />
 </div>
 
 ### Centrality
@@ -23,12 +23,12 @@ it uses [Graphology Metrics](https://graphology.github.io/standard-library/metri
 calculate the rank.
 
 <div style={{ height: 500, width: '100%', position: 'relative', margin: '0 auto', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  <Centrality />
+  <CentralitySizing />
 </div>
 
 ### Attribute
 The attribute sizing strategy sizes nodes based on the value of a given attribute.
 
 <div style={{ height: 500, width: '100%', position: 'relative', margin: '0 auto', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  <Attribute />
+  <AttributeSizing />
 </div>
