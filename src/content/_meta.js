@@ -1,9 +1,9 @@
 const meta = {
-  index: "",
-  "getting-started": "",
-  features: "",
-  themes: "",
-  advanced: "",
+  index: "Introduction",
+  "getting-started": "Getting Started",
+  "API": "API",
+  advanced: "Advanced",
+  Support: "Support",
 };
 
 export default meta;
