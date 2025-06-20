@@ -1,3 +1,4 @@
+'use client';
 import { GraphEdge, GraphNode } from 'reagraph';
 import demonSvg from './demon.svg';
 import computerSvg from './computer.svg';
