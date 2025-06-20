@@ -3,7 +3,7 @@ import { useMDXComponents } from "@/mdx-components";
 
 export const generateStaticParams = generateStaticParamsFor("mdxPath");
 
-export async function generateMetadata(props: { params: { mdxPath: string[] } }) {
+export async function generateMetadata(props: any) {
   const params = await props.params;
   const { metadata } = await importPage(params.mdxPath);
   return metadata;
@@ -11,7 +11,7 @@ export async function generateMetadata(props: { params: { mdxPath: string[] } })
 
 const Wrapper = useMDXComponents().wrapper;
 
-export default async function Page(props: { params: { mdxPath: string[] } }) {
+export default async function Page(props: any) {
   const params = await props.params;
   const result = await importPage(params.mdxPath);
   const { default: MDXContent, toc, metadata } = result;
