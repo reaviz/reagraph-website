@@ -1,8 +1,18 @@
-import { Meta, Story } from '@storybook/blocks';
-// import * as LayoutsStories from './demos/Layouts.story';
-// import * as TwoLayoutsStories from './demos/TwoLayouts.story';
-// import * as ThreeLayoutsStories from './demos/ThreeLayouts.story';
-
+import {
+  ForceDirected as ForceDirected2D,
+  Circular as Circular2D,
+  TreeTopDown as TreeTopDown2D,
+  RadialOut as RadialOut2D,
+  HierarchicalTopDown as HierarchicalTopDown2D,
+  NoOverlap as NoOverlap2D,
+  ForceAtlas2 as ForceAtlas22D,
+  HierarchicalLeftRight as HierarchicalLeftRight2D,
+} from '../../stories/TwoLayouts.story';
+import {
+  ForceDirected as ForceDirected3D,
+  TreeTopDown as TreeTopDown3D,
+  RadialOut as RadialOut3D,
+} from '../../stories/ThreeLayouts.story';
 
 # Layouts
 reagraph has the following layout types:
@@ -70,8 +80,8 @@ See custom layouts for more information.
 Below are examples of each layout type and corresponding descriptions.
 
 ### Force Directed 2D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--force-directed" of={TwoLayoutsStories.ForceDirected} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <ForceDirected2D />
 </div>
 
 This is the standard force-directed layout which uses [d3-force-3d](https://github.com/vasturiano/d3-force-3d).
@@ -152,8 +162,8 @@ export interface ForceDirectedLayoutInputs extends LayoutFactoryProps {
 ```
 
 ### Force Directed 3D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-3d--force-directed" of={ThreeLayoutsStories.ForceDirected} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <ForceDirected3D />
 </div>
 
 The force directed 3d layout is similar to the 2D version except it adds another dimension. It uses
@@ -163,8 +173,8 @@ The 3D version is useful for very large graphs where many nodes would overlap ea
 This layout accepts the same layout overrides as the `forceDirected2d`.
 
 ### Circular 2d
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--circular" of={TwoLayoutsStories.Circular} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <Circular2D />
 </div>
 
 The circular layout arranges nodes in a circular fashion drawing relationships between the nodes
@@ -182,8 +192,8 @@ export interface CircularLayoutInputs extends LayoutFactoryProps {
 ```
 
 ### Tree 2D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--tree-top-down" of={TwoLayoutsStories.TreeTopDown} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <TreeTopDown2D />
 </div>
 
 The tree layout is a good way to display a clear parent-child relationship between nodes. This layout uses
@@ -192,8 +202,8 @@ The tree layout is a good way to display a clear parent-child relationship betwe
 This layout accepts the same layout overrides as the `forceDirected2d`.
 
 ### Tree 3D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-3d--tree-top-down" of={ThreeLayoutsStories.TreeTopDown} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <TreeTopDown3D />
 </div>
 
 This layout is the same as the tree 2d except adds another dimension. It uses
@@ -202,8 +212,8 @@ This layout is the same as the tree 2d except adds another dimension. It uses
 This layout accepts the same layout overrides as the `forceDirected2d`.
 
 ### Radial 2D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--radial-out" of={TwoLayoutsStories.RadialOut} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <RadialOut2D />
 </div>
 
 The radial layout arranges nodes in a circular fashion around the focus node in a radial tree. Each
@@ -213,8 +223,8 @@ This layout uses [d3-force-3d](https://github.com/vasturiano/d3-force-3d).
 This layout accepts the same layout overrides as the `forceDirected2d`.
 
 ### Radial 3D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-3d--radial-out" of={ThreeLayoutsStories.RadialOut} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <RadialOut3D />
 </div>
 
 Similar to the Radial 2D but adds another dimension. This layout uses [d3-force-3d](https://github.com/vasturiano/d3-force-3d).
@@ -222,8 +232,8 @@ Similar to the Radial 2D but adds another dimension. This layout uses [d3-force-
 This layout accepts the same layout overrides as the `forceDirected2d`.
 
 ### Hierarchical 2D
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--hierarchical-top-down" of={TwoLayoutsStories.HierarchicalTopDown} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <HierarchicalTopDown2D />
 </div>
 
 This layout uses [d3-hierarchy](https://www.npmjs.com/package/d3-hierarchy).
@@ -248,8 +258,8 @@ export interface HierarchicalLayoutInputs extends LayoutFactoryProps {
 ```
 
 ### No Overlap
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--no-overlap" of={TwoLayoutsStories.NoOverlap} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <NoOverlap2D />
 </div>
 
 This layout uses [graphology-layout-nooverlap](https://graphology.github.io/standard-library/layout-noverlap.html).
@@ -281,8 +291,8 @@ export interface NoOverlapLayoutInputs extends LayoutFactoryProps {
 ```
 
 ### Force Atlas 2
-<div style={{ height: 300, width: 500, position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
-  {/* <Story id="demos-layouts-2d--force-atlas-2" of={TwoLayoutsStories.ForceAtlas2} /> */}
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <ForceAtlas22D />
 </div>
 
 This layout uses [graphology-layout-forceatlas2](https://graphology.github.io/standard-library/layout-forceatlas2.html).
