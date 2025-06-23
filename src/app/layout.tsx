@@ -29,31 +29,29 @@ const footer = (
   </Footer>
 );
 
+const navbar = (
+  <Navbar
+    logo={
+      <div className='flex items-center gap-2'>
+        <img src='/assets/logo.svg' alt='Reagraph' className='h-6 w-6' />{' '}
+        <h1 className='text-2xl'>Reagraph</h1>
+      </div>
+    }
+    projectLink='https://github.com/reaviz/reagraph'
+  />
+);
+
 export default async function RootLayout({
   children,
 }: {
   children: ReactNode;
 }) {
   return (
-    <html lang='en' dir='ltr' suppressHydrationWarning>
+    <html lang='en' dir='ltr' suppressHydrationWarning className='h-full'>
       <Head />
-      <body className='flex flex-col h-screen'>
+      <body className='flex flex-col'>
         <Layout
-          navbar={
-            <Navbar
-              logo={
-                <div className='flex items-center gap-2'>
-                  <img
-                    src='/assets/logo.svg'
-                    alt='Reagraph'
-                    className='h-6 w-6'
-                  />{' '}
-                  <h1 className='text-2xl'>Reagraph</h1>
-                </div>
-              }
-              projectLink='https://github.com/reaviz/reagraph'
-            />
-          }
+          navbar={navbar}
           pageMap={await getPageMap()}
           docsRepositoryBase='https://github.com/reaviz/reagraph-website'
           editLink='Edit this page on GitHub'

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    <div className='w-full flex flex-1 items-center justify-center'>
+    <div className='w-full min-h-[calc(100vh-175px)] flex flex-1 items-center justify-center'>
       <h1 className='text-4xl font-bold'>Home page</h1>
     </div>
   );
