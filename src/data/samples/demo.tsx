@@ -354,6 +354,10 @@ export const TreeTopDown2D = () => (
   <GraphCanvas layoutType="treeTd2d" nodes={simpleNodes} edges={treeEdges} />
 );
 
+export const TreeLeftRight2D = () => (
+  <GraphCanvas layoutType="treeLr2d" nodes={simpleNodes} edges={treeEdges} />
+);
+
 export const ForceAtlas2D = () => (
   <GraphCanvas layoutType="forceatlas2" nodes={complexNodes} edges={complexEdges} />
 );
