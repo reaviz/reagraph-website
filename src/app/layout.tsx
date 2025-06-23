@@ -19,7 +19,7 @@ const footer = (
       <span>
         Made with ❤️ by{' '}
         <Link
-          className='text-secondary underline'
+          className='text-primary underline'
           href='https://goodcode.us?utm_source=reagraph'
         >
           Good Code
@@ -57,7 +57,7 @@ export default async function RootLayout({
           pageMap={await getPageMap()}
           docsRepositoryBase='https://github.com/reaviz/reagraph-website'
           editLink='Edit this page on GitHub'
-          sidebar={{ defaultMenuCollapseLevel: 1, autoCollapse: false }}
+          sidebar={{ defaultMenuCollapseLevel: 2, autoCollapse: false }}
           footer={footer}
         >
           {children}

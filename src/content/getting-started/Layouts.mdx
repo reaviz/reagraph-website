@@ -10,25 +10,26 @@ import {
   ForceDirected3D,
   TreeTopDown3D,
   RadialOut3D,
+  TreeLeftRight2D,
 } from '../../data/samples/demo';
 
 # Layouts
 reagraph has the following layout types:
 
-- Force Directed 2D
-- Force Directed 3D
-- Circular 2D
-- Tree Top Down 2D
-- Tree Left Right 2D
-- Tree Top Down 3D
-- Tree Left Right 3D
-- Radial Out 2D
-- Radial Out 3D
-- Hierarchical Top Down 2D
-- Hierarchical Left Right 2D
-- No Overlap 2D
-- ForceAtlas2 2D
-- Custom
+- [Force Directed 2D](#force-directed-2d)
+- [Force Directed 3D](#force-directed-3d)
+- [Circular 2D](#circular-2d)
+- [Tree Top Down 2D](#tree-2d)
+- [Tree Left Right 2D](#tree-2d)
+- [Tree Top Down 3D](#tree-3d)
+- [Tree Left Right 3D](#tree-3d)
+- [Radial Out 2D](#radial-2d)
+- [Radial Out 3D](#radial-3d)
+- [Hierarchical Top Down 2D](#hierarchical-2d)
+- [Hierarchical Left Right 2D](#hierarchical-2d)
+- [No Overlap 2D](#no-overlap)
+- [ForceAtlas2 2D](#force-atlas-2)
+- [Custom](#custom-layouts)
 
 ## Layout Overrides
 You can override the default layout options for each respective layout using
@@ -170,7 +171,7 @@ The 3D version is useful for very large graphs where many nodes would overlap ea
 
 This layout accepts the same layout overrides as the `forceDirected2d`.
 
-### Circular 2d
+### Circular 2D
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
   <Circular2D />
 </div>
@@ -189,9 +190,14 @@ export interface CircularLayoutInputs extends LayoutFactoryProps {
 }
 ```
 
-### Tree 2D
+### Tree Top Down 2D
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
   <TreeTopDown2D />
+</div>
+
+### Tree Left Right 2D
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <TreeLeftRight2D />
 </div>
 
 The tree layout is a good way to display a clear parent-child relationship between nodes. This layout uses
@@ -358,3 +364,7 @@ export interface ForceAtlas2LayoutInputs extends LayoutFactoryProps {
   iterations?: number;
 }
 ```
+
+### Custom Layouts
+
+For creating custom layouts, you can use the `getNodePosition` function described in the [Position Overrides](#position-overrides) section above. This allows you to implement your own positioning logic for nodes based on your specific requirements.
