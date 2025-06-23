@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Nextra 4',
-  description: 'Nextra 4 is here.',
+  title: 'Reagraph',
+  description: 'Reagraph is a high-performance network graph visualization built in WebGL for React.',
 };
 export default function Home() {
   return (
