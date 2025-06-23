@@ -3,7 +3,7 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs';
 import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
+import type { FC, PropsWithChildren, ReactNode } from 'react';
 import 'nextra-theme-docs/style.css';
 import './globals.css';
 
@@ -41,26 +41,27 @@ const navbar = (
   />
 );
 
-export default async function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  return (
-    <html lang='en' dir='ltr' suppressHydrationWarning className='h-full'>
-      <Head />
-      <body className='flex flex-col'>
-        <Layout
-          navbar={navbar}
-          pageMap={await getPageMap()}
-          docsRepositoryBase='https://github.com/reaviz/reagraph-website'
-          editLink='Edit this page on GitHub'
-          sidebar={{ defaultMenuCollapseLevel: 2, autoCollapse: false }}
-          footer={footer}
-        >
-          {children}
-        </Layout>
-      </body>
-    </html>
-  );
-}
+/**
+ * Root layout component
+ * @param children - Children components
+ * @returns Root layout component
+ */
+const RootLayout: FC<PropsWithChildren> = async ({ children }) => (
+  <html lang='en' dir='ltr' suppressHydrationWarning className='h-full'>
+    <Head />
+    <body className='flex flex-col'>
+      <Layout
+        navbar={navbar}
+        pageMap={await getPageMap()}
+        docsRepositoryBase='https://github.com/reaviz/reagraph-website'
+        editLink='Edit this page on GitHub'
+        sidebar={{ defaultMenuCollapseLevel: 2, autoCollapse: false }}
+        footer={footer}
+      >
+        {children}
+      </Layout>
+    </body>
+  </html>
+);
+
+export default RootLayout;
