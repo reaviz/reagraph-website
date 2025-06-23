@@ -2,19 +2,31 @@
 import metadata from '../data/reagraph-docgen.json';
 import { useState } from 'react';
 
-const CollapsibleText = ({ text, maxLength = 40 }: { text: string; maxLength?: number }) => {
+/**
+ * Collapsible text component
+ * @param text - Text to display
+ * @param maxLength - Maximum length of text to display
+ * @returns Collapsible text component
+ */
+const CollapsibleText = ({
+  text,
+  maxLength = 40,
+}: {
+  text: string;
+  maxLength?: number;
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   if (text.length <= maxLength) {
     return <span>{text}</span>;
   }
-  
+
   return (
     <span>
       {isExpanded ? text : `${text.slice(0, maxLength)}...`}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="ml-2 text-blue-500 hover:text-blue-700 text-sm underline"
+        className='ml-2 text-blue-500 hover:text-blue-700 text-sm underline'
       >
         {isExpanded ? 'Show less' : 'Show more'}
       </button>
@@ -22,6 +34,11 @@ const CollapsibleText = ({ text, maxLength = 40 }: { text: string; maxLength?: n
   );
 };
 
+/**
+ * Props table component
+ * @param name - Name of the component to display props for
+ * @returns Props table component
+ */
 export const PropsTable = ({ name }: { name: string }) => {
   const data: any = metadata?.find((m) => m.displayName === name);
 
@@ -67,7 +84,9 @@ export const PropsTable = ({ name }: { name: string }) => {
               <td className='p-[5px]'>
                 {data.props[prop].defaultValue && (
                   <code className='light:border-black/10 border-opacity-[0.04] bg-opacity-[0.03] bg-gray-200 break-words rounded-md border py-0.5 px-[.25em] text-[.9em] dark:border-white/10 dark:bg-white/10'>
-                    <CollapsibleText text={data.props[prop].defaultValue.value} />
+                    <CollapsibleText
+                      text={data.props[prop].defaultValue.value}
+                    />
                   </code>
                 )}
               </td>
