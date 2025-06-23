@@ -1,18 +1,33 @@
-import { Footer, Layout, Navbar } from "nextra-theme-docs";
-import { Banner, Head } from "nextra/components";
-import { getPageMap } from "nextra/page-map";
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
-import "nextra-theme-docs/style.css";
-import "./globals.css";
+import Link from 'next/link';
+import { Footer, Layout, Navbar } from 'nextra-theme-docs';
+import { Head } from 'nextra/components';
+import { getPageMap } from 'nextra/page-map';
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import 'nextra-theme-docs/style.css';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Nextra 4",
-  description: "Nextra 4 is here.",
+  title: 'Reagraph',
+  description:
+    'Reagraph is a high-performance network graph visualization built in WebGL for React.',
 };
 
-const banner = <Banner storageKey="some-key">Nextra 4.0 is released 🎉</Banner>;
-const footer = <Footer>MIT {new Date().getFullYear()} © Nextra.</Footer>;
+const footer = (
+  <Footer className='w-full flex justify-center py-5'>
+    <div className='block self-center text-center'>
+      <span>
+        Made with ❤️ by{' '}
+        <Link
+          className='text-secondary underline'
+          href='https://goodcode.us?utm_source=reagraph'
+        >
+          Good Code
+        </Link>
+      </span>
+    </div>
+  </Footer>
+);
 
 export default async function RootLayout({
   children,
@@ -20,21 +35,29 @@ export default async function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
+    <html lang='en' dir='ltr' suppressHydrationWarning>
       <Head />
-      <body>
+      <body className='flex flex-col h-screen'>
         <Layout
-          banner={banner}
           navbar={
             <Navbar
-              logo={<h1 className="text-2xl"> Nextra</h1>}
-              projectLink="https://github.com/reaviz/reagraph"
+              logo={
+                <div className='flex items-center gap-2'>
+                  <img
+                    src='/assets/logo.svg'
+                    alt='Reagraph'
+                    className='h-6 w-6'
+                  />{' '}
+                  <h1 className='text-2xl'>Reagraph</h1>
+                </div>
+              }
+              projectLink='https://github.com/reaviz/reagraph'
             />
           }
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/reaviz/reagraph"
-          editLink="Edit this page on GitHub"
-          sidebar={{ defaultMenuCollapseLevel: 1, autoCollapse: true }}
+          docsRepositoryBase='https://github.com/reaviz/reagraph-website'
+          editLink='Edit this page on GitHub'
+          sidebar={{ defaultMenuCollapseLevel: 1, autoCollapse: false }}
           footer={footer}
         >
           {children}
