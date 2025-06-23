@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "",
+    "postinstall": "cp node_modules/reagraph/dist/docs/docgen.json src/data/reagraph-docgen.json",
     "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "lint": "next lint"
   },
@@ -19,11 +19,11 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@storybook/blocks": "^8.6.14",
     "next": "^15.3.3",
     "nextra": "^4.2.17",
     "nextra-theme-docs": "^4.2.17",
     "postcss": "^8.5.6",
+    "reablocks": "^9.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "reagraph": "^4.24.1",
