@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { Footer, Layout, Navbar } from 'reaviz-theme-docs';
+import { Footer, Layout, Navbar } from 'reablocks-docs-theme';
 import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import { Footer as LandingFooter } from '@/components/blocks';
 import type { Metadata } from 'next';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
-import 'reaviz-theme-docs/style.css';
+import 'reablocks-docs-theme/style.css';
 import './globals.css';
 
 export const metadata: Metadata = {

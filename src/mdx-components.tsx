@@ -1,4 +1,4 @@
-import { useMDXComponents as getDocsMDXComponents } from 'reaviz-theme-docs';
+import { useMDXComponents as getDocsMDXComponents } from 'reablocks-docs-theme';
 
 const docsComponents = getDocsMDXComponents();
 
