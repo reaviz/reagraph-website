@@ -30,7 +30,7 @@
     "react-dom": "^19.1.0",
     "react-syntax-highlighter": "^15.6.1",
     "reagraph": "^4.24.2",
-    "reaviz-theme-docs": "file:../reaviz-theme-docs",
+    "reaviz-theme-docs": "file:../reablocks-docs-theme",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {

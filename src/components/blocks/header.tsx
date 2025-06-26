@@ -27,7 +27,11 @@ export const Header = () => {
           <NextLink className='px-4' href='/docs'>
             Storybook
           </NextLink>
-          <NextLink className='px-4' href='/docs'>
+          <NextLink
+            className='px-4'
+            href='https://github.com/reaviz/reagraph'
+            target='_blank'
+          >
             GitHub
           </NextLink>
         </Stack>

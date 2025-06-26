@@ -48,8 +48,8 @@ importers:
         specifier: ^4.24.2
         version: 4.24.2(@types/react@19.1.8)(@types/three@0.177.0)(graphology-types@0.24.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)(use-sync-external-store@1.5.0(react@19.1.0))
       reaviz-theme-docs:
-        specifier: file:../reaviz-theme-docs
-        version: file:../reaviz-theme-docs(@types/react@19.1.8)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.2.17(acorn@8.15.0)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
+        specifier: file:../reablocks-docs-theme
+        version: reablocks-docs-theme@file:../reablocks-docs-theme(@types/react@19.1.8)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.2.17(acorn@8.15.0)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
       tailwindcss:
         specifier: ^4.1.10
         version: 4.1.10
@@ -3393,6 +3393,14 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  reablocks-docs-theme@file:../reablocks-docs-theme:
+    resolution: {directory: ../reablocks-docs-theme, type: directory}
+    peerDependencies:
+      next: '>=14'
+      nextra: '>=4.2.0'
+      react: '>=19.1.0'
+      react-dom: '>=19.1.0'
+
   reablocks@9.1.1:
     resolution: {integrity: sha512-tMSUlcfbEediyvhn5RnmTQM6Q/w779wV8ZxudjOFJQRPmazXw8T5apqluGaoTpzUiemrISgkBFKIyZMxXMJeyQ==}
     peerDependencies:
@@ -3464,14 +3472,6 @@ packages:
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
-
-  reaviz-theme-docs@file:../reaviz-theme-docs:
-    resolution: {directory: ../reaviz-theme-docs, type: directory}
-    peerDependencies:
-      next: '>=14'
-      nextra: '>=4.2.0'
-      react: '>=19.1.0'
-      react-dom: '>=19.1.0'
 
   recast@0.23.11:
     resolution: {integrity: sha512-YTUo+Flmw4ZXiWfQKGcwwc11KnoRAYgzAE2E7mXKCjSviTKShtxBsN6YUUBB2gtaBzKzeKunxhUwNHQuRryhWA==}
@@ -7989,6 +7989,25 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  reablocks-docs-theme@file:../reablocks-docs-theme(@types/react@19.1.8)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.2.17(acorn@8.15.0)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0)):
+    dependencies:
+      '@headlessui/react': 2.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      clsx: 2.1.1
+      next: 15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      next-themes: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      nextra: 4.2.17(acorn@8.15.0)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
+      react: 19.1.0
+      react-compiler-runtime: 0.0.0-experimental-22c6e49-20241219(react@19.1.0)
+      react-dom: 19.1.0(react@19.1.0)
+      scroll-into-view-if-needed: 3.1.0
+      zod: 3.25.67
+      zod-validation-error: 3.5.2(zod@3.25.67)
+      zustand: 5.0.5(@types/react@19.1.8)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
+    transitivePeerDependencies:
+      - '@types/react'
+      - immer
+      - use-sync-external-store
+
   reablocks@9.1.1(@types/react@19.1.8)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@floating-ui/react': 0.26.28(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -8115,25 +8134,6 @@ snapshots:
       - immer
       - react-native
       - storybook
-      - use-sync-external-store
-
-  reaviz-theme-docs@file:../reaviz-theme-docs(@types/react@19.1.8)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.2.17(acorn@8.15.0)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0)):
-    dependencies:
-      '@headlessui/react': 2.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      clsx: 2.1.1
-      next: 15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      next-themes: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      nextra: 4.2.17(acorn@8.15.0)(next@15.3.3(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
-      react: 19.1.0
-      react-compiler-runtime: 0.0.0-experimental-22c6e49-20241219(react@19.1.0)
-      react-dom: 19.1.0(react@19.1.0)
-      scroll-into-view-if-needed: 3.1.0
-      zod: 3.25.67
-      zod-validation-error: 3.5.2(zod@3.25.67)
-      zustand: 5.0.5(@types/react@19.1.8)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
       - use-sync-external-store
 
   recast@0.23.11:
