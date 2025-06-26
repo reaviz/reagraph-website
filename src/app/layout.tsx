@@ -1,10 +1,11 @@
 import Link from 'next/link';
-import { Footer, Layout, Navbar } from 'nextra-theme-docs';
+import { Footer, Layout, Navbar } from 'reaviz-theme-docs';
 import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
+import { Footer as LandingFooter } from '@/components/blocks';
 import type { Metadata } from 'next';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
-import 'nextra-theme-docs/style.css';
+import 'reaviz-theme-docs/style.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,18 +15,8 @@ export const metadata: Metadata = {
 };
 
 const footer = (
-  <Footer className='w-full flex justify-center py-5'>
-    <div className='block self-center text-center'>
-      <span>
-        Made with ❤️ by{' '}
-        <Link
-          className='text-primary underline'
-          href='https://goodcode.us?utm_source=reagraph'
-        >
-          Good Code
-        </Link>
-      </span>
-    </div>
+  <Footer className='w-full flex justify-center'>
+    <LandingFooter />
   </Footer>
 );
 
@@ -33,8 +24,7 @@ const navbar = (
   <Navbar
     logo={
       <div className='flex items-center gap-2'>
-        <img src='/assets/logo.svg' alt='Reagraph' className='h-6 w-6' />{' '}
-        <h1 className='text-2xl'>Reagraph</h1>
+        <img src='/assets/logo-full.png' alt='Reagraph' width={112} height={24} />
       </div>
     }
     projectLink='https://github.com/reaviz/reagraph'
@@ -49,7 +39,7 @@ const navbar = (
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => (
   <html lang='en' dir='ltr' suppressHydrationWarning className='h-full'>
     <Head />
-    <body className='flex flex-col'>
+    <body className='flex flex-col bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] antiasliased overflow-x-hidden text-white'>
       <Layout
         navbar={navbar}
         pageMap={await getPageMap()}
