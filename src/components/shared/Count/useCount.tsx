@@ -43,36 +43,22 @@ export interface CountInputs {
   suffix?: string | number;
 }
 
-export const COUNT_DEFAULTS = {
-  from: 0,
-  duration: 1,
-  delay: 0,
-  format: true,
-  decimalPlaces: 0,
-};
-
 export const useCount = ({
-  from,
+  from = 0,
   to,
-  duration,
-  delay,
+  duration = 1,
+  delay = 0,
   prefix,
   suffix,
-  decimalPlaces,
-  format,
+  decimalPlaces = 0,
+  format = true,
 }: CountInputs) => {
   const nodeRef = useRef<any | null>(null);
-
-  from = from || COUNT_DEFAULTS.from;
-  duration = duration || COUNT_DEFAULTS.duration;
-  delay = delay || COUNT_DEFAULTS.delay;
-  format = format || COUNT_DEFAULTS.format;
-  decimalPlaces = decimalPlaces || COUNT_DEFAULTS.decimalPlaces;
 
   useEffect(() => {
     const node = nodeRef.current;
 
-    const controls = animate(from, to, {
+    const controls = animate(from!, to, {
       duration,
       delay,
       onUpdate(value) {
