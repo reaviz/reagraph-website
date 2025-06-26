@@ -1,1 +1,1 @@
-export { NotFoundPage as default } from "reaviz-theme-docs";
+export { NotFoundPage as default } from "reablocks-docs-theme";
