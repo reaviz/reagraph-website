@@ -921,7 +921,7 @@
     "props": {
       "theme": {
         "defaultValue": {
-          "value": "{\n  canvas: {\n    background: '#fff'\n  },\n  node: {\n    fill: '#7CA0AB',\n    activeFill: '#1DE9AC',\n    opacity: 1,\n    selectedOpacity: 1,\n    inactiveOpacity: 0.2,\n    label: {\n      color: '#2A6475',\n      stroke: '#fff',\n      activeColor: '#1DE9AC'\n    },\n    subLabel: {\n      color: '#ddd',\n      stroke: 'transparent',\n      activeColor: '#1DE9AC'\n    }\n  },\n  lasso: {\n    border: '1px solid #55aaff',\n    background: 'rgba(75, 160, 255, 0.1)'\n  },\n  ring: {\n    fill: '#D8E6EA',\n    activeFill: '#1DE9AC'\n  },\n  edge: {\n    fill: '#D8E6EA',\n    activeFill: '#1DE9AC',\n    opacity: 1,\n    selectedOpacity: 1,\n    inactiveOpacity: 0.1,\n    label: {\n      stroke: '#fff',\n      color: '#2A6475',\n      activeColor: '#1DE9AC',\n      fontSize: 6\n    }\n  },\n  arrow: {\n    fill: '#D8E6EA',\n    activeFill: '#1DE9AC'\n  },\n  cluster: {\n    stroke: '#D8E6EA',\n    opacity: 1,\n    selectedOpacity: 1,\n    inactiveOpacity: 0.1,\n    label: {\n      stroke: '#fff',\n      color: '#2A6475'\n    }\n  }\n}"
+          "value": "{\n  canvas: { background: '#fff' },\n  node: {\n    fill: '#7CA0AB',\n    activeFill: '#1DE9AC',\n    opacity: 1,\n    selectedOpacity: 1,\n    inactiveOpacity: 0.2,\n    label: { color: '#2A6475', stroke: '#fff', activeColor: '#1DE9AC' },\n    subLabel: { color: '#ddd', stroke: 'transparent', activeColor: '#1DE9AC' }\n  },\n  lasso: { border: '1px solid #55aaff', background: 'rgba(75, 160, 255, 0.1)' },\n  ring: { fill: '#D8E6EA', activeFill: '#1DE9AC' },\n  edge: {\n    fill: '#D8E6EA',\n    activeFill: '#1DE9AC',\n    opacity: 1,\n    selectedOpacity: 1,\n    inactiveOpacity: 0.1,\n    label: {\n      stroke: '#fff',\n      color: '#2A6475',\n      activeColor: '#1DE9AC',\n      fontSize: 6\n    },\n    subLabel: {\n      color: '#ddd',\n      stroke: 'transparent',\n      activeColor: '#1DE9AC'\n    }\n  },\n  arrow: { fill: '#D8E6EA', activeFill: '#1DE9AC' },\n  cluster: {\n    stroke: '#D8E6EA',\n    opacity: 1,\n    selectedOpacity: 1,\n    inactiveOpacity: 0.1,\n    label: { stroke: '#fff', color: '#2A6475' }\n  }\n}"
         },
         "description": "Theme to use for the graph.",
         "name": "theme",
@@ -2895,6 +2895,27 @@
         "required": false,
         "type": {
           "name": "EdgeLabelPosition"
+        }
+      },
+      "subLabelPlacement": {
+        "defaultValue": {
+          "value": "below"
+        },
+        "description": "The placement of the edge subLabel relative to the main label.",
+        "name": "subLabelPlacement",
+        "parent": {
+          "fileName": "src/symbols/Edge.tsx",
+          "name": "EdgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Edge.tsx",
+            "name": "EdgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "EdgeSubLabelPosition"
         }
       },
       "arrowPlacement": {
