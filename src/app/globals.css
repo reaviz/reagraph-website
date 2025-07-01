@@ -146,6 +146,8 @@
   --font-sans: Inter, sans-serif;
   --font-mono: Fira Code, monospace;
 
+  --shadow-code: 0px_4px_16px_0px_rgba(0,0,0,0.25);
+
   /* Font sizes */
   --text-xs: 0.625rem; /* 10px */
   --text-xs--line-height: 1rem;
@@ -400,7 +402,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  scale: 120%;
+  scale: 110%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

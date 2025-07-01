@@ -1,5 +1,5 @@
 'use client';
-import { Button, Stack } from 'reablocks';
+import { Button, cn, Stack } from 'reablocks';
 import { FC } from 'react';
 import NodeClusterGraphic from '../../../public/assets/node-cluster-graphic.svg';
 import Backdrop from '../../../public/assets/backdrop.svg?url';
@@ -10,7 +10,7 @@ export interface ReactReadyProps {
 
 export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
   return (
-    <Stack className={className}>
+    <Stack className={cn('gap-6', className)}>
       <Stack
         className='flex-1 relative backdrop-bg'
         style={
@@ -19,11 +19,11 @@ export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
           } as React.CSSProperties
         }
       >
-        <NodeClusterGraphic className='w-full h-auto max-w-full' />
+        <NodeClusterGraphic className='w-full h-auto relative z-10 max-w-full' />
       </Stack>
-      <Stack direction='column' className='flex-1'>
+      <Stack direction='column' className='flex-1 gap-7' alignItems='start'>
         <h3 className='text-6xl font-bold text-text-primary'>
-          React-Ready. WebGL-Powered.
+          React-Ready. <br /> WebGL-Powered.
         </h3>
         <p className='text-2xl text-text-secondary'>
           Reagraph is designed for React, using WebGL to create stunning 2D and

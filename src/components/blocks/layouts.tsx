@@ -1,5 +1,5 @@
 'use client';
-import { Button, Stack } from 'reablocks';
+import { Button, cn, Stack } from 'reablocks';
 import { FC } from 'react';
 import LayoutGraphic from '../../../public/assets/layouts-graphic.svg';
 import Backdrop from '../../../public/assets/backdrop.svg?url';
@@ -10,8 +10,8 @@ export interface LayoutsProps {
 
 export const Layouts: FC<LayoutsProps> = ({ className }) => {
   return (
-    <Stack className={className}>
-      <Stack direction='column' className='flex-1'>
+    <Stack className={cn('gap-6', className)}>
+      <Stack direction='column' className='flex-1 gap-7' alignItems='start'>
         <h3 className='text-6xl font-bold text-text-primary'>
           Custom Graphs At Your Finger Tips.
         </h3>
@@ -37,7 +37,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
           } as React.CSSProperties
         }
       >
-        <LayoutGraphic className='w-full h-auto max-w-full' />
+        <LayoutGraphic className='w-full relative z-10 h-auto max-w-full' />
       </Stack>
     </Stack>
   );

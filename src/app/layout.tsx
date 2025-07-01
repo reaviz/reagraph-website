@@ -39,7 +39,7 @@ const navbar = (
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => (
   <html lang='en' dir='ltr' suppressHydrationWarning className='h-full'>
     <Head />
-    <body className='flex flex-col bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] antiasliased overflow-x-hidden text-white'>
+    <body className='flex flex-col bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] antialiased overflow-x-hidden text-white'>
       <Layout
         navbar={navbar}
         pageMap={await getPageMap()}
