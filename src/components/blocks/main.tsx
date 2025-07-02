@@ -79,7 +79,12 @@ export const Main: FC = () => {
           </div>
 
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
-            <Count className='min-h-9 text-3xl font-bold' from={199} to={700} />
+            <Count
+              className='min-h-9 text-3xl font-bold'
+              from={199}
+              to={700}
+              suffix="+"
+            />
             <motion.h2
               className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
