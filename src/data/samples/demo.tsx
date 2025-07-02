@@ -1,8 +1,44 @@
 'use client';
 import React, { useState, useCallback } from 'react';
 import { GraphCanvas } from 'reagraph';
-import { complexEdges, complexNodes, simpleEdges, simpleNodes, treeEdges } from './data';
+import {
+  complexEdges,
+  complexNodes,
+  simpleEdges,
+  simpleNodes,
+  treeEdges,
+} from './data';
 import { NodePositionArgs } from 'reagraph';
+
+export const Basic = () => (
+  <GraphCanvas
+    labelType='all'
+    nodes={[
+      {
+        id: '1',
+        label: '1',
+      },
+      {
+        id: '2',
+        label: '2',
+      },
+    ]}
+    edges={[
+      {
+        source: '1',
+        target: '2',
+        id: '1-2',
+        label: '1-2',
+      },
+      {
+        source: '2',
+        target: '1',
+        id: '2-1',
+        label: '2-1',
+      },
+    ]}
+  />
+);
 
 export const SpecialCharacters = () => (
   <GraphCanvas
@@ -35,7 +71,6 @@ export const SpecialCharacters = () => (
   />
 );
 
-
 export const ClusterSimple = () => {
   const [nodes, setNodes] = useState([
     {
@@ -44,16 +79,16 @@ export const ClusterSimple = () => {
       fill: '#075985',
       data: {
         type: 'MD5',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-1',
       label: 'Email 1',
       fill: '#166534',
       data: {
-        type: 'Email'
-      }
+        type: 'Email',
+      },
     },
     {
       id: 'n-2',
@@ -61,16 +96,16 @@ export const ClusterSimple = () => {
       fill: '#075985',
       data: {
         type: 'MD5',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-3',
       label: 'URL 3',
       fill: '#c2410c',
       data: {
-        type: 'URL'
-      }
+        type: 'URL',
+      },
     },
     {
       id: 'n-4',
@@ -78,16 +113,16 @@ export const ClusterSimple = () => {
       fill: '#075985',
       data: {
         type: 'MD5',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-5',
       label: 'MD5 5',
       fill: '#075985',
       data: {
-        type: 'MD5'
-      }
+        type: 'MD5',
+      },
     },
     {
       id: 'n-6',
@@ -95,16 +130,16 @@ export const ClusterSimple = () => {
       fill: '#3730a3',
       data: {
         type: 'IP',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-7',
       label: 'IP 7',
       fill: '#3730a3',
       data: {
-        type: 'IP'
-      }
+        type: 'IP',
+      },
     },
     {
       id: 'n-8',
@@ -112,16 +147,16 @@ export const ClusterSimple = () => {
       fill: '#c2410c',
       data: {
         type: 'URL',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-9',
       label: 'MD5 9',
       fill: '#075985',
       data: {
-        type: 'MD5'
-      }
+        type: 'MD5',
+      },
     },
     {
       id: 'n-10',
@@ -129,16 +164,16 @@ export const ClusterSimple = () => {
       fill: '#c2410c',
       data: {
         type: 'URL',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-11',
       label: 'URL 11',
       fill: '#c2410c',
       data: {
-        type: 'URL'
-      }
+        type: 'URL',
+      },
     },
     {
       id: 'n-12',
@@ -146,16 +181,16 @@ export const ClusterSimple = () => {
       fill: '#c2410c',
       data: {
         type: 'URL',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-13',
       label: 'Email 13',
       fill: '#166534',
       data: {
-        type: 'Email'
-      }
+        type: 'Email',
+      },
     },
     {
       id: 'n-14',
@@ -163,16 +198,16 @@ export const ClusterSimple = () => {
       fill: '#c2410c',
       data: {
         type: 'URL',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-15',
       label: 'IP 15',
       fill: '#3730a3',
       data: {
-        type: 'IP'
-      }
+        type: 'IP',
+      },
     },
     {
       id: 'n-16',
@@ -180,16 +215,16 @@ export const ClusterSimple = () => {
       fill: '#166534',
       data: {
         type: 'Email',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-17',
       label: 'Email 17',
       fill: '#166534',
       data: {
-        type: 'Email'
-      }
+        type: 'Email',
+      },
     },
     {
       id: 'n-18',
@@ -197,16 +232,16 @@ export const ClusterSimple = () => {
       fill: '#c2410c',
       data: {
         type: 'URL',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-19',
       label: 'Email 19',
       fill: '#166534',
       data: {
-        type: 'Email'
-      }
+        type: 'Email',
+      },
     },
     {
       id: 'n-20',
@@ -214,16 +249,16 @@ export const ClusterSimple = () => {
       fill: '#166534',
       data: {
         type: 'Email',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-21',
       label: 'Email 21',
       fill: '#166534',
       data: {
-        type: 'Email'
-      }
+        type: 'Email',
+      },
     },
     {
       id: 'n-22',
@@ -231,16 +266,16 @@ export const ClusterSimple = () => {
       fill: '#166534',
       data: {
         type: 'Email',
-        segment: 'A'
-      }
+        segment: 'A',
+      },
     },
     {
       id: 'n-23',
       label: 'URL 23',
       fill: '#c2410c',
       data: {
-        type: 'URL'
-      }
+        type: 'URL',
+      },
     },
     {
       id: 'n-24',
@@ -248,9 +283,9 @@ export const ClusterSimple = () => {
       fill: '#166534',
       data: {
         type: 'Email',
-        segment: 'A'
-      }
-    }
+        segment: 'A',
+      },
+    },
   ] as any);
 
   const addNode = useCallback(() => {
@@ -263,9 +298,9 @@ export const ClusterSimple = () => {
         fill: '#3730a3',
         data: {
           type: 'IP',
-          segment: next % 2 === 0 ? 'A' : undefined
-        }
-      }
+          segment: next % 2 === 0 ? 'A' : undefined,
+        },
+      },
     ]);
   }, [nodes]);
 
@@ -279,14 +314,14 @@ export const ClusterSimple = () => {
             source: 'n-6',
             target: 'n-1',
             id: 'n-6-n-1',
-            label: 'n-6-n-1'
-          }
+            label: 'n-6-n-1',
+          },
         ]}
-        clusterAttribute="type"
+        clusterAttribute='type'
         constrainDragging={false}
       />
       <div style={{ zIndex: 9, position: 'absolute', top: 15, right: 15 }}>
-        <button type="button" onClick={addNode}>
+        <button type='button' onClick={addNode}>
           Add node
         </button>
       </div>
@@ -296,18 +331,20 @@ export const ClusterSimple = () => {
 
 export const CustomLayout = () => (
   <GraphCanvas
-    layoutType="custom"
-    layoutOverrides={{
-      getNodePosition: (id: string, { nodes }: NodePositionArgs) => {
-        const idx = nodes.findIndex(n => n.id === id);
-        const node = nodes[idx];
-        return {
-          x: 25 * idx,
-          y: idx % 2 === 0 ? 0 : 50,
-          z: 1
-        };
-      }
-    } as any}
+    layoutType='custom'
+    layoutOverrides={
+      {
+        getNodePosition: (id: string, { nodes }: NodePositionArgs) => {
+          const idx = nodes.findIndex((n) => n.id === id);
+          const node = nodes[idx];
+          return {
+            x: 25 * idx,
+            y: idx % 2 === 0 ? 0 : 50,
+            z: 1,
+          };
+        },
+      } as any
+    }
     nodes={simpleNodes}
     edges={simpleEdges}
   />
@@ -317,24 +354,28 @@ export const CustomLighting = () => (
   <GraphCanvas
     nodes={simpleNodes}
     edges={simpleEdges}
-    layoutType="forceDirected3d"
+    layoutType='forceDirected3d'
   >
     <directionalLight position={[0, 5, -4]} intensity={1} />
   </GraphCanvas>
 );
 
 export const CentralitySizing = () => (
-  <GraphCanvas sizingType="centrality" nodes={simpleNodes} edges={simpleEdges} />
+  <GraphCanvas
+    sizingType='centrality'
+    nodes={simpleNodes}
+    edges={simpleEdges}
+  />
 );
 
 export const PageRankSizing = () => (
-  <GraphCanvas sizingType="pagerank" nodes={simpleNodes} edges={simpleEdges} />
+  <GraphCanvas sizingType='pagerank' nodes={simpleNodes} edges={simpleEdges} />
 );
 
 export const AttributeSizing = () => (
   <GraphCanvas
-    sizingType="attribute"
-    sizingAttribute="priority"
+    sizingType='attribute'
+    sizingAttribute='priority'
     minNodeSize={2}
     maxNodeSize={25}
     nodes={simpleNodes}
@@ -343,41 +384,64 @@ export const AttributeSizing = () => (
 );
 
 export const ForceDirected2D = () => (
-  <GraphCanvas layoutType="forceDirected2d" nodes={complexNodes} edges={complexEdges} />
+  <GraphCanvas
+    layoutType='forceDirected2d'
+    nodes={complexNodes}
+    edges={complexEdges}
+  />
 );
 
 export const Circular2D = () => (
-  <GraphCanvas layoutType="circular2d" nodes={complexNodes} edges={complexEdges} />
+  <GraphCanvas
+    layoutType='circular2d'
+    nodes={complexNodes}
+    edges={complexEdges}
+  />
 );
 
 export const TreeTopDown2D = () => (
-  <GraphCanvas layoutType="treeTd2d" nodes={simpleNodes} edges={treeEdges} />
+  <GraphCanvas layoutType='treeTd2d' nodes={simpleNodes} edges={treeEdges} />
 );
 
 export const TreeLeftRight2D = () => (
-  <GraphCanvas layoutType="treeLr2d" nodes={simpleNodes} edges={treeEdges} />
+  <GraphCanvas layoutType='treeLr2d' nodes={simpleNodes} edges={treeEdges} />
 );
 
 export const ForceAtlas2D = () => (
-  <GraphCanvas layoutType="forceatlas2" nodes={complexNodes} edges={complexEdges} />
+  <GraphCanvas
+    layoutType='forceatlas2'
+    nodes={complexNodes}
+    edges={complexEdges}
+  />
 );
 
 export const RadialOut2D = () => (
-  <GraphCanvas layoutType="radialOut2d" nodes={simpleNodes} edges={simpleEdges} />
+  <GraphCanvas
+    layoutType='radialOut2d'
+    nodes={simpleNodes}
+    edges={simpleEdges}
+  />
 );
 
 export const NoOverlap2D = () => (
-  <GraphCanvas layoutType="nooverlap" nodes={simpleNodes} edges={simpleEdges} />
+  <GraphCanvas layoutType='nooverlap' nodes={simpleNodes} edges={simpleEdges} />
 );
 
 export const HierarchicalLeftRight2D = () => (
-  <GraphCanvas layoutType="hierarchicalLr" nodes={simpleNodes} edges={treeEdges} />
+  <GraphCanvas
+    layoutType='hierarchicalLr'
+    nodes={simpleNodes}
+    edges={treeEdges}
+  />
 );
 
 export const HierarchicalTopDown2D = () => (
-  <GraphCanvas layoutType="hierarchicalTd" nodes={simpleNodes} edges={treeEdges} />
+  <GraphCanvas
+    layoutType='hierarchicalTd'
+    nodes={simpleNodes}
+    edges={treeEdges}
+  />
 );
-
 
 export const ForceDirected3D = () => (
   <GraphCanvas
