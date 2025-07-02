@@ -96,7 +96,7 @@ export const TracingBeams = ({
         ref={ref}
         className={cn("relative", containerClassName)}
       >
-        <div className={cn("absolute right-8 xl:right-12 z-50", className)}>
+        <div className={cn("absolute right-3 xl:right-7 z-50", className)}>
           <svg
             viewBox={`0 0 20 ${svgHeight}`}
             width="20"

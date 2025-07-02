@@ -13,9 +13,9 @@ export interface ReactReadyProps {
 export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
   return (
     <AnimateIn>
-      <Stack className={cn('gap-6', className)}>
+      <Stack className={cn('gap-6 lg:flex-row flex-col-reverse xl:container ', className)}>
         <Stack
-          className='flex-1 relative backdrop-bg'
+          className='flex-1 relative backdrop-bg w-full xl:w-auto'
           style={
             {
               '--backdrop-url': `url(${Backdrop.src})`,
@@ -33,7 +33,7 @@ export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
             and 3D graphs. This allows developers to build striking and
             interactive data visualizations easily.
           </p>
-          <Stack direction='row' className='self-start'>
+          <Stack direction='row' className='self-center xl:self-start'>
             <Link href='/docs/getting-started/Installing'>
               <Button variant='filled' color='primary' size='large'>
                 Get Started

@@ -14,7 +14,7 @@ export interface LayoutsProps {
 export const Layouts: FC<LayoutsProps> = ({ className }) => {
   return (
     <AnimateIn>
-      <Stack className={cn('gap-6 w-auto mx-15 xl:mx-23', className)}>
+      <Stack className={cn('gap-6 w-auto xl:container flex-col lg:flex-row m-5 md:mx-15 xl:mx-23', className)}>
         <Stack direction='column' className='flex-1 gap-7' alignItems='start'>
           <motion.h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             Custom Graphs At Your Finger Tips.
@@ -24,7 +24,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
             intuitive interface allows anyone to turn complex data into
             appealing visualizations without extensive coding.
           </motion.p>
-          <Stack direction='row' className='self-start'>
+          <Stack direction='row' className='self-center xl:self-start'>
             <Link href='/docs/getting-started/Installing'>
               <Button variant='filled' color='primary' size='large'>
                 Get Started
@@ -38,7 +38,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
           </Stack>
         </Stack>
         <Stack
-          className='flex-1 relative backdrop-bg'
+          className='flex-1 relative backdrop-bg w-full xl:w-auto'
           style={
             {
               '--backdrop-url': `url(${Backdrop.src})`,

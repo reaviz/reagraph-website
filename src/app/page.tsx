@@ -30,10 +30,10 @@ const Home: FC = () => {
           <Header />
           <div className='mt-[72px] flex flex-col items-center'>
             <Main />
-            <Features className='mt-32' />
-            <Layouts className='mt-32' />
-            <ReactReady className='w-auto mx-15 xl:mx-23' />
-            <GettingStarted className='mt-32 mb-32' />
+            <Features className='mt-16 lg:mt-20 xl:mt-32' />
+            <Layouts className='mt-16 lg:mt-20 xl:mt-32' />
+            <ReactReady className='w-auto mx-5 md:mx-15 xl:mx-23' />
+            <GettingStarted className='mt-16 lg:mt-20 xl:mt-32 mb-16 lg:mb-20 xl:mb-32' />
           </div>
           <div className='border-t-2 border-gray-400/30 py-6'>
             <Footer />
