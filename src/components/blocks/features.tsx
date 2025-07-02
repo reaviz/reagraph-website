@@ -1,7 +1,7 @@
 'use client';
 import { FC } from 'react';
-import { Card } from 'reablocks';
-import { AnimateIn } from '@/components/shared/Count';
+import { Card, cn } from 'reablocks';
+import { AnimateIn } from '@/components/shared/AnimateIn';
 import { IconCard } from '@/components/shared/icon-card';
 import MagicIcon from '@/icons/magic.svg';
 import BrainIcon from '@/icons/brain.svg';
@@ -11,7 +11,7 @@ import CentralizedNetworkIcon from '@/icons/centralized-network.svg';
 import SugarCubeIcon from '@/icons/sugar-cube.svg';
 
 const CARD_CLASSNAME =
-  'border-none rounded-4xl bg-panel [clip-path:polygon(0_0,calc(100%_-_40px)_0,100%_40px,100%_100%,0_100%)]';
+  'border-none rounded-4xl bg-panel h-full [clip-path:polygon(0_0,calc(100%_-_40px)_0,100%_40px,100%_100%,0_100%)]';
 
 export interface FeaturesProps {
   className?: string;
@@ -19,8 +19,8 @@ export interface FeaturesProps {
 
 export const Features: FC<FeaturesProps> = ({ className }) => {
   return (
-    <section className={className}>
-      <div className='mb-8 grid grid-cols-1 gap-4 md:grid-cols-3'>
+    <section className={cn('w-auto mx-15 xl:mx-23', className)}>
+      <div className='mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3'>
         <AnimateIn>
           <Card className={CARD_CLASSNAME}>
             <IconCard className='mb-5'>
