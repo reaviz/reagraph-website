@@ -10,7 +10,7 @@ export const Header = () => {
       justifyContent='center'
     >
       <Stack
-        className='w-full mx-15 xl:mx-23'
+        className='w-full m-5 md:mx-15 xl:mx-23'
         direction='row'
         justifyContent='spaceBetween'
       >

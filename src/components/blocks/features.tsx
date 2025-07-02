@@ -19,7 +19,7 @@ export interface FeaturesProps {
 
 export const Features: FC<FeaturesProps> = ({ className }) => {
   return (
-    <section className={cn('w-auto mx-15 xl:mx-23', className)}>
+    <section className={cn('w-auto 2xl:container m-5 md:mx-15 xl:mx-23', className)}>
       <div className='mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3'>
         <AnimateIn>
           <Card className={CARD_CLASSNAME}>

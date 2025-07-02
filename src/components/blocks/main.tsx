@@ -31,31 +31,17 @@ export const Main: FC = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
+        className='w-full'
       >
         <GraphImage
-          className='-mt-32 bg-cover bg-position-[-16px_78px]'
+          className='-mt-32 bg-cover bg-position-[-16px_78px] h-auto w-full max-w-[978px] mx-auto'
           style={{ backgroundImage: `url(${BgLayers.src})` }}
         />
       </motion.div>
 
-      <section className='relative flex w-full -mt-26 justify-center px-0 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
-        <div className='grid w-full grid-cols-2 grid-rows-2 gap-4 md:grid-cols-5 md:grid-rows-1'>
-          <div className='flex flex-1 flex-col items-center gap-4 px-12'>
-            <Count
-              className='min-h-9 text-3xl font-bold'
-              from={10}
-              to={50}
-              suffix={'+'}
-            />
-            <motion.h2
-              className='text-base text-center'
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              Components
-            </motion.h2>
-          </div>
-          <div className='flex flex-1 flex-col items-center gap-4 px-12'>
+      <section className='relative flex w-full -mt-26 justify-center px-0 py-4 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
+        <div className='grid w-full xl:container  grid-cols-2 grid-rows-2 gap-4 lg:grid-cols-4 lg:grid-rows-1'>
+          <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
               className='min-h-9 text-3xl font-bold'
               from={0}
@@ -71,7 +57,7 @@ export const Main: FC = () => {
             </motion.h2>
           </div>
 
-          <div className='flex flex-1 flex-col items-center gap-4 px-12'>
+          <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
               className='min-h-9 text-3xl font-bold'
               from={120}
@@ -87,7 +73,7 @@ export const Main: FC = () => {
             </motion.h2>
           </div>
 
-          <div className='flex flex-1 flex-col items-center gap-4 px-12'>
+          <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count className='min-h-9 text-3xl font-bold' from={199} to={700} />
             <motion.h2
               className='text-base text-center'
@@ -97,7 +83,7 @@ export const Main: FC = () => {
               Stars
             </motion.h2>
           </div>
-          <div className='flex flex-1 flex-col items-center gap-4 px-12'>
+          <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count className='min-h-9 text-3xl font-bold' from={0} to={1} />
             <motion.h2
               className='text-base text-center'

@@ -38,7 +38,7 @@ const CUSTOM_THEME_CODE_SAMPLE = `const App = () => (
 `;
 
 const CODE_BLOCK_CLASSNAME =
-  '!m-0 rb-code-block flex-1 shadow-code rounded-lg bg-[#16161E] border border-[#262631]';
+  '!m-0 rb-code-block flex-auto lg:flex-1 shadow-code rounded-lg bg-[#16161E] border border-[#262631]';
 
 export interface GettingStartedProps {
   className?: string;
@@ -49,10 +49,10 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
     <div className={cn('w-full flex flex-col gap-10', className)}>
       <Stack
         direction='column'
-        className='text-left w-auto mx-15 xl:mx-23'
+        className='text-left w-auto mx-5 md:mx-15 xl:mx-23'
         alignItems='start'
       >
-        <AnimateIn>
+        <AnimateIn className='xl:container mx-auto'>
           <h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             Getting started 🚀
           </h3>
@@ -61,12 +61,11 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
           <Stack
-            direction='row'
-            className='w-full gap-6'
+            className='w-full xl:container mx-5 md:mx-15 xl:mx-23 gap-2 xl:gap-6 flex-col lg:flex-row'
             justifyContent='spaceBetween'
             alignItems='start'
           >
-            <div className='flex-1 w-auto mx-15 xl:mx-23'>
+            <div className='flex-1 w-full'>
               <h4 className='text-text-primary text-base font-bold md:text-xl'>
                 Integrating Reagraph them in your application
               </h4>
@@ -83,28 +82,21 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
                 Learn more
               </Link>
             </div>
-            <Stack
-              direction='column'
-              className='flex-1 w-full'
-              alignItems='start'
-              justifyContent='start'
+
+            <SyntaxHighlighter
+              language='jsx'
+              style={vscDarkPlus}
+              className={CODE_BLOCK_CLASSNAME}
             >
-              <SyntaxHighlighter
-                language='jsx'
-                style={vscDarkPlus}
-                className={CODE_BLOCK_CLASSNAME}
-              >
-                {`$ npm install reagraph -S\n \nimport { GraphCanvas } from 'reagraph';`}
-              </SyntaxHighlighter>
-            </Stack>
+              {`$ npm install reagraph -S\n \nimport { GraphCanvas } from 'reagraph';`}
+            </SyntaxHighlighter>
           </Stack>
         </section>
       </AnimateIn>
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
           <Stack
-            direction='row'
-            className='w-auto mx-15 xl:mx-23 gap-6'
+            className='w-auto xl:container mx-5 md:mx-15 xl:mx-23 gap-2 xl:gap-6 flex-col lg:flex-row'
             justifyContent='spaceBetween'
             alignItems='start'
           >
@@ -144,8 +136,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
           <Stack
-            direction='row'
-            className='w-auto mx-15 xl:mx-23 gap-6'
+            className='w-auto xl:container mx-5 md:mx-15 xl:mx-23 gap-2 xl:gap-6 flex-col lg:flex-row'
             justifyContent='spaceBetween'
             alignItems='start'
           >
@@ -184,8 +175,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
           <Stack
-            direction='column'
-            className='w-auto mx-15 xl:mx-23 max-w-[600px] text-center'
+            className='w-auto xl:container mx-5 md:mx-15 xl:mx-23 max-w-[600px] text-center flex-col'
             justifyContent='spaceBetween'
           >
             <h2 className='text-4xl lg:text-5xl xl:text-6xl text-text-primary font-bold mb-6'>
