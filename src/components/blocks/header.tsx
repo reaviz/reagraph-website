@@ -10,7 +10,7 @@ export const Header = () => {
       justifyContent='center'
     >
       <Stack
-        className='container w-full'
+        className='w-full mx-15 xl:mx-23'
         direction='row'
         justifyContent='spaceBetween'
       >
@@ -24,7 +24,7 @@ export const Header = () => {
           <NextLink className='px-4' href='/docs'>
             Docs
           </NextLink>
-          <NextLink className='px-4' href='/docs'>
+          <NextLink className='px-4' href='https://reagraph.dev/'>
             Storybook
           </NextLink>
           <NextLink
