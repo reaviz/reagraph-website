@@ -9,19 +9,35 @@ import BgLayers from '../../../public/assets/bg-layers.svg?url';
 export const Main: FC = () => {
   return (
     <div
-      className='w-full bg-cover bg-center flex flex-col items-center'
+      className='w-full bg-cover bg-center flex flex-col items-center font-inter'
       style={{ backgroundImage: `url(${DotGrid.src})` }}
     >
-      <div className='max-w-[1000px] text-center mt-32 z-10'>
-        <h3 className='text-6xl font-bold text-[#F2F3F7]'>WebGL-Powered</h3>
-        <h2 className='text-7.5xl font-bold bg-clip-text bg-gradient-to-b from-[#F2F3F7] from-62.5% to-[#8E8F91] leading-none text-transparent text-shadow-none'>
+      <div className='max-w-[700px] lg:max-w-[1000px] text-center mt-16 lg:mt-20 xl:mt-32 z-10'>
+        <motion.h3
+          className='text-4xl lg:text-5xl xl:text-6xl font-bold text-[#F2F3F7]'
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          WebGL-Powered
+        </motion.h3>
+        <motion.h2
+          className='text-5xl lg:text-6xl xl:text-7.5xl font-bold bg-clip-text bg-gradient-to-b from-[#F2F3F7] from-62.5% to-[#8E8F91] leading-none text-transparent text-shadow-none'
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
           Open-Source Network Graph Visualization
-        </h2>
+        </motion.h2>
       </div>
-      <GraphImage
-        className='-mt-32 bg-cover bg-position-[-16px_78px]'
-        style={{ backgroundImage: `url(${BgLayers.src})` }}
-      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+      >
+        <GraphImage
+          className='-mt-32 bg-cover bg-position-[-16px_78px]'
+          style={{ backgroundImage: `url(${BgLayers.src})` }}
+        />
+      </motion.div>
+
       <section className='relative flex w-full -mt-26 justify-center px-0 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
         <div className='grid w-full grid-cols-2 grid-rows-2 gap-4 md:grid-cols-5 md:grid-rows-1'>
           <div className='flex flex-1 flex-col items-center gap-4 px-12'>
@@ -32,7 +48,7 @@ export const Main: FC = () => {
               suffix={'+'}
             />
             <motion.h2
-              className='text-base'
+              className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -47,7 +63,7 @@ export const Main: FC = () => {
               suffix={'+'}
             />
             <motion.h2
-              className='text-base'
+              className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -63,7 +79,7 @@ export const Main: FC = () => {
               suffix={'+'}
             />
             <motion.h2
-              className='text-base'
+              className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -74,7 +90,7 @@ export const Main: FC = () => {
           <div className='flex flex-1 flex-col items-center gap-4 px-12'>
             <Count className='min-h-9 text-3xl font-bold' from={199} to={700} />
             <motion.h2
-              className='text-base'
+              className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -84,7 +100,7 @@ export const Main: FC = () => {
           <div className='flex flex-1 flex-col items-center gap-4 px-12'>
             <Count className='min-h-9 text-3xl font-bold' from={0} to={1} />
             <motion.h2
-              className='text-base'
+              className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >

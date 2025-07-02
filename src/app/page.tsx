@@ -30,9 +30,9 @@ const Home: FC = () => {
           <Header />
           <div className='mt-[72px] flex flex-col items-center'>
             <Main />
-            <Features className='container mt-32' />
-            <Layouts className='container mt-32' />
-            <ReactReady className='container' />
+            <Features className='mt-32' />
+            <Layouts className='mt-32' />
+            <ReactReady className='w-auto mx-15 xl:mx-23' />
             <GettingStarted className='mt-32 mb-32' />
           </div>
           <div className='border-t-2 border-gray-400/30 py-6'>

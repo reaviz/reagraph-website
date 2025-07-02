@@ -5,6 +5,7 @@ import { Button, cn, Stack } from 'reablocks';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Link from 'next/link';
+import { AnimateIn } from '../shared/AnimateIn';
 
 const BASIC_CODE_SAMPLE = `<GraphCanvas
   nodes={[
@@ -48,147 +49,156 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
     <div className={cn('w-full flex flex-col gap-10', className)}>
       <Stack
         direction='column'
-        className='container text-left w-full mx-auto'
+        className='text-left w-auto mx-15 xl:mx-23'
         alignItems='start'
       >
-        <h3 className='text-6xl font-bold text-text-primary'>
-          Getting started 🚀
-        </h3>
+        <AnimateIn>
+          <h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
+            Getting started 🚀
+          </h3>
+        </AnimateIn>
       </Stack>
-      <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-        <Stack
-          direction='row'
-          className='container w-full gap-6'
-          justifyContent='spaceBetween'
-          alignItems='start'
-        >
-          <div className='flex-1'>
-            <h4 className='text-text-primary text-base font-bold md:text-xl'>
-              Integrating Reagraph them in your application
-            </h4>
-            <p className='text-text-secondary text-sm my-3 md:text-base'>
-              To get started with{' '}
-              <span className='text-cyan-300'>Reagraph</span> just need to
-              install the package and import the component.
-            </p>
-            <Link
-              aria-label='Learn more about Reagraph'
-              href='/docs/getting-started/setup'
-              className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
-            >
-              Learn more
-            </Link>
-          </div>
+      <AnimateIn>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
           <Stack
-            direction='column'
-            className='flex-1 w-full'
+            direction='row'
+            className='w-full gap-6'
+            justifyContent='spaceBetween'
             alignItems='start'
-            justifyContent='start'
           >
+            <div className='flex-1 w-auto mx-15 xl:mx-23'>
+              <h4 className='text-text-primary text-base font-bold md:text-xl'>
+                Integrating Reagraph them in your application
+              </h4>
+              <p className='text-text-secondary text-sm my-3 md:text-base'>
+                To get started with{' '}
+                <span className='text-cyan-300'>Reagraph</span> just need to
+                install the package and import the component.
+              </p>
+              <Link
+                aria-label='Learn more about Reagraph'
+                href='/docs/getting-started/setup'
+                className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+              >
+                Learn more
+              </Link>
+            </div>
+            <Stack
+              direction='column'
+              className='flex-1 w-full'
+              alignItems='start'
+              justifyContent='start'
+            >
+              <SyntaxHighlighter
+                language='jsx'
+                style={vscDarkPlus}
+                className={CODE_BLOCK_CLASSNAME}
+              >
+                {`$ npm install reagraph -S\n \nimport { GraphCanvas } from 'reagraph';`}
+              </SyntaxHighlighter>
+            </Stack>
+          </Stack>
+        </section>
+      </AnimateIn>
+      <AnimateIn>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+          <Stack
+            direction='row'
+            className='w-auto mx-15 xl:mx-23 gap-6'
+            justifyContent='spaceBetween'
+            alignItems='start'
+          >
+            <div className='flex-1'>
+              <h4 className='text-text-primary text-base font-bold md:text-xl'>
+                Let's build something amazing
+              </h4>
+              <p className='text-text-secondary text-sm my-3 md:text-base'>
+                Let's define some nodes and edges.{' '}
+                <span className='text-cyan-300'>Nodes</span> are the blocks and{' '}
+                <span className='text-cyan-300'>edges</span> are the
+                relationships between the blocks.
+              </p>
+              <p className='text-text-secondary text-sm my-3 md:text-base'>
+                The data shapes require one property of id but you can pass
+                label or icon to them to show some sort of indication what it
+                represents.
+              </p>
+              <Link
+                aria-label='Learn more about Reagraph'
+                href='/docs/getting-started/setup'
+                className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+              >
+                Learn more
+              </Link>
+            </div>
             <SyntaxHighlighter
               language='jsx'
               style={vscDarkPlus}
               className={CODE_BLOCK_CLASSNAME}
             >
-              {`$ npm install reagraph -S\n \nimport { GraphCanvas } from 'reagraph';`}
+              {BASIC_CODE_SAMPLE}
             </SyntaxHighlighter>
           </Stack>
-        </Stack>
-      </section>
-
-      <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-        <Stack
-          direction='row'
-          className='container w-full gap-6'
-          justifyContent='spaceBetween'
-          alignItems='start'
-        >
-          <div className='flex-1'>
-            <h4 className='text-text-primary text-base font-bold md:text-xl'>
-              Let's build something amazing
-            </h4>
-            <p className='text-text-secondary text-sm my-3 md:text-base'>
-              Let's define some nodes and edges.{' '}
-              <span className='text-cyan-300'>Nodes</span> are the blocks and{' '}
-              <span className='text-cyan-300'>edges</span> are the relationships
-              between the blocks.
-            </p>
-            <p className='text-text-secondary text-sm my-3 md:text-base'>
-              The data shapes require one property of id but you can pass label
-              or icon to them to show some sort of indication what it
-              represents.
-            </p>
-            <Link
-              aria-label='Learn more about Reagraph'
-              href='/docs/getting-started/setup'
-              className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
-            >
-              Learn more
-            </Link>
-          </div>
-          <SyntaxHighlighter
-            language='jsx'
-            style={vscDarkPlus}
-            className={CODE_BLOCK_CLASSNAME}
+        </section>
+      </AnimateIn>
+      <AnimateIn>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+          <Stack
+            direction='row'
+            className='w-auto mx-15 xl:mx-23 gap-6'
+            justifyContent='spaceBetween'
+            alignItems='start'
           >
-            {BASIC_CODE_SAMPLE}
-          </SyntaxHighlighter>
-        </Stack>
-      </section>
-
-      <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-        <Stack
-          direction='row'
-          className='container w-full gap-6'
-          justifyContent='spaceBetween'
-          alignItems='start'
-        >
-          <div className='flex-1'>
-            <h4 className='text-text-primary text-base font-bold md:text-xl'>
-              Customizing the graph
-            </h4>
-            <p className='text-text-secondary text-sm my-3 md:text-base'>
-              By default, the graph supports 2 themes:{' '}
-              <span className='text-cyan-300'>light</span> and{' '}
-              <span className='text-cyan-300'>dark</span> modes. You can also
-              define your own theme using the theme interface.
-            </p>
-            <p className='text-text-secondary text-sm my-3 md:text-base'>
-              You can also customize the graph by passing props to the
-              component.
-            </p>
-            <Link
-              aria-label='Learn more about Reagraph'
-              href='/docs/getting-started/setup'
-              className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+            <div className='flex-1'>
+              <h4 className='text-text-primary text-base font-bold md:text-xl'>
+                Customizing the graph
+              </h4>
+              <p className='text-text-secondary text-sm my-3 md:text-base'>
+                By default, the graph supports 2 themes:{' '}
+                <span className='text-cyan-300'>light</span> and{' '}
+                <span className='text-cyan-300'>dark</span> modes. You can also
+                define your own theme using the theme interface.
+              </p>
+              <p className='text-text-secondary text-sm my-3 md:text-base'>
+                You can also customize the graph by passing props to the
+                component.
+              </p>
+              <Link
+                aria-label='Learn more about Reagraph'
+                href='/docs/getting-started/setup'
+                className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+              >
+                Learn more
+              </Link>
+            </div>
+            <SyntaxHighlighter
+              language='jsx'
+              style={vscDarkPlus}
+              className={CODE_BLOCK_CLASSNAME}
             >
-              Learn more
-            </Link>
-          </div>
-          <SyntaxHighlighter
-            language='jsx'
-            style={vscDarkPlus}
-            className={CODE_BLOCK_CLASSNAME}
+              {CUSTOM_THEME_CODE_SAMPLE}
+            </SyntaxHighlighter>
+          </Stack>
+        </section>
+      </AnimateIn>
+      <AnimateIn>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+          <Stack
+            direction='column'
+            className='w-auto mx-15 xl:mx-23 max-w-[600px] text-center'
+            justifyContent='spaceBetween'
           >
-            {CUSTOM_THEME_CODE_SAMPLE}
-          </SyntaxHighlighter>
-        </Stack>
-      </section>
-
-      <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-        <Stack
-          direction='column'
-          className='container w-full max-w-[600px] text-center'
-          justifyContent='spaceBetween'
-        >
-          <h2 className='text-5xl text-text-primary mb-6'>
-            Start building with Reagraph today
-          </h2>
-          <Button color='primary' size='large'>
-            Get Started
-          </Button>
-        </Stack>
-      </section>
+            <h2 className='text-4xl lg:text-5xl xl:text-6xl text-text-primary font-bold mb-6'>
+              Start building with Reagraph today
+            </h2>
+            <Link href='/docs/getting-started/Installing'>
+              <Button color='primary' size='large'>
+                Get Started
+              </Button>
+            </Link>
+          </Stack>
+        </section>
+      </AnimateIn>
     </div>
   );
 };
