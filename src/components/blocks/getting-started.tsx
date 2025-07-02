@@ -6,7 +6,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Link from 'next/link';
 import { AnimateIn } from '../shared/AnimateIn';
-import { ResponsiveContainer } from '../ResponsiveContainer';
+import { ResponsiveContainer } from '../responsive-container';
 
 const BASIC_CODE_SAMPLE = `<GraphCanvas
   nodes={[
@@ -20,8 +20,7 @@ const BASIC_CODE_SAMPLE = `<GraphCanvas
 />
 `;
 
-const CUSTOM_THEME_CODE_SAMPLE = `const App = () => (
-  <GraphCanvas
+const CUSTOM_THEME_CODE_SAMPLE = `<GraphCanvas
     theme={{
       ...lightTheme,
       node: { ...lightTheme.node, color: '#000' }
@@ -35,11 +34,10 @@ const CUSTOM_THEME_CODE_SAMPLE = `const App = () => (
       </group>
     )}
   />
-);
 `;
 
 const CODE_BLOCK_CLASSNAME =
-  '!m-0 rb-code-block flex-auto lg:flex-1 shadow-code rounded-lg bg-[#16161E] border border-[#262631]';
+  '!m-0 rb-code-block flex-auto lg:flex-1 shadow-code rounded-lg bg-[#16161E] border border-[#262631] max-w-[calc(100vw-40px)] md:w-full';
 
 export interface GettingStartedProps {
   className?: string;

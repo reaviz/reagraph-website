@@ -405,7 +405,6 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  scale: 110%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

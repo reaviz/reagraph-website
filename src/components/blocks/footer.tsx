@@ -5,18 +5,19 @@ import Image from 'next/image';
 import DribbbleIcon from '@/icons/Dribbble';
 import GithubIcon from '@/icons/Github';
 import LinkedinIcon from '@/icons/LinkedIn';
+import { ResponsiveContainer } from '../responsive-container';
 
 export const Footer: FC = () => {
   return (
-    <div className='w-full flex justify-center items-center'>
-      <div className='w-full xl:container md:mx-15 xl:mx-23 flex items-center justify-between gap-4'>
+    <div className='w-full justify-center items-center'>
+      <ResponsiveContainer className='flex items-center justify-between gap-4'>
         <Image
           src={'/assets/logo-full.png'}
           alt='Reagraph'
           width={112}
           height={24}
         />
-        <span>
+        <span className='hidden md:block'>
           Made with ❤️ by{' '}
           <Link
             className='text-primary underline'
@@ -45,7 +46,16 @@ export const Footer: FC = () => {
             <DribbbleIcon className='h-5 w-5 transition-colors hover:text-content-primary' />
           </Link>
         </div>
-      </div>
+      </ResponsiveContainer>
+      <span className='block md:hidden text-center mt-10'>
+          Made with ❤️ by{' '}
+          <Link
+            className='text-primary underline'
+            href='https://goodcode.us?utm_source=reagraph'
+          >
+            Good Code
+          </Link>
+        </span>
     </div>
   );
 };

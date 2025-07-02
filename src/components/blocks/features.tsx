@@ -9,7 +9,7 @@ import DatabaseViewIcon from '@/icons/database-view.svg';
 import PlusIcon from '@/icons/plus.svg';
 import CentralizedNetworkIcon from '@/icons/centralized-network.svg';
 import SugarCubeIcon from '@/icons/sugar-cube.svg';
-import { ResponsiveContainer } from '../ResponsiveContainer';
+import { ResponsiveContainer } from '../responsive-container';
 
 const CARD_CLASSNAME =
   'border-none rounded-4xl bg-panel h-full [clip-path:polygon(0_0,calc(100%_-_40px)_0,100%_40px,100%_100%,0_100%)]';
