@@ -25,7 +25,7 @@ export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
         >
           <NodeClusterGraphic className='w-full h-auto relative z-10 max-w-full' />
         </Stack>
-        <Stack direction='column' className='flex-1 gap-7' alignItems='start'>
+        <Stack direction='column' className='flex-1 gap-7 self-center' alignItems='start'>
           <h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             React-Ready. <br /> WebGL-Powered.
           </h3>

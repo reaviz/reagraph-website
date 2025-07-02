@@ -48,8 +48,8 @@ export interface GettingStartedProps {
 export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
   return (
     <div className={cn('w-full flex flex-col gap-10', className)}>
-      <ResponsiveContainer className='text-left w-full 11111'>
-        <AnimateIn className='w-full'>
+      <ResponsiveContainer className='text-left'>
+        <AnimateIn>
           <h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             Getting started 🚀
           </h3>
