@@ -6,6 +6,7 @@ import Backdrop from '../../../public/assets/backdrop.svg?url';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { AnimateIn } from '../shared/AnimateIn';
+import { ResponsiveContainer } from '../ResponsiveContainer';
 
 export interface LayoutsProps {
   className?: string;
@@ -14,7 +15,7 @@ export interface LayoutsProps {
 export const Layouts: FC<LayoutsProps> = ({ className }) => {
   return (
     <AnimateIn>
-      <Stack className={cn('gap-6 w-auto xl:container flex-col lg:flex-row m-5 md:mx-15 xl:mx-23', className)}>
+      <ResponsiveContainer className={cn('gap-6 flex-col lg:flex-row', className)}>
         <Stack direction='column' className='flex-1 gap-7' alignItems='start'>
           <motion.h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             Custom Graphs At Your Finger Tips.
@@ -47,7 +48,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
         >
           <LayoutGraphic className='w-full relative z-10 h-auto max-w-full' />
         </Stack>
-      </Stack>
+      </ResponsiveContainer>
     </AnimateIn>
   );
 };

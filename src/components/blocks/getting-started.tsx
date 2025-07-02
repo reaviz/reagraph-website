@@ -6,6 +6,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Link from 'next/link';
 import { AnimateIn } from '../shared/AnimateIn';
+import { ResponsiveContainer } from '../ResponsiveContainer';
 
 const BASIC_CODE_SAMPLE = `<GraphCanvas
   nodes={[
@@ -47,24 +48,16 @@ export interface GettingStartedProps {
 export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
   return (
     <div className={cn('w-full flex flex-col gap-10', className)}>
-      <Stack
-        direction='column'
-        className='text-left w-auto mx-5 md:mx-15 xl:mx-23'
-        alignItems='start'
-      >
-        <AnimateIn className='xl:container mx-auto'>
+      <ResponsiveContainer className='text-left w-full 11111'>
+        <AnimateIn className='w-full'>
           <h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             Getting started 🚀
           </h3>
         </AnimateIn>
-      </Stack>
+      </ResponsiveContainer>
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-          <Stack
-            className='w-full xl:container mx-5 md:mx-15 xl:mx-23 gap-2 xl:gap-6 flex-col lg:flex-row'
-            justifyContent='spaceBetween'
-            alignItems='start'
-          >
+          <ResponsiveContainer className='w-full! gap-2 xl:gap-6 flex-col lg:flex-row'>
             <div className='flex-1 w-full'>
               <h4 className='text-text-primary text-base font-bold md:text-xl'>
                 Integrating Reagraph them in your application
@@ -90,16 +83,12 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
             >
               {`$ npm install reagraph -S\n \nimport { GraphCanvas } from 'reagraph';`}
             </SyntaxHighlighter>
-          </Stack>
+          </ResponsiveContainer>
         </section>
       </AnimateIn>
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-          <Stack
-            className='w-auto xl:container mx-5 md:mx-15 xl:mx-23 gap-2 xl:gap-6 flex-col lg:flex-row'
-            justifyContent='spaceBetween'
-            alignItems='start'
-          >
+          <ResponsiveContainer className='gap-2 xl:gap-6 flex-col lg:flex-row'>
             <div className='flex-1'>
               <h4 className='text-text-primary text-base font-bold md:text-xl'>
                 Let's build something amazing
@@ -130,16 +119,12 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
             >
               {BASIC_CODE_SAMPLE}
             </SyntaxHighlighter>
-          </Stack>
+          </ResponsiveContainer>
         </section>
       </AnimateIn>
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-          <Stack
-            className='w-auto xl:container mx-5 md:mx-15 xl:mx-23 gap-2 xl:gap-6 flex-col lg:flex-row'
-            justifyContent='spaceBetween'
-            alignItems='start'
-          >
+          <ResponsiveContainer className='gap-2 xl:gap-6 flex-col lg:flex-row'>
             <div className='flex-1'>
               <h4 className='text-text-primary text-base font-bold md:text-xl'>
                 Customizing the graph
@@ -169,15 +154,12 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
             >
               {CUSTOM_THEME_CODE_SAMPLE}
             </SyntaxHighlighter>
-          </Stack>
+          </ResponsiveContainer>
         </section>
       </AnimateIn>
       <AnimateIn>
         <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
-          <Stack
-            className='w-auto xl:container mx-5 md:mx-15 xl:mx-23 max-w-[600px] text-center flex-col'
-            justifyContent='spaceBetween'
-          >
+          <ResponsiveContainer className='w-auto max-w-[600px] text-center flex-col'>
             <h2 className='text-4xl lg:text-5xl xl:text-6xl text-text-primary font-bold mb-6'>
               Start building with Reagraph today
             </h2>
@@ -186,7 +168,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
                 Get Started
               </Button>
             </Link>
-          </Stack>
+          </ResponsiveContainer>
         </section>
       </AnimateIn>
     </div>

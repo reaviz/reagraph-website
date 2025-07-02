@@ -9,7 +9,7 @@ import LinkedinIcon from '@/icons/LinkedIn';
 export const Footer: FC = () => {
   return (
     <div className='w-full flex justify-center items-center'>
-      <div className='container flex items-center justify-between gap-4'>
+      <div className='w-full xl:container md:mx-15 xl:mx-23 flex items-center justify-between gap-4'>
         <Image
           src={'/assets/logo-full.png'}
           alt='Reagraph'
