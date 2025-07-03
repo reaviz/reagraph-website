@@ -24,7 +24,7 @@ export const Header = () => {
   return (
     <>
       <Stack
-        className='flex fixed top-0 left-0 right-0 z-40 w-full md:min-h-[72px] border-b-2 border-gray-400/30 transition-[backdrop-filter] backdrop-blur-md'
+        className='flex fixed top-0 left-0 right-0 z-40 font-inter w-full md:min-h-[72px] border-b-2 border-gray-400/30 transition-[backdrop-filter] backdrop-blur-md'
         justifyContent='center'
       >
         <Stack
