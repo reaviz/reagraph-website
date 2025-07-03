@@ -145,7 +145,7 @@
 /* Define theme tokens */
 @theme inline {
   /* Fonts */
-  --font-sans: Gilroy, sans-serif;
+  --font-gilroy: Gilroy, sans-serif;
   --font-inter: Inter, sans-serif;
   --font-mono: Fira Code, monospace;
 
