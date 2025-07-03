@@ -14,7 +14,7 @@ export interface ReactReadyProps {
 export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
   return (
     <AnimateIn>
-      <ResponsiveContainer className={cn('gap-6 lg:flex-row flex-col-reverse', className)}>
+      <ResponsiveContainer className={cn('gap-6 lg:flex-row flex-col-reverse overflow-clip', className)}>
         <Stack
           className='flex-1 relative backdrop-bg w-full md:before:scale-110 scale-125 -translate-x-3 my-12 sm:my-0 sm:scale-100 sm:translate-x-0'
           style={

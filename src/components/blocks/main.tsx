@@ -10,7 +10,7 @@ import BgLayers from '../../../public/assets/bg-layers.svg?url';
 export const Main: FC = () => {
   return (
     <div
-      className='w-full bg-cover bg-center flex flex-col items-center font-inter'
+      className='w-full bg-cover bg-center flex flex-col items-center font-inter overflow-clip'
       style={{ backgroundImage: `url(${DotGrid.src})` }}
     >
       <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-16 lg:mt-20 xl:mt-32 z-10'>
@@ -45,10 +45,10 @@ export const Main: FC = () => {
       </motion.div>
 
       <section className='relative flex w-full -mt-16 md:-mt-26 justify-center px-0 py-4 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
-        <div className='grid w-full xl:container  grid-cols-2 grid-rows-2 gap-4 lg:grid-cols-4 lg:grid-rows-1'>
+        <div className='grid w-full xl:container  grid-cols-2 grid-rows-2 gap-8 lg:gap-4 lg:grid-cols-4 lg:grid-rows-1'>
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
-              className='min-h-9 text-3xl font-bold'
+              className='min-h-9 text-5xl lg:text-3xl font-bold'
               from={0}
               to={13}
               suffix={'+'}
@@ -64,7 +64,7 @@ export const Main: FC = () => {
 
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
-              className='min-h-9 text-3xl font-bold'
+              className='min-h-9 text-5xl lg:text-3xl font-bold'
               from={120}
               to={900}
               suffix={'+'}
@@ -80,7 +80,7 @@ export const Main: FC = () => {
 
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
-              className='min-h-9 text-3xl font-bold'
+              className='min-h-9 text-5xl lg:text-3xl font-bold'
               from={199}
               to={700}
               suffix="+"
@@ -94,7 +94,7 @@ export const Main: FC = () => {
             </motion.h2>
           </div>
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
-            <Count className='min-h-9 text-3xl font-bold' from={0} to={1} />
+            <Count className='min-h-9 text-5xl lg:text-3xl font-bold' from={0} to={1} />
             <motion.h2
               className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
