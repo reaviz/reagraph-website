@@ -2,7 +2,8 @@
 import { FC } from 'react';
 import { motion } from 'motion/react';
 import { Count } from '@/components/shared/Count';
-import GraphImage from '../../../public/assets/graph-variant-icons-only.svg';
+import GraphImage from '../../../public/assets/hero.svg';
+import HeroImage from '../../../public/assets/hero-mobile.svg';
 import DotGrid from '../../../public/assets/dot-grid-bg.svg?url';
 import BgLayers from '../../../public/assets/bg-layers.svg?url';
 
@@ -12,7 +13,7 @@ export const Main: FC = () => {
       className='w-full bg-cover bg-center flex flex-col items-center font-inter'
       style={{ backgroundImage: `url(${DotGrid.src})` }}
     >
-      <div className='max-w-[700px] lg:max-w-[1000px] text-center mt-16 lg:mt-20 xl:mt-32 z-10'>
+      <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-16 lg:mt-20 xl:mt-32 z-10'>
         <motion.h3
           className='text-4xl lg:text-5xl xl:text-6xl font-bold text-[#F2F3F7]'
           initial={{ opacity: 0, scale: 0.5 }}
@@ -34,12 +35,16 @@ export const Main: FC = () => {
         className='w-full'
       >
         <GraphImage
-          className='-mt-32 bg-cover bg-position-[-16px_78px] h-auto w-full max-w-[978px] mx-auto'
+          className='-mt-16 md:-mt-32 bg-cover bg-position-[-16px_78px] h-auto w-full max-w-[978px] mx-auto hidden md:block'
+          style={{ backgroundImage: `url(${BgLayers.src})` }}
+        />
+        <HeroImage
+          className='bg-cover bg-position-[0px_46px] h-auto w-full max-w-[480px] mb-10 scale-180 mx-auto block md:hidden'
           style={{ backgroundImage: `url(${BgLayers.src})` }}
         />
       </motion.div>
 
-      <section className='relative flex w-full -mt-26 justify-center px-0 py-4 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
+      <section className='relative flex w-full -mt-16 md:-mt-26 justify-center px-0 py-4 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
         <div className='grid w-full xl:container  grid-cols-2 grid-rows-2 gap-4 lg:grid-cols-4 lg:grid-rows-1'>
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
@@ -74,7 +79,12 @@ export const Main: FC = () => {
           </div>
 
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
-            <Count className='min-h-9 text-3xl font-bold' from={199} to={700} />
+            <Count
+              className='min-h-9 text-3xl font-bold'
+              from={199}
+              to={700}
+              suffix="+"
+            />
             <motion.h2
               className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}

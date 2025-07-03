@@ -9,6 +9,7 @@ import DatabaseViewIcon from '@/icons/database-view.svg';
 import PlusIcon from '@/icons/plus.svg';
 import CentralizedNetworkIcon from '@/icons/centralized-network.svg';
 import SugarCubeIcon from '@/icons/sugar-cube.svg';
+import { ResponsiveContainer } from '../responsive-container';
 
 const CARD_CLASSNAME =
   'border-none rounded-4xl bg-panel h-full [clip-path:polygon(0_0,calc(100%_-_40px)_0,100%_40px,100%_100%,0_100%)]';
@@ -19,7 +20,7 @@ export interface FeaturesProps {
 
 export const Features: FC<FeaturesProps> = ({ className }) => {
   return (
-    <section className={cn('w-auto 2xl:container m-5 md:mx-15 xl:mx-23', className)}>
+    <ResponsiveContainer className={cn('w-auto', className)}>
       <div className='mb-8 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3'>
         <AnimateIn>
           <Card className={CARD_CLASSNAME}>
@@ -88,6 +89,6 @@ export const Features: FC<FeaturesProps> = ({ className }) => {
           </Card>
         </AnimateIn>
       </div>
-    </section>
+    </ResponsiveContainer>
   );
 };

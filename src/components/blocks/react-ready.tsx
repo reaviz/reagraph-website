@@ -5,6 +5,7 @@ import Link from 'next/link';
 import NodeClusterGraphic from '../../../public/assets/node-cluster-graphic.svg';
 import Backdrop from '../../../public/assets/backdrop.svg?url';
 import { AnimateIn } from '../shared/AnimateIn';
+import { ResponsiveContainer } from '../responsive-container';
 
 export interface ReactReadyProps {
   className?: string;
@@ -13,9 +14,9 @@ export interface ReactReadyProps {
 export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
   return (
     <AnimateIn>
-      <Stack className={cn('gap-6 lg:flex-row flex-col-reverse xl:container ', className)}>
+      <ResponsiveContainer className={cn('gap-6 lg:flex-row flex-col-reverse', className)}>
         <Stack
-          className='flex-1 relative backdrop-bg w-full xl:w-auto'
+          className='flex-1 relative backdrop-bg w-full md:before:scale-110 scale-125 -translate-x-3 my-12 sm:my-0 sm:scale-100 sm:translate-x-0'
           style={
             {
               '--backdrop-url': `url(${Backdrop.src})`,
@@ -24,7 +25,7 @@ export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
         >
           <NodeClusterGraphic className='w-full h-auto relative z-10 max-w-full' />
         </Stack>
-        <Stack direction='column' className='flex-1 gap-7' alignItems='start'>
+        <Stack direction='column' className='flex-1 gap-7 self-center' alignItems='start'>
           <h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             React-Ready. <br /> WebGL-Powered.
           </h3>
@@ -46,7 +47,7 @@ export const ReactReady: FC<ReactReadyProps> = ({ className }) => {
             </Link>
           </Stack>
         </Stack>
-      </Stack>
+      </ResponsiveContainer>
     </AnimateIn>
   );
 };
