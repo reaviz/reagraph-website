@@ -11,11 +11,11 @@ const NAV_LINKS = [
   },
   {
     label: 'Storybook',
-    href: 'https://storybook.reablocks.dev',
+    href: 'https://storybook.reagraph.dev',
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/reaviz/reablocks',
+    href: 'https://github.com/reaviz/reagraph',
     target: '_blank',
   },
 ];

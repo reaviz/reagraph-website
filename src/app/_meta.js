@@ -15,7 +15,7 @@ const meta = {
   storybook: {
     title: "Storybook",
     type: 'page',
-    href: 'https://example.com/contact'
+    href: 'https://storybook.reagraph.dev'
   },
   support: {
     title: "Support",
