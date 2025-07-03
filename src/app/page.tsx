@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const Home: FC = () => {
   return (
     <ThemeWrapper>
-      <div className='w-full flex flex-1 items-center justify-center overflow-y-hidden '>
+      <div className='w-full flex flex-1 items-center justify-center overflow-y-hidden font-gilroy'>
         <TracingBeams className='hidden md:block'>
           <Header />
           <div className='mt-[72px] flex flex-col items-center'>
