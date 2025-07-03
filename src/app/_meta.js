@@ -10,7 +10,17 @@ const meta = {
   },
   docs: {
     type: 'page',
-    title: 'Documentation',
+    title: 'Docs',
+  },
+  storybook: {
+    title: "Storybook",
+    type: 'page',
+    href: 'https://example.com/contact'
+  },
+  support: {
+    title: "Support",
+    type: 'page',
+    href: '/docs/support'
   },
 };
 

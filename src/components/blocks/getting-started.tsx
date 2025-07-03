@@ -67,7 +67,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
               </p>
               <Link
                 aria-label='Learn more about Reagraph'
-                href='/docs/getting-started/setup'
+                href='/docs/getting-started/Installing'
                 className='w-fit font-bold text-blue-300 hover:text-blue-400 text-base mt-3'
               >
                 Learn more
@@ -104,7 +104,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
               </p>
               <Link
                 aria-label='Learn more about Reagraph'
-                href='/docs/getting-started/setup'
+                href='/docs/getting-started/Basics'
                 className='w-fit font-bold text-blue-300 hover:text-blue-400 text-base mt-3'
               >
                 Learn more
@@ -139,7 +139,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
               </p>
               <Link
                 aria-label='Learn more about Reagraph'
-                href='/docs/getting-started/setup'
+                href='/docs/advanced/CustomNodes'
                 className='w-fit font-bold text-blue-300 hover:text-blue-400 text-base mt-3'
               >
                 Learn more
