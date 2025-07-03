@@ -2,41 +2,63 @@
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { Stack } from 'reablocks';
+import { MobileNav } from '../mobile-nav';
+
+const NAV_LINKS = [
+  {
+    label: 'Docs',
+    href: '/docs',
+  },
+  {
+    label: 'Storybook',
+    href: 'https://storybook.reablocks.dev',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/reaviz/reablocks',
+    target: '_blank',
+  },
+];
 
 export const Header = () => {
   return (
-    <Stack
-      className='fixed top-0 left-0 right-0 z-40 w-full flex min-h-[72px] border-b-2 border-gray-400/30 transition-[backdrop-filter] backdrop-blur-md'
-      justifyContent='center'
-    >
+    <>
       <Stack
-        className='w-full xl:container m-5 md:mx-15 xl:mx-23'
-        direction='row'
-        justifyContent='spaceBetween'
+        className='flex fixed top-0 left-0 right-0 z-40 w-full md:min-h-[72px] border-b-2 border-gray-400/30 transition-[backdrop-filter] backdrop-blur-md'
+        justifyContent='center'
       >
-        <Image
-          src={'/assets/logo-full.png'}
-          alt='Reagraph'
-          width={112}
-          height={24}
-        />
-        <Stack className='gap-8'>
-          <NextLink className='px-4' href='/docs'>
-            Docs
-          </NextLink>
-          <NextLink className='px-4' href='https://reagraph.dev/'>
-            Storybook
-          </NextLink>
-          <NextLink
-            className='px-4'
-            href='https://github.com/reaviz/reagraph'
-            target='_blank'
-          >
-            GitHub
-          </NextLink>
+        <Stack
+          className='hidden md:flex w-full xl:container m-5 md:mx-15 xl:mx-23'
+          direction='row'
+          justifyContent='spaceBetween'
+        >
+          <Image
+            src={'/assets/logo-full.png'}
+            alt='Reagraph'
+            width={112}
+            height={24}
+          />
+          <Stack className='gap-8'>
+            {NAV_LINKS.map((link) => (
+              <NextLink
+                className='px-4'
+                href={link.href}
+                target={link.target}
+                key={link.label}
+              >
+                {link.label}
+              </NextLink>
+            ))}
+          </Stack>
+          <div />
         </Stack>
-        <div />
+        <MobileNav
+          className='md:hidden'
+          logoSrc='/assets/logo-full.png'
+          name='Reagraph'
+          links={NAV_LINKS}
+        />
       </Stack>
-    </Stack>
+    </>
   );
 };

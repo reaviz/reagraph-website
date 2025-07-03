@@ -54,10 +54,10 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
         </AnimateIn>
       </ResponsiveContainer>
       <AnimateIn>
-        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-8 md:py-14'>
           <ResponsiveContainer className='w-full! gap-2 xl:gap-6 flex-col lg:flex-row'>
             <div className='flex-1 w-full'>
-              <h4 className='text-text-primary text-base font-bold md:text-xl'>
+              <h4 className='text-text-primary text-lg font-bold md:text-xl'>
                 Integrating Reagraph them in your application
               </h4>
               <p className='text-text-secondary text-sm my-3 md:text-base'>
@@ -68,7 +68,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
               <Link
                 aria-label='Learn more about Reagraph'
                 href='/docs/getting-started/setup'
-                className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+                className='w-fit font-bold text-blue-300 hover:text-blue-400 text-base mt-3'
               >
                 Learn more
               </Link>
@@ -85,19 +85,19 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
         </section>
       </AnimateIn>
       <AnimateIn>
-        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-8 md:py-14'>
           <ResponsiveContainer className='gap-2 xl:gap-6 flex-col lg:flex-row'>
             <div className='flex-1'>
-              <h4 className='text-text-primary text-base font-bold md:text-xl'>
+              <h4 className='text-text-primary text-lg font-bold md:text-xl'>
                 Let's build something amazing
               </h4>
-              <p className='text-text-secondary text-sm my-3 md:text-base'>
+              <p className='text-text-secondary my-3 text-base'>
                 Let's define some nodes and edges.{' '}
                 <span className='text-cyan-300'>Nodes</span> are the blocks and{' '}
                 <span className='text-cyan-300'>edges</span> are the
                 relationships between the blocks.
               </p>
-              <p className='text-text-secondary text-sm my-3 md:text-base'>
+              <p className='text-text-secondary my-3 text-base'>
                 The data shapes require one property of id but you can pass
                 label or icon to them to show some sort of indication what it
                 represents.
@@ -105,7 +105,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
               <Link
                 aria-label='Learn more about Reagraph'
                 href='/docs/getting-started/setup'
-                className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+                className='w-fit font-bold text-blue-300 hover:text-blue-400 text-base mt-3'
               >
                 Learn more
               </Link>
@@ -121,26 +121,26 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
         </section>
       </AnimateIn>
       <AnimateIn>
-        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-8 md:py-14'>
           <ResponsiveContainer className='gap-2 xl:gap-6 flex-col lg:flex-row'>
             <div className='flex-1'>
-              <h4 className='text-text-primary text-base font-bold md:text-xl'>
+              <h4 className='text-text-primary text-lg font-bold md:text-xl'>
                 Customizing the graph
               </h4>
-              <p className='text-text-secondary text-sm my-3 md:text-base'>
+              <p className='text-text-secondary my-3 text-base'>
                 By default, the graph supports 2 themes:{' '}
                 <span className='text-cyan-300'>light</span> and{' '}
                 <span className='text-cyan-300'>dark</span> modes. You can also
                 define your own theme using the theme interface.
               </p>
-              <p className='text-text-secondary text-sm my-3 md:text-base'>
+              <p className='text-text-secondary my-3 text-base'>
                 You can also customize the graph by passing props to the
                 component.
               </p>
               <Link
                 aria-label='Learn more about Reagraph'
                 href='/docs/getting-started/setup'
-                className='w-fit text-xs font-bold text-blue-300 hover:text-blue-400 md:text-base mt-3'
+                className='w-fit font-bold text-blue-300 hover:text-blue-400 text-base mt-3'
               >
                 Learn more
               </Link>
@@ -156,7 +156,7 @@ export const GettingStarted: FC<GettingStartedProps> = ({ className }) => {
         </section>
       </AnimateIn>
       <AnimateIn>
-        <section className='flex justify-center border-t border-b border-gray-400/30 py-14'>
+        <section className='flex justify-center border-t border-b border-gray-400/30 py-8 md:py-14'>
           <ResponsiveContainer className='w-auto max-w-[600px] text-center flex-col'>
             <h2 className='text-4xl lg:text-5xl xl:text-6xl text-text-primary font-bold mb-6'>
               Start building with Reagraph today

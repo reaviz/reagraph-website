@@ -13,7 +13,7 @@ export const Main: FC = () => {
       className='w-full bg-cover bg-center flex flex-col items-center font-inter overflow-clip'
       style={{ backgroundImage: `url(${DotGrid.src})` }}
     >
-      <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-16 lg:mt-20 xl:mt-32 z-10'>
+      <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-8 md:mt-16 lg:mt-20 xl:mt-32 z-10'>
         <motion.h3
           className='text-4xl lg:text-5xl xl:text-6xl font-bold text-[#F2F3F7]'
           initial={{ opacity: 0, scale: 0.5 }}
