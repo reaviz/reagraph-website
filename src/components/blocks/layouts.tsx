@@ -15,7 +15,7 @@ export interface LayoutsProps {
 
 export const Layouts: FC<LayoutsProps> = ({ className }) => {
   return (
-    <AnimateIn className='overflow-hidden'>
+    <AnimateIn className='overflow-clip'>
       <ResponsiveContainer
         className={cn('gap-6 flex-col lg:flex-row', className)}
       >
@@ -46,7 +46,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
           </Stack>
         </Stack>
         <Stack
-          className='flex-1 relative backdrop-bg w-full xl:w-auto md:before:scale-110 scale-125 -translate-x-3 my-13 sm:my-0 sm:scale-100 sm:translate-x-0'
+          className='flex-1 relative backdrop-bg w-full xl:w-auto before:scale-125 md:before:scale-110 scale-125 -translate-x-3 my-13 sm:my-0 sm:scale-100 sm:translate-x-0'
           style={
             {
               '--backdrop-url': `url(${Backdrop.src})`,
