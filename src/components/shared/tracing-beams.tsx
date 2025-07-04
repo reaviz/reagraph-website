@@ -128,9 +128,6 @@ export const TracingBeams = ({
                 gradientUnits="userSpaceOnUse"
                 x1="0"
                 x2="0"
-                // randomize these values to have right side randomly shoot down the page?
-                // y1={y1_right} // set y1 for gradient
-                // y2={y2_right} // set y2 for gradient
               >
                 <stop stopColor="#87AEFF" stopOpacity="0"></stop>
                 <stop stopColor="#87AEFF"></stop>
