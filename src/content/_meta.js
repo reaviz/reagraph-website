@@ -3,7 +3,7 @@ const meta = {
   "getting-started": "🚀 ⏐ Getting Started",
   "API": "📚 ⏐ API",
   advanced: "⚡️ ⏐ Advanced",
-  _support: "💬 ⏐ Support",
+  support: "💬 ⏐ Support",
 };
 
 export default meta;
