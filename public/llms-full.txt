@@ -3085,21 +3085,21 @@ The type of the lasso tool.
 interface GraphNode {
   // Required
   id: string;                    // Unique identifier for the node
-
+  
   // Display
   label?: string;                // Primary label text
   subLabel?: string;             // Secondary label text
   labelVisible?: boolean;        // Force label visibility
-
+  
   // Styling
   size?: number;                 // Node size (overrides sizing strategy)
   fill?: string;                 // Fill color (CSS color string)
   icon?: string;                 // URL to icon image
-
+  
   // Hierarchy
   parents?: string[];            // Parent node IDs for hierarchical layouts
   cluster?: string;              // Cluster group ID
-
+  
   // Custom data
   data?: any;                    // Custom data attached to node
 }
@@ -3113,17 +3113,17 @@ interface GraphEdge {
   id: string;                    // Unique identifier for the edge
   source: string;                // Source node ID
   target: string;                // Target node ID
-
+  
   // Display
   label?: string;                // Primary label text
   subLabel?: string;             // Secondary label text
   labelVisible?: boolean;        // Force label visibility
   subLabelPlacement?: 'below' | 'above';  // SubLabel position
-
+  
   // Styling
   size?: number;                 // Edge width
   fill?: string;                 // Edge color (CSS color string)
-
+  
   // Custom data
   data?: any;                    // Custom data attached to edge
 }
@@ -3242,130 +3242,6 @@ interface Theme {
 }
 ```
 
-## Layout System
-
-### Built-in Layouts
-
-#### Force-Directed Layouts
-
-```typescript
-// 2D Force-Directed
-layoutType="forceDirected2d"
-layoutOverrides={{
-  nodeStrength: -250,      // Node repulsion strength
-  linkDistance: 35,        // Ideal link distance
-  linkStrength: 1,         // Link force strength
-  centerInertia: 0.1,      // Centering force
-  alpha: 1,                // Initial alpha
-  alphaDecay: 0.01,        // Alpha decay rate
-  velocityDecay: 0.4       // Velocity damping
-}}
-
-// 3D Force-Directed
-layoutType="forceDirected3d"
-// Same options as 2D
-```
-
-#### Hierarchical Layouts
-
-```typescript
-layoutType="hierarchicalTd"  // Top-down
-layoutType="hierarchicalLr"  // Left-right
-
-layoutOverrides={{
-  nodeDistance: 50,        // Distance between nodes
-  levelDistance: 100,      // Distance between levels
-  nodeSize: 10            // Node size for spacing
-}}
-```
-
-#### Circular Layouts
-
-```typescript
-layoutType="circular2d"
-layoutType="circular3d"
-
-layoutOverrides={{
-  radius: 100,            // Circle radius
-  angleOffset: 0,         // Starting angle offset
-  sortBy: 'degree'        // Sort nodes by property
-}}
-```
-
-#### ForceAtlas2
-
-```typescript
-layoutType="forceatlas2"
-layoutOverrides={{
-  iterations: 50,         // Number of iterations
-  settings: {
-    gravity: 1,           // Gravity strength
-    scalingRatio: 10,     // Scaling ratio
-    strongGravityMode: false,
-    barnesHutOptimize: true,
-    barnesHutTheta: 0.5
-  }
-}}
-```
-
-### Custom Layouts
-
-```typescript
-<GraphCanvas
-  layoutType="custom"
-  layoutOverrides={{
-    getNodePosition: (id: string, { nodes, edges, graph }) => {
-      // Custom positioning logic
-      const index = nodes.findIndex(n => n.id === id);
-      const angle = (index / nodes.length) * Math.PI * 2;
-      const radius = 100;
-
-      return {
-        x: Math.cos(angle) * radius,
-        y: Math.sin(angle) * radius,
-        z: 0
-      };
-    }
-  }}
-/>
-```
-
-## Sizing System
-
-### Attribute-based Sizing
-
-```typescript
-<GraphCanvas
-  sizingType="attribute"
-  sizingAttribute="importance"  // Node property to use
-  defaultNodeSize={7}
-  minNodeSize={3}
-  maxNodeSize={20}
-  nodes={[
-    { id: '1', label: 'Node 1', importance: 10 },
-    { id: '2', label: 'Node 2', importance: 5 }
-  ]}
-/>
-```
-
-### Centrality-based Sizing
-
-```typescript
-<GraphCanvas
-  sizingType="centrality"
-  // Sizes based on degree centrality
-/>
-```
-
-### PageRank Sizing
-
-```typescript
-<GraphCanvas
-  sizingType="pagerank"
-  // Sizes based on PageRank algorithm
-/>
-```
-
 ## Event System
 
 ### Node Events
@@ -3376,79 +3252,35 @@ layoutOverrides={{
   onNodeClick={(node: GraphNode, event: MouseEvent) => {
     console.log('Clicked node:', node.id);
   }}
-
+  
   onNodeDoubleClick={(node: GraphNode, event: MouseEvent) => {
     console.log('Double clicked node:', node.id);
   }}
-
+  
   onNodeRightClick={(node: GraphNode, event: MouseEvent) => {
     console.log('Right clicked node:', node.id);
   }}
-
+  
   // Hover events
   onNodePointerOver={(node: GraphNode, event: PointerEvent) => {
     console.log('Hovering node:', node.id);
   }}
-
+  
   onNodePointerOut={(node: GraphNode, event: PointerEvent) => {
     console.log('Left node:', node.id);
   }}
-
+  
   // Drag events
   onNodeDragStart={(node: GraphNode, event: PointerEvent) => {
     console.log('Started dragging:', node.id);
   }}
-
+  
   onNodeDrag={(node: GraphNode, offset: Vector3, event: PointerEvent) => {
     console.log('Dragging:', node.id, offset);
   }}
-
+  
   onNodeDragEnd={(node: GraphNode, event: PointerEvent) => {
     console.log('Stopped dragging:', node.id);
-  }}
-/>
-```
-
-### Edge Events
-
-```typescript
-<GraphCanvas
-  onEdgeClick={(edge: GraphEdge, event: MouseEvent) => {
-    console.log('Clicked edge:', edge.id);
-  }}
-
-  onEdgeDoubleClick={(edge: GraphEdge, event: MouseEvent) => {
-    console.log('Double clicked edge:', edge.id);
-  }}
-
-  onEdgeRightClick={(edge: GraphEdge, event: MouseEvent) => {
-    console.log('Right clicked edge:', edge.id);
-  }}
-
-  onEdgePointerOver={(edge: GraphEdge, event: PointerEvent) => {
-    console.log('Hovering edge:', edge.id);
-  }}
-
-  onEdgePointerOut={(edge: GraphEdge, event: PointerEvent) => {
-    console.log('Left edge:', edge.id);
-  }}
-/>
-```
-
-### Canvas Events
-
-```typescript
-<GraphCanvas
-  onCanvasClick={(event: MouseEvent) => {
-    console.log('Clicked canvas background');
-  }}
-
-  onLasso={(selections: string[]) => {
-    console.log('Lasso selecting:', selections);
-  }}
-
-  onLassoEnd={(selections: string[]) => {
-    console.log('Lasso selected:', selections);
   }}
 />
 ```
@@ -3471,72 +3303,20 @@ const CustomNode: FC<NodeRendererProps> = ({
 }) => {
   return (
     <group position={[node.position.x, node.position.y, node.position.z]}>
-      {/* Custom geometry */}
       <mesh>
         <boxGeometry args={[size, size, size]} />
         <meshStandardMaterial
           color={color}
           opacity={opacity}
           transparent
-          emissive={active ? color : undefined}
-          emissiveIntensity={active ? 0.3 : 0}
         />
       </mesh>
-
-      {/* Custom label */}
-      {node.label && (
-        <Html center>
-          <div style={{ color: 'white', fontSize: 12 }}>
-            {node.label}
-          </div>
-        </Html>
-      )}
     </group>
   );
 };
 
 <GraphCanvas
   renderNode={CustomNode}
-  nodes={nodes}
-  edges={edges}
-/>
-```
-
-### Custom Edge Renderers
-
-```typescript
-const CustomEdge: FC<EdgeRendererProps> = ({
-  edge,
-  source,
-  target,
-  color,
-  size,
-  active,
-  selected,
-  opacity,
-  animated
-}) => {
-  const points = [
-    new Vector3(source.position.x, source.position.y, source.position.z),
-    new Vector3(target.position.x, target.position.y, target.position.z)
-  ];
-
-  const curve = new CatmullRomCurve3(points);
-
-  return (
-    <mesh>
-      <tubeGeometry args={[curve, 20, size / 2, 8, false]} />
-      <meshBasicMaterial
-        color={color}
-        opacity={opacity}
-        transparent
-      />
-    </mesh>
-  );
-};
-
-<GraphCanvas
-  renderEdge={CustomEdge}
   nodes={nodes}
   edges={edges}
 />
@@ -3552,7 +3332,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const GraphVisualization = () => {
   const dispatch = useDispatch();
   const { nodes, edges, selections } = useSelector(state => state.graph);
-
+  
   return (
     <GraphCanvas
       nodes={nodes}
@@ -3561,146 +3341,6 @@ const GraphVisualization = () => {
       onNodeClick={(node) => {
         dispatch({ type: 'SELECT_NODE', payload: node.id });
       }}
-      onLassoEnd={(selections) => {
-        dispatch({ type: 'SELECT_MULTIPLE', payload: selections });
-      }}
-    />
-  );
-};
-```
-
-#### With Zustand
-
-```typescript
-import { create } from 'zustand';
-
-const useGraphStore = create((set) => ({
-  nodes: [],
-  edges: [],
-  selections: [],
-  selectNode: (id) => set((state) => ({
-    selections: [id]
-  })),
-  addNode: (node) => set((state) => ({
-    nodes: [...state.nodes, node]
-  }))
-}));
-
-const GraphVisualization = () => {
-  const { nodes, edges, selections, selectNode } = useGraphStore();
-
-  return (
-    <GraphCanvas
-      nodes={nodes}
-      edges={edges}
-      selections={selections}
-      onNodeClick={(node) => selectNode(node.id)}
-    />
-  );
-};
-```
-
-### Dynamic Graph Updates
-
-```typescript
-const DynamicGraph = () => {
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
-
-  // Real-time updates
-  useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8080');
-
-    ws.onmessage = (event) => {
-      const update = JSON.parse(event.data);
-
-      if (update.type === 'addNode') {
-        setNodes(prev => [...prev, update.node]);
-      } else if (update.type === 'addEdge') {
-        setEdges(prev => [...prev, update.edge]);
-      } else if (update.type === 'updateNode') {
-        setNodes(prev => prev.map(n =>
-          n.id === update.node.id ? { ...n, ...update.node } : n
-        ));
-      }
-    };
-
-    return () => ws.close();
-  }, []);
-
-  return <GraphCanvas nodes={nodes} edges={edges} animated />;
-};
-```
-
-### Clustering
-
-```typescript
-// Basic clustering
-const nodes = [
-  { id: '1', label: 'Node 1', cluster: 'A' },
-  { id: '2', label: 'Node 2', cluster: 'A' },
-  { id: '3', label: 'Node 3', cluster: 'B' },
-  { id: '4', label: 'Node 4', cluster: 'B' }
-];
-
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  clusterAttribute="cluster"
-/>
-
-// Custom cluster rendering
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  clusterAttribute="cluster"
-  renderCluster={({ outerRadius, innerRadius, label }) => (
-    <group>
-      <mesh>
-        <ringGeometry args={[innerRadius, outerRadius, 32]} />
-        <meshBasicMaterial color="#444" opacity={0.2} transparent />
-      </mesh>
-      {label && <Label {...label} />}
-    </group>
-  )}
-/>
-```
-
-### Path Finding
-
-```typescript
-import { useRef, useState } from 'react';
-import { GraphCanvasRef } from 'reagraph';
-
-const PathFindingExample = () => {
-  const graphRef = useRef<GraphCanvasRef>();
-  const [path, setPath] = useState<string[]>([]);
-
-  const findPath = (startId: string, endId: string) => {
-    const graph = graphRef.current?.getGraph();
-    if (!graph) return;
-
-    // Use Graphology's built-in shortest path
-    try {
-      const shortestPath = bidirectional(graph, startId, endId);
-      setPath(shortestPath);
-
-      // Highlight the path
-      graphRef.current?.setSelections(shortestPath);
-    } catch (e) {
-      console.log('No path found');
-    }
-  };
-
-  return (
-    <GraphCanvas
-      ref={graphRef}
-      nodes={nodes}
-      edges={edges}
-      selections={path}
-      onNodeClick={(node) => {
-        // Click two nodes to find path between them
-      }}
     />
   );
 };
@@ -3708,323 +3348,14 @@ const PathFindingExample = () => {
 
 ## Performance Optimization
 
-### Large Graph Strategies
+For large graphs:
 
-#### 1. Progressive Loading
-
-```typescript
-const ProgressiveGraph = () => {
-  const [visibleNodes, setVisibleNodes] = useState([]);
-  const [visibleEdges, setVisibleEdges] = useState([]);
-
-  useEffect(() => {
-    // Load initial subset
-    setVisibleNodes(allNodes.slice(0, 100));
-    setVisibleEdges(allEdges.filter(e =>
-      visibleNodes.some(n => n.id === e.source) &&
-      visibleNodes.some(n => n.id === e.target)
-    ));
-
-    // Progressively load more
-    const timer = setInterval(() => {
-      setVisibleNodes(prev => {
-        const next = allNodes.slice(0, prev.length + 100);
-        return next;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  return <GraphCanvas nodes={visibleNodes} edges={visibleEdges} />;
-};
-```
-
-#### 2. Level of Detail (LOD)
-
-```typescript
-const LODGraph = () => {
-  const [zoomLevel, setZoomLevel] = useState(1);
-
-  return (
-    <GraphCanvas
-      nodes={nodes}
-      edges={edges}
-      // Hide labels when zoomed out
-      labelType={zoomLevel > 0.5 ? 'auto' : 'none'}
-      // Simplify edges when zoomed out
-      edgeInterpolation={zoomLevel > 0.3 ? 'curved' : 'straight'}
-      // Hide small nodes when zoomed out
-      nodeFilter={(node) => zoomLevel > 0.2 || node.size > 10}
-      onZoomChange={setZoomLevel}
-    />
-  );
-};
-```
-
-#### 3. Virtualization
-
-```typescript
-const VirtualizedGraph = () => {
-  const graphRef = useRef<GraphCanvasRef>();
-  const [viewport, setViewport] = useState({ x: 0, y: 0, width: 0, height: 0 });
-
-  // Only render nodes in viewport
-  const visibleNodes = useMemo(() => {
-    return nodes.filter(node => {
-      const pos = node.position;
-      return pos.x >= viewport.x && pos.x <= viewport.x + viewport.width &&
-             pos.y >= viewport.y && pos.y <= viewport.y + viewport.height;
-    });
-  }, [nodes, viewport]);
-
-  return (
-    <GraphCanvas
-      ref={graphRef}
-      nodes={visibleNodes}
-      edges={edges}
-      onCameraChange={(camera) => {
-        // Update viewport based on camera
-      }}
-    />
-  );
-};
-```
-
-### Memory Management
-
-1. **Dispose unused resources**:
-```typescript
-useEffect(() => {
-  return () => {
-    // Cleanup will be handled automatically by reagraph
-    // But you can force cleanup if needed:
-    graphRef.current?.destroy();
-  };
-}, []);
-```
-
-2. **Batch updates**:
-```typescript
-// Bad - Multiple renders
-nodes.forEach(node => {
-  setNodes(prev => [...prev, node]);
-});
-
-// Good - Single render
-setNodes(prev => [...prev, ...newNodes]);
-```
-
-3. **Use memo for expensive calculations**:
-```typescript
-const processedNodes = useMemo(() => {
-  return nodes.map(node => ({
-    ...node,
-    // Expensive calculation
-    importance: calculateImportance(node, edges)
-  }));
-}, [nodes, edges]);
-```
-
-## Troubleshooting
-
-### Common Issues
-
-#### 1. Graph not rendering
-
-```typescript
-// Ensure container has dimensions
-<div style={{ width: '100%', height: '600px' }}>
-  <GraphCanvas nodes={nodes} edges={edges} />
-</div>
-
-// Or use absolute positioning
-<div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
-  <GraphCanvas nodes={nodes} edges={edges} />
-</div>
-```
-
-#### 2. Performance issues
-
-```typescript
-// Disable animations for large graphs
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  animated={false}
-  draggable={false}
-/>
-
-// Use simpler layouts
-<GraphCanvas
-  layoutType="circular2d"  // Faster than force-directed
-/>
-
-// Reduce visual complexity
-<GraphCanvas
-  labelType="none"
-  edgeArrowPosition={undefined}
-  sizingType="none"
-/>
-```
-
-#### 3. Layout not updating
-
-```typescript
-// Force re-layout
-const [layoutKey, setLayoutKey] = useState(0);
-
-<GraphCanvas
-  key={layoutKey}
-  nodes={nodes}
-  edges={edges}
-/>
-
-// Trigger re-layout
-setLayoutKey(prev => prev + 1);
-```
-
-#### 4. WebGL context lost
-
-```typescript
-<GraphCanvas
-  onWebGLContextLost={() => {
-    console.error('WebGL context lost');
-    // Reload or notify user
-  }}
-  onWebGLContextRestored={() => {
-    console.log('WebGL context restored');
-  }}
-/>
-```
-
-### Debug Mode
-
-```typescript
-// Enable debug information
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  debug={true}  // Shows FPS, node count, etc.
-/>
-
-// Custom debug overlay
-const DebugOverlay = () => {
-  const graphRef = useRef<GraphCanvasRef>();
-  const [stats, setStats] = useState({});
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const graph = graphRef.current?.getGraph();
-      if (graph) {
-        setStats({
-          nodes: graph.order,
-          edges: graph.size,
-          fps: graphRef.current.getFPS?.() || 0
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <>
-      <GraphCanvas ref={graphRef} nodes={nodes} edges={edges} />
-      <div style={{ position: 'absolute', top: 10, left: 10 }}>
-        Nodes: {stats.nodes}, Edges: {stats.edges}, FPS: {stats.fps}
-      </div>
-    </>
-  );
-};
-```
-
-## Migration Guide
-
-### From v3 to v4
-
-#### Breaking Changes
-
-1. **Layout type names**:
-```typescript
-// v3
-layoutType="treeTd2d"
-
-// v4
-layoutType="hierarchicalTd"
-```
-
-2. **Ref API**:
-```typescript
-// v3
-ref.centerGraph()
-
-// v4
-ref.current?.centerGraph()
-```
-
-3. **Theme structure**:
-```typescript
-// v3
-theme={{
-  node: { color: '#fff' }
-}}
-
-// v4
-theme={{
-  node: { fill: '#fff' }
-}}
-```
-
-### From Other Libraries
-
-#### From vis.js
-
-```typescript
-// vis.js
-const options = {
-  nodes: { shape: 'dot', size: 30 },
-  edges: { arrows: 'to' }
-};
-
-// Reagraph equivalent
-<GraphCanvas
-  nodes={nodes.map(n => ({ ...n, size: 30 }))}
-  edges={edges}
-  edgeArrowPosition="end"
-/>
-```
-
-#### From D3
-
-```typescript
-// D3
-const simulation = d3.forceSimulation(nodes)
-  .force("link", d3.forceLink(edges).id(d => d.id))
-  .force("charge", d3.forceManyBody())
-  .force("center", d3.forceCenter(width / 2, height / 2));
-
-// Reagraph equivalent
-<GraphCanvas
-  layoutType="forceDirected2d"
-  layoutOverrides={{
-    linkStrength: 1,
-    nodeStrength: -30,
-    centerInertia: 0.1
-  }}
-/>
-```
-
-## Best Practices
-
-1. **Use memoization** for expensive computations
-2. **Batch updates** to minimize re-renders
-3. **Choose appropriate layouts** for your data structure
-4. **Enable progressive rendering** for large graphs
-5. **Optimize images** used in custom nodes
-6. **Use TypeScript** for better development experience
-7. **Test performance** with realistic data sizes
-8. **Handle edge cases** (empty graphs, single nodes, etc.)
+1. Use appropriate layout algorithms (forceAtlas2 for large graphs)
+2. Implement node/edge filtering
+3. Use clustering to group related nodes
+4. Limit label visibility with labelType
+5. Disable animations for very large datasets
+6. Use sizingType='none' for uniform node sizes
 
 ## Resources
 
@@ -4032,9 +3363,8 @@ const simulation = d3.forceSimulation(nodes)
 - Documentation: https://reagraph.dev
 - NPM: https://www.npmjs.com/package/reagraph
 - Discord: https://discord.gg/tt8wGExq35
-- Examples: https://reagraph.dev/?path=/story/docs-getting-started-installing--docs
 - License: Apache-2.0
 
 ---
 
-Generated on 2025-07-07T17:15:25.658Z
+Generated on 2025-07-07T20:27:12.118Z from reagraph v4.24.2

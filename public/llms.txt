@@ -1,6 +1,6 @@
 # Reagraph
 
-> Reagraph is a high-performance WebGL-based network graph visualization library for React. It provides 2D and 3D graph rendering capabilities with support for large datasets, interactive features, and customizable themes.
+> WebGL Node-based Graph for React. Version: 4.24.2
 
 ## Overview
 
@@ -53,40 +53,161 @@ const MyGraph = () => {
 
 ### GraphCanvas
 
-The main component for rendering graphs. Combines the 3D canvas, camera controls, and graph scene.
+Component for GraphCanvas
 
-**Key Props:**
-- `nodes` (required): Array of GraphNode objects
-- `edges` (required): Array of GraphEdge objects
-- `layoutType`: Layout algorithm ('forceDirected2d', 'forceDirected3d', 'hierarchicalTd', 'hierarchicalBu', 'hierarchicalLr', 'hierarchicalRl', 'circular2d', 'circular3d', 'nooverlap', 'forceAtlas2')
-- `theme`: Theme object for customizing colors and styles
-- `cameraMode`: Camera interaction mode ('pan', 'rotate', 'orbit')
-- `sizingType`: Node sizing strategy ('none', 'attribute', 'centrality', 'pagerank')
-- `labelType`: Label visibility ('auto', 'all', 'nodes', 'edges', 'none')
-- `animated`: Enable/disable animations
-- `selections`: Array of selected node/edge IDs
-- `actives`: Array of active (hovered) node/edge IDs
-- `collapsedNodeIds`: Array of collapsed node IDs
-
-**Event Handlers:**
-- `onNodeClick`: Fired when a node is clicked
-- `onNodeDoubleClick`: Fired when a node is double-clicked
-- `onNodePointerOver`: Fired when pointer hovers over a node
-- `onNodePointerOut`: Fired when pointer leaves a node
-- `onNodeDrag`: Fired when a node is dragged
-- `onNodeDragStart`: Fired when node dragging starts
-- `onNodeDragEnd`: Fired when node dragging ends
-- `onEdgeClick`: Fired when an edge is clicked
-- `onEdgeDoubleClick`: Fired when an edge is double-clicked
-- `onEdgePointerOver`: Fired when pointer hovers over an edge
-- `onEdgePointerOut`: Fired when pointer leaves an edge
-- `onCanvasClick`: Fired when canvas is clicked (not on node/edge)
-- `onLasso`: Fired during lasso selection
-- `onLassoEnd`: Fired when lasso selection ends
+**Props:**
+- `theme`: Theme to use for the graph. - Type: `Theme` = {
+  canvas: { background: '#fff' },
+  node: {
+    fill: '#7CA0AB',
+    activeFill: '#1DE9AC',
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.2,
+    label: { color: '#2A6475', stroke: '#fff', activeColor: '#1DE9AC' },
+    subLabel: { color: '#ddd', stroke: 'transparent', activeColor: '#1DE9AC' }
+  },
+  lasso: { border: '1px solid #55aaff', background: 'rgba(75, 160, 255, 0.1)' },
+  ring: { fill: '#D8E6EA', activeFill: '#1DE9AC' },
+  edge: {
+    fill: '#D8E6EA',
+    activeFill: '#1DE9AC',
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.1,
+    label: {
+      stroke: '#fff',
+      color: '#2A6475',
+      activeColor: '#1DE9AC',
+      fontSize: 6
+    },
+    subLabel: {
+      color: '#ddd',
+      stroke: 'transparent',
+      activeColor: '#1DE9AC'
+    }
+  },
+  arrow: { fill: '#D8E6EA', activeFill: '#1DE9AC' },
+  cluster: {
+    stroke: '#D8E6EA',
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.1,
+    label: { stroke: '#fff', color: '#2A6475' }
+  }
+}
+- `cameraMode`: Type of camera interaction. - Type: `CameraMode` = pan
+- `maxDistance`: The maximum distance for the camera. Default is 50000. - Type: `number`
+- `minDistance`: The minimum distance for the camera. Default is 1000. - Type: `number`
+- `lassoType`: The type of lasso selection. - Type: `LassoType` = none
+- `children`: Children to render in the canvas. Useful for things like lights. - Type: `ReactNode`
+- `glOptions`: Ability to extend Cavas gl options. For example { preserveDrawingBuffer: true } - Type: `Object` = {}
+- `onLasso`: When the canvas had a lasso selection. - Type: `(selections: string[]) => void`
+- `onLassoEnd`: When the canvas had a lasso selection end. - Type: `(selections: string[]) => void`
+- `onCanvasClick`: When the canvas was clicked but didn't hit a node/edge. - Type: `(event: MouseEvent) => void`
+- `layoutType`: Type of layout. - Type: `LayoutTypes` = forceDirected2d
+- `selections`: List of ids that are selected. - Type: `string[]`
+- `actives`: List of ids that are active. - Type: `string[]`
+- `collapsedNodeIds`: List of node ids that are collapsed. - Type: `string[]`
+- `animated`: Animate or not the graph positions. - Type: `boolean` = true
+- `nodes` (required): Nodes to pass to the graph. - Type: `GraphNode[]`
+- `edges` (required): Edges to pass to the graph. - Type: `GraphEdge[]`
+- `contextMenu`: Context menu element. - Type: `(event: ContextMenuEvent) => ReactNode`
+- `sizingType`: Type of sizing for nodes. - Type: `SizingType` = default
+- `labelType`: Type of visibility for labels. - Type: `LabelVisibilityType` = auto
+- `edgeLabelPosition`: Place of visibility for edge labels. - Type: `EdgeLabelPosition`
+- `edgeArrowPosition`: Placement of edge arrows. - Type: `EdgeArrowPosition`
+- `edgeInterpolation`: Shape of edge. - Type: `EdgeInterpolation`
+- `labelFontUrl`: Font of label, same as troika-three-text
+The URL of a custom font file to be used. Supported font formats are: * .ttf * .otf * .woff (.woff2 is not supported)
+Default: The Roboto font loaded from Google Fonts CDN - Type: `string`
+- `sizingAttribute`: Attribute based sizing property. - Type: `string`
+- `defaultNodeSize`: The default size to size nodes to. Default is 7. - Type: `number` = 7
+- `minNodeSize`: When using sizing attributes, the min size a node can be. - Type: `number` = 5
+- `maxNodeSize`: When using sizing attributes, the max size a node can be. - Type: `number` = 15
+- `clusterAttribute`: Attribute used for clustering. - Type: `string`
+- `disabled`: Disable interactions or not. - Type: `boolean`
+- `draggable`: Allow dragging of nodes. - Type: `boolean`
+- `constrainDragging`: Constrain dragging to the cluster bounds. Default is `false`. - Type: `boolean`
+- `renderNode`: Render a custom node - Type: `NodeRenderer`
+- `onRenderCluster`: Render a custom cluster - Type: `ClusterRenderer`
+- `layoutOverrides`: Advanced overrides for the layout. - Type: `LayoutOverrides`
+- `onNodeClick`: When a node was clicked. - Type: `(node: InternalGraphNode, props?: CollapseProps, event?: ThreeEvent<MouseEvent>) => void`
+- `onNodeDoubleClick`: When a node was double clicked. - Type: `(node: InternalGraphNode, event: ThreeEvent<MouseEvent>) => void`
+- `onNodeContextMenu`: When a node context menu happened. - Type: `(node: InternalGraphNode, props?: NodeContextMenuProps) => void`
+- `onNodePointerOver`: When node got a pointer over. - Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+- `onNodePointerOut`: When node lost pointer over. - Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+- `onNodeDragged`: Triggered after a node was dragged. - Type: `(node: InternalGraphNode) => void`
+- `onClusterDragged`: Triggered after a cluster was dragged. - Type: `(cluster: ClusterEventArgs) => void`
+- `onEdgeContextMenu`: When a edge context menu happened. - Type: `(edge?: InternalGraphEdge) => void`
+- `onEdgeClick`: When an edge was clicked. - Type: `(edge: InternalGraphEdge, event?: ThreeEvent<MouseEvent>) => void`
+- `onEdgePointerOver`: When edge got a pointer over. - Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+- `onEdgePointerOut`: When edge lost pointer over. - Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+- `onClusterClick`: When a cluster was clicked. - Type: `(cluster: ClusterEventArgs, event: ThreeEvent<MouseEvent>) => void`
+- `onClusterPointerOver`: When a cluster receives a pointer over event. - Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+- `onClusterPointerOut`: When cluster receives a pointer leave event. - Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+- `ref`: No description - Type: `Ref<GraphCanvasRef>`
 
 ### GraphScene
 
-Lower-level component for rendering the graph scene without canvas wrapper. Useful for advanced customization.
+Component for GraphScene
+
+**Props:**
+- `layoutType`: Type of layout. - Type: `LayoutTypes`
+- `selections`: List of ids that are selected. - Type: `string[]`
+- `actives`: List of ids that are active. - Type: `string[]`
+- `collapsedNodeIds`: List of node ids that are collapsed. - Type: `string[]`
+- `animated`: Animate or not the graph positions. - Type: `boolean`
+- `nodes` (required): Nodes to pass to the graph. - Type: `GraphNode[]`
+- `edges` (required): Edges to pass to the graph. - Type: `GraphEdge[]`
+- `contextMenu`: Context menu element. - Type: `(event: ContextMenuEvent) => ReactNode`
+- `sizingType`: Type of sizing for nodes. - Type: `SizingType`
+- `labelType`: Type of visibility for labels. - Type: `LabelVisibilityType`
+- `edgeLabelPosition`: Place of visibility for edge labels. - Type: `EdgeLabelPosition`
+- `edgeArrowPosition`: Placement of edge arrows. - Type: `EdgeArrowPosition`
+- `edgeInterpolation`: Shape of edge. - Type: `EdgeInterpolation` = linear
+- `labelFontUrl`: Font of label, same as troika-three-text
+The URL of a custom font file to be used. Supported font formats are: * .ttf * .otf * .woff (.woff2 is not supported)
+Default: The Roboto font loaded from Google Fonts CDN - Type: `string`
+- `sizingAttribute`: Attribute based sizing property. - Type: `string`
+- `defaultNodeSize`: The default size to size nodes to. Default is 7. - Type: `number`
+- `minNodeSize`: When using sizing attributes, the min size a node can be. - Type: `number`
+- `maxNodeSize`: When using sizing attributes, the max size a node can be. - Type: `number`
+- `clusterAttribute`: Attribute used for clustering. - Type: `string`
+- `disabled`: Disable interactions or not. - Type: `boolean`
+- `draggable`: Allow dragging of nodes. - Type: `boolean`
+- `constrainDragging`: Constrain dragging to the cluster bounds. Default is `false`. - Type: `boolean` = false
+- `renderNode`: Render a custom node - Type: `NodeRenderer`
+- `onRenderCluster`: Render a custom cluster - Type: `ClusterRenderer`
+- `layoutOverrides`: Advanced overrides for the layout. - Type: `LayoutOverrides`
+- `onNodeClick`: When a node was clicked. - Type: `(node: InternalGraphNode, props?: CollapseProps, event?: ThreeEvent<MouseEvent>) => void`
+- `onNodeDoubleClick`: When a node was double clicked. - Type: `(node: InternalGraphNode, event: ThreeEvent<MouseEvent>) => void`
+- `onNodeContextMenu`: When a node context menu happened. - Type: `(node: InternalGraphNode, props?: NodeContextMenuProps) => void`
+- `onNodePointerOver`: When node got a pointer over. - Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+- `onNodePointerOut`: When node lost pointer over. - Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+- `onNodeDragged`: Triggered after a node was dragged. - Type: `(node: InternalGraphNode) => void`
+- `onClusterDragged`: Triggered after a cluster was dragged. - Type: `(cluster: ClusterEventArgs) => void`
+- `onEdgeContextMenu`: When a edge context menu happened. - Type: `(edge?: InternalGraphEdge) => void`
+- `onEdgeClick`: When an edge was clicked. - Type: `(edge: InternalGraphEdge, event?: ThreeEvent<MouseEvent>) => void`
+- `onEdgePointerOver`: When edge got a pointer over. - Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+- `onEdgePointerOut`: When edge lost pointer over. - Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+- `onClusterClick`: When a cluster was clicked. - Type: `(cluster: ClusterEventArgs, event: ThreeEvent<MouseEvent>) => void`
+- `onClusterPointerOver`: When a cluster receives a pointer over event. - Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+- `onClusterPointerOut`: When cluster receives a pointer leave event. - Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+- `ref`: No description - Type: `Ref<GraphSceneRef>`
+
+### CameraControls
+
+Component for CameraControls
+
+**Props:**
+- `mode`: Mode of the camera. - Type: `CameraMode` = rotate
+- `children`: Children symbols. - Type: `ReactNode`
+- `animated`: Animate transitions to centering. - Type: `boolean`
+- `disabled`: Whether the controls are enabled. - Type: `boolean`
+- `maxDistance`: The maximum distance for the camera. - Type: `number` = 50000
+- `minDistance`: The minimum distance for the camera. - Type: `number` = 1000
+- `ref`: No description - Type: `Ref<CameraControlsContextProps>`
 
 ## Data Structures
 
@@ -138,70 +259,9 @@ interface GraphEdge {
 - `forceAtlas2`: ForceAtlas2 algorithm
 - `custom`: Custom layout function
 
-## Sizing Types
-
-- `none`: All nodes same size
-- `attribute`: Size based on node.size property
-- `centrality`: Size based on centrality
-- `pagerank`: Size based on PageRank algorithm
-
-## Theme Customization
-
-```typescript
-interface Theme {
-  canvas: {
-    background: string;
-    fog: string;
-  };
-  node: {
-    fill: string;
-    activeFill: string;
-    opacity: number;
-    selectedOpacity: number;
-    inactiveOpacity: number;
-    label: {
-      color: string;
-      stroke: string;
-      activeColor: string;
-    };
-    subLabel: {
-      color: string;
-      stroke: string;
-      activeColor: string;
-    };
-  };
-  edge: {
-    fill: string;
-    activeFill: string;
-    opacity: number;
-    selectedOpacity: number;
-    inactiveOpacity: number;
-    label: {
-      color: string;
-      stroke: string;
-      activeColor: string;
-    };
-  };
-  arrow: {
-    fill: string;
-    activeFill: string;
-  };
-  cluster: {
-    fill: string;
-    stroke: string;
-    label: {
-      stroke: string;
-      color: string;
-    };
-  };
-}
-```
-
-## Advanced Features
+## Advanced Examples
 
 ### Camera Controls
-
-Control camera behavior and positioning:
 
 ```tsx
 const graphRef = useRef<GraphCanvasRef>();
@@ -211,75 +271,9 @@ graphRef.current?.centerGraph();
 
 // Zoom to specific nodes
 graphRef.current?.zoomToNodes(['node1', 'node2']);
-
-// Pan to position
-graphRef.current?.panToPosition({ x: 100, y: 100, z: 0 });
-
-// Set zoom level
-graphRef.current?.setZoom(1.5);
 ```
 
-### Selection
-
-Handle single and multi-selection:
-
-```tsx
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  selections={['node1', 'edge1']}
-  onNodeClick={(node) => {
-    // Handle selection
-  }}
-  lassoType="node"  // 'node' or 'all'
-  onLassoEnd={(selections) => {
-    // Handle lasso selection
-  }}
-/>
-```
-
-### Clustering
-
-Group nodes into clusters:
-
-```tsx
-const nodes = [
-  { id: '1', label: 'Node 1', cluster: 'cluster1' },
-  { id: '2', label: 'Node 2', cluster: 'cluster1' },
-  { id: '3', label: 'Node 3', cluster: 'cluster2' }
-];
-
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  clusterAttribute="cluster"
-/>
-```
-
-### Context Menu
-
-Add custom context menus:
-
-```tsx
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  contextMenu={({ data, onClose }) => (
-    <div className="context-menu">
-      <button onClick={() => {
-        console.log('Node:', data);
-        onClose();
-      }}>
-        View Details
-      </button>
-    </div>
-  )}
-/>
-```
-
-### Custom Nodes
-
-Create custom node renderers:
+### Custom Node Renderer
 
 ```tsx
 const customNodeRenderer = ({ node, color, size }) => (
@@ -296,179 +290,31 @@ const customNodeRenderer = ({ node, color, size }) => (
 />
 ```
 
-### Animation
-
-Control animations:
-
-```tsx
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  animated={true}
-  draggable={true}
-  edgeArrowPosition="end"
-  edgeInterpolation="curved"
-/>
-```
-
-### Layout Configuration
-
-Use layout recommendation or custom layouts:
-
-```tsx
-// Automatic layout recommendation
-import { recommendLayout } from 'reagraph';
-
-const layout = recommendLayout(nodes, edges);
-<GraphCanvas layoutType={layout} nodes={nodes} edges={edges} />
-
-// Custom layout with overrides
-<GraphCanvas
-  layoutType="forceDirected2d"
-  layoutOverrides={{
-    nodeStrength: -50,
-    linkDistance: 500
-  }}
-  nodes={nodes}
-  edges={edges}
-/>
-
-// Fully custom layout
-<GraphCanvas
-  layoutType="custom"
-  layoutOverrides={{
-    getNodePosition: (id, { nodes }) => {
-      const idx = nodes.findIndex(n => n.id === id);
-      return {
-        x: 25 * idx,
-        y: idx % 2 === 0 ? 0 : 50,
-        z: 1
-      };
-    }
-  }}
-  nodes={nodes}
-  edges={edges}
-/>
-```
-
-### Radial Menu
-
-Add interactive radial menus:
-
-```tsx
-import { RadialMenu } from 'reagraph';
-
-<GraphCanvas
-  nodes={nodes}
-  edges={edges}
-  contextMenu={({ data, onClose }) => (
-    <RadialMenu
-      onClose={onClose}
-      items={[
-        {
-          label: 'View Details',
-          onClick: () => console.log('Details:', data)
-        },
-        {
-          label: 'Delete',
-          onClick: () => removeNode(data.id)
-        }
-      ]}
-    />
-  )}
-/>
-```
-
-## Performance Optimization
-
-For large graphs:
-
-1. Use appropriate layout algorithms (forceAtlas2 for large graphs)
-2. Implement node/edge filtering
-3. Use clustering to group related nodes
-4. Limit label visibility with labelType
-5. Disable animations for very large datasets
-6. Use sizingType='none' for uniform node sizes
-
-## Common Patterns
-
-### Dynamic Graph Updates
+### Dynamic Updates
 
 ```tsx
 const [nodes, setNodes] = useState(initialNodes);
-const [edges, setEdges] = useState(initialEdges);
 
 // Add node
-const addNode = (node) => {
-  setNodes([...nodes, node]);
-};
+setNodes([...nodes, { id: 'new', label: 'New Node' }]);
 
 // Update node
-const updateNode = (id, updates) => {
-  setNodes(nodes.map(n => 
-    n.id === id ? { ...n, ...updates } : n
-  ));
-};
-
-// Remove node
-const removeNode = (id) => {
-  setNodes(nodes.filter(n => n.id !== id));
-  setEdges(edges.filter(e => 
-    e.source !== id && e.target !== id
-  ));
-};
+setNodes(nodes.map(n => 
+  n.id === 'node1' ? { ...n, fill: 'red' } : n
+));
 ```
 
-### Path Finding
+## Performance Tips
 
-Find paths between nodes:
-
-```tsx
-import { useGraph } from 'reagraph';
-
-const MyGraph = () => {
-  const graphRef = useRef<GraphCanvasRef>();
-  
-  const findPath = () => {
-    const graph = graphRef.current?.getGraph();
-    // Use graph methods for pathfinding
-  };
-  
-  return <GraphCanvas ref={graphRef} {...props} />;
-};
-```
-
-## TypeScript Support
-
-Reagraph is written in TypeScript and provides full type definitions. Import types as needed:
-
-```typescript
-import type {
-  GraphNode,
-  GraphEdge,
-  GraphCanvasRef,
-  Theme,
-  LayoutTypes,
-  SizingType,
-  NodeRenderer,
-  ClusterRenderer
-} from 'reagraph';
-```
-
-## Browser Support
-
-Reagraph requires WebGL support. It works in all modern browsers:
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-
-## License
-
-Apache License 2.0
+1. Use appropriate layout algorithms (forceAtlas2 for large graphs)
+2. Implement node/edge filtering for large datasets
+3. Use clustering to group related nodes
+4. Limit label visibility with labelType
+5. Disable animations for very large datasets
 
 ## Links
 
 - GitHub: https://github.com/reaviz/reagraph
 - Documentation: https://reagraph.dev
 - NPM: https://www.npmjs.com/package/reagraph
-- Examples: https://reagraph.dev/?path=/story/docs-getting-started-installing--docs
+- License: Apache-2.0
