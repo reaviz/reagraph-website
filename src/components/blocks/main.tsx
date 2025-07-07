@@ -14,7 +14,7 @@ export const Main: FC = () => {
       style={{ backgroundImage: `url(${DotGrid.src})` }}
     >
       <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-8 md:mt-16 lg:mt-20 xl:mt-32 z-10 relative'>
-        <div className='absolute -top-10 flex gap-2 left-1/2 -translate-x-1/2'>
+        <div className='absolute -top-7 lg:-top-10 flex gap-2 left-1/2 -translate-x-1/2'>
           <a href='https://npm.im/reagraph' target='_blank'>
             <img
               alt='Reagraph npm tag'
