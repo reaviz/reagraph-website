@@ -1,0 +1,4040 @@
+# Reagraph - Full API Documentation
+
+> WebGL Node-based Graph for React. Version: 4.24.2
+
+This is the comprehensive API documentation for Reagraph, including all components, props, types, and advanced usage patterns.
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Installation](#installation)
+3. [Architecture](#architecture)
+4. [Core Components](#core-components)
+5. [Data Types](#data-types)
+6. [Layout System](#layout-system)
+7. [Sizing System](#sizing-system)
+8. [Theme System](#theme-system)
+9. [Event System](#event-system)
+10. [Advanced Usage](#advanced-usage)
+11. [Performance Optimization](#performance-optimization)
+12. [Troubleshooting](#troubleshooting)
+13. [Migration Guide](#migration-guide)
+
+## Overview
+
+Reagraph is a high-performance WebGL-based network graph visualization library for React. Built on top of react-three-fiber and Three.js, it provides a powerful and flexible system for rendering and interacting with graph data.
+
+### Key Features
+
+- **WebGL Rendering**: Leverages GPU acceleration for smooth performance with large datasets
+- **2D/3D Support**: Seamlessly switch between 2D and 3D layouts
+- **Multiple Layouts**: 10+ built-in layout algorithms plus custom layout support
+- **Rich Interactions**: Dragging, selection, lasso, context menus, and more
+- **Clustering**: Group related nodes with visual clusters
+- **Animations**: Smooth transitions and physics-based animations
+- **Theming**: Full control over colors, sizes, and visual styles
+- **TypeScript**: Full type safety and IDE support
+- **Extensible**: Custom node/edge renderers and layouts
+
+## Installation
+
+```bash
+npm install reagraph
+
+# Peer dependencies
+npm install react react-dom
+```
+
+### TypeScript Setup
+
+Reagraph includes TypeScript definitions. For optimal development experience:
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}
+```
+
+## Architecture
+
+Reagraph follows a layered architecture:
+
+1. **GraphCanvas**: High-level component combining all features
+2. **GraphScene**: Core rendering logic and graph management
+3. **Layout System**: Pluggable layout algorithms
+4. **Sizing System**: Node sizing strategies
+5. **Interaction Layer**: Mouse/touch events and controls
+6. **Theme System**: Visual customization
+
+### Rendering Pipeline
+
+1. Data ingestion (nodes/edges)
+2. Graph construction (Graphology)
+3. Layout calculation
+4. Size calculation
+5. WebGL rendering
+6. Event handling
+
+## Core Components
+
+### GraphCanvas
+
+Component for GraphCanvas
+
+**Source:** `src/GraphCanvas/GraphCanvas.tsx`
+
+**Props:**
+
+#### `edges` *(required)*
+
+Type: `GraphEdge[]`
+
+Edges to pass to the graph.
+
+#### `nodes` *(required)*
+
+Type: `GraphNode[]`
+
+Nodes to pass to the graph.
+
+#### `actives`
+
+Type: `string[]`
+
+List of ids that are active.
+
+#### `animated`
+
+Type: `boolean` (default: `true`)
+
+Animate or not the graph positions.
+
+#### `cameraMode`
+
+Type: `CameraMode` (default: `pan`)
+
+Type of camera interaction.
+
+#### `children`
+
+Type: `ReactNode`
+
+Children to render in the canvas. Useful for things like lights.
+
+#### `clusterAttribute`
+
+Type: `string`
+
+Attribute used for clustering.
+
+#### `collapsedNodeIds`
+
+Type: `string[]`
+
+List of node ids that are collapsed.
+
+#### `constrainDragging`
+
+Type: `boolean`
+
+Constrain dragging to the cluster bounds. Default is `false`.
+
+#### `contextMenu`
+
+Type: `(event: ContextMenuEvent) => ReactNode`
+
+Context menu element.
+
+#### `defaultNodeSize`
+
+Type: `number` (default: `7`)
+
+The default size to size nodes to. Default is 7.
+
+#### `disabled`
+
+Type: `boolean`
+
+Disable interactions or not.
+
+#### `draggable`
+
+Type: `boolean`
+
+Allow dragging of nodes.
+
+#### `edgeArrowPosition`
+
+Type: `EdgeArrowPosition`
+
+Placement of edge arrows.
+
+#### `edgeInterpolation`
+
+Type: `EdgeInterpolation`
+
+Shape of edge.
+
+#### `edgeLabelPosition`
+
+Type: `EdgeLabelPosition`
+
+Place of visibility for edge labels.
+
+#### `glOptions`
+
+Type: `Object` (default: `{}`)
+
+Ability to extend Cavas gl options. For example { preserveDrawingBuffer: true }
+
+#### `labelFontUrl`
+
+Type: `string`
+
+Font of label, same as troika-three-text
+The URL of a custom font file to be used. Supported font formats are: * .ttf * .otf * .woff (.woff2 is not supported)
+Default: The Roboto font loaded from Google Fonts CDN
+
+#### `labelType`
+
+Type: `LabelVisibilityType` (default: `auto`)
+
+Type of visibility for labels.
+
+#### `lassoType`
+
+Type: `LassoType` (default: `none`)
+
+The type of lasso selection.
+
+#### `layoutOverrides`
+
+Type: `LayoutOverrides`
+
+Advanced overrides for the layout.
+
+#### `layoutType`
+
+Type: `LayoutTypes` (default: `forceDirected2d`)
+
+Type of layout.
+
+#### `maxDistance`
+
+Type: `number`
+
+The maximum distance for the camera. Default is 50000.
+
+#### `maxNodeSize`
+
+Type: `number` (default: `15`)
+
+When using sizing attributes, the max size a node can be.
+
+#### `minDistance`
+
+Type: `number`
+
+The minimum distance for the camera. Default is 1000.
+
+#### `minNodeSize`
+
+Type: `number` (default: `5`)
+
+When using sizing attributes, the min size a node can be.
+
+#### `onCanvasClick`
+
+Type: `(event: MouseEvent) => void`
+
+When the canvas was clicked but didn't hit a node/edge.
+
+#### `onClusterClick`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<MouseEvent>) => void`
+
+When a cluster was clicked.
+
+#### `onClusterDragged`
+
+Type: `(cluster: ClusterEventArgs) => void`
+
+Triggered after a cluster was dragged.
+
+#### `onClusterPointerOut`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+
+When cluster receives a pointer leave event.
+
+#### `onClusterPointerOver`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+
+When a cluster receives a pointer over event.
+
+#### `onEdgeClick`
+
+Type: `(edge: InternalGraphEdge, event?: ThreeEvent<MouseEvent>) => void`
+
+When an edge was clicked.
+
+#### `onEdgeContextMenu`
+
+Type: `(edge?: InternalGraphEdge) => void`
+
+When a edge context menu happened.
+
+#### `onEdgePointerOut`
+
+Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+
+When edge lost pointer over.
+
+#### `onEdgePointerOver`
+
+Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+
+When edge got a pointer over.
+
+#### `onLasso`
+
+Type: `(selections: string[]) => void`
+
+When the canvas had a lasso selection.
+
+#### `onLassoEnd`
+
+Type: `(selections: string[]) => void`
+
+When the canvas had a lasso selection end.
+
+#### `onNodeClick`
+
+Type: `(node: InternalGraphNode, props?: CollapseProps, event?: ThreeEvent<MouseEvent>) => void`
+
+When a node was clicked.
+
+#### `onNodeContextMenu`
+
+Type: `(node: InternalGraphNode, props?: NodeContextMenuProps) => void`
+
+When a node context menu happened.
+
+#### `onNodeDoubleClick`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<MouseEvent>) => void`
+
+When a node was double clicked.
+
+#### `onNodeDragged`
+
+Type: `(node: InternalGraphNode) => void`
+
+Triggered after a node was dragged.
+
+#### `onNodePointerOut`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+
+When node lost pointer over.
+
+#### `onNodePointerOver`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+
+When node got a pointer over.
+
+#### `onRenderCluster`
+
+Type: `ClusterRenderer`
+
+Render a custom cluster
+
+#### `ref`
+
+Type: `Ref<GraphCanvasRef>`
+
+#### `renderNode`
+
+Type: `NodeRenderer`
+
+Render a custom node
+
+#### `selections`
+
+Type: `string[]`
+
+List of ids that are selected.
+
+#### `sizingAttribute`
+
+Type: `string`
+
+Attribute based sizing property.
+
+#### `sizingType`
+
+Type: `SizingType` (default: `default`)
+
+Type of sizing for nodes.
+
+#### `theme`
+
+Type: `Theme` (default: `{
+  canvas: { background: '#fff' },
+  node: {
+    fill: '#7CA0AB',
+    activeFill: '#1DE9AC',
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.2,
+    label: { color: '#2A6475', stroke: '#fff', activeColor: '#1DE9AC' },
+    subLabel: { color: '#ddd', stroke: 'transparent', activeColor: '#1DE9AC' }
+  },
+  lasso: { border: '1px solid #55aaff', background: 'rgba(75, 160, 255, 0.1)' },
+  ring: { fill: '#D8E6EA', activeFill: '#1DE9AC' },
+  edge: {
+    fill: '#D8E6EA',
+    activeFill: '#1DE9AC',
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.1,
+    label: {
+      stroke: '#fff',
+      color: '#2A6475',
+      activeColor: '#1DE9AC',
+      fontSize: 6
+    },
+    subLabel: {
+      color: '#ddd',
+      stroke: 'transparent',
+      activeColor: '#1DE9AC'
+    }
+  },
+  arrow: { fill: '#D8E6EA', activeFill: '#1DE9AC' },
+  cluster: {
+    stroke: '#D8E6EA',
+    opacity: 1,
+    selectedOpacity: 1,
+    inactiveOpacity: 0.1,
+    label: { stroke: '#fff', color: '#2A6475' }
+  }
+}`)
+
+Theme to use for the graph.
+
+
+---
+
+### GraphScene
+
+Component for GraphScene
+
+**Source:** `src/GraphScene.tsx`
+
+**Props:**
+
+#### `edges` *(required)*
+
+Type: `GraphEdge[]`
+
+Edges to pass to the graph.
+
+#### `nodes` *(required)*
+
+Type: `GraphNode[]`
+
+Nodes to pass to the graph.
+
+#### `actives`
+
+Type: `string[]`
+
+List of ids that are active.
+
+#### `animated`
+
+Type: `boolean`
+
+Animate or not the graph positions.
+
+#### `clusterAttribute`
+
+Type: `string`
+
+Attribute used for clustering.
+
+#### `collapsedNodeIds`
+
+Type: `string[]`
+
+List of node ids that are collapsed.
+
+#### `constrainDragging`
+
+Type: `boolean` (default: `false`)
+
+Constrain dragging to the cluster bounds. Default is `false`.
+
+#### `contextMenu`
+
+Type: `(event: ContextMenuEvent) => ReactNode`
+
+Context menu element.
+
+#### `defaultNodeSize`
+
+Type: `number`
+
+The default size to size nodes to. Default is 7.
+
+#### `disabled`
+
+Type: `boolean`
+
+Disable interactions or not.
+
+#### `draggable`
+
+Type: `boolean`
+
+Allow dragging of nodes.
+
+#### `edgeArrowPosition`
+
+Type: `EdgeArrowPosition`
+
+Placement of edge arrows.
+
+#### `edgeInterpolation`
+
+Type: `EdgeInterpolation` (default: `linear`)
+
+Shape of edge.
+
+#### `edgeLabelPosition`
+
+Type: `EdgeLabelPosition`
+
+Place of visibility for edge labels.
+
+#### `labelFontUrl`
+
+Type: `string`
+
+Font of label, same as troika-three-text
+The URL of a custom font file to be used. Supported font formats are: * .ttf * .otf * .woff (.woff2 is not supported)
+Default: The Roboto font loaded from Google Fonts CDN
+
+#### `labelType`
+
+Type: `LabelVisibilityType`
+
+Type of visibility for labels.
+
+#### `layoutOverrides`
+
+Type: `LayoutOverrides`
+
+Advanced overrides for the layout.
+
+#### `layoutType`
+
+Type: `LayoutTypes`
+
+Type of layout.
+
+#### `maxNodeSize`
+
+Type: `number`
+
+When using sizing attributes, the max size a node can be.
+
+#### `minNodeSize`
+
+Type: `number`
+
+When using sizing attributes, the min size a node can be.
+
+#### `onClusterClick`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<MouseEvent>) => void`
+
+When a cluster was clicked.
+
+#### `onClusterDragged`
+
+Type: `(cluster: ClusterEventArgs) => void`
+
+Triggered after a cluster was dragged.
+
+#### `onClusterPointerOut`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+
+When cluster receives a pointer leave event.
+
+#### `onClusterPointerOver`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+
+When a cluster receives a pointer over event.
+
+#### `onEdgeClick`
+
+Type: `(edge: InternalGraphEdge, event?: ThreeEvent<MouseEvent>) => void`
+
+When an edge was clicked.
+
+#### `onEdgeContextMenu`
+
+Type: `(edge?: InternalGraphEdge) => void`
+
+When a edge context menu happened.
+
+#### `onEdgePointerOut`
+
+Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+
+When edge lost pointer over.
+
+#### `onEdgePointerOver`
+
+Type: `(edge: InternalGraphEdge, event?: ThreeEvent<PointerEvent>) => void`
+
+When edge got a pointer over.
+
+#### `onNodeClick`
+
+Type: `(node: InternalGraphNode, props?: CollapseProps, event?: ThreeEvent<MouseEvent>) => void`
+
+When a node was clicked.
+
+#### `onNodeContextMenu`
+
+Type: `(node: InternalGraphNode, props?: NodeContextMenuProps) => void`
+
+When a node context menu happened.
+
+#### `onNodeDoubleClick`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<MouseEvent>) => void`
+
+When a node was double clicked.
+
+#### `onNodeDragged`
+
+Type: `(node: InternalGraphNode) => void`
+
+Triggered after a node was dragged.
+
+#### `onNodePointerOut`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+
+When node lost pointer over.
+
+#### `onNodePointerOver`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+
+When node got a pointer over.
+
+#### `onRenderCluster`
+
+Type: `ClusterRenderer`
+
+Render a custom cluster
+
+#### `ref`
+
+Type: `Ref<GraphSceneRef>`
+
+#### `renderNode`
+
+Type: `NodeRenderer`
+
+Render a custom node
+
+#### `selections`
+
+Type: `string[]`
+
+List of ids that are selected.
+
+#### `sizingAttribute`
+
+Type: `string`
+
+Attribute based sizing property.
+
+#### `sizingType`
+
+Type: `SizingType`
+
+Type of sizing for nodes.
+
+
+---
+
+### CameraControls
+
+Component for CameraControls
+
+**Source:** `src/CameraControls/CameraControls.tsx`
+
+**Props:**
+
+#### `animated`
+
+Type: `boolean`
+
+Animate transitions to centering.
+
+#### `children`
+
+Type: `ReactNode`
+
+Children symbols.
+
+#### `disabled`
+
+Type: `boolean`
+
+Whether the controls are enabled.
+
+#### `maxDistance`
+
+Type: `number` (default: `50000`)
+
+The maximum distance for the camera.
+
+#### `minDistance`
+
+Type: `number` (default: `1000`)
+
+The minimum distance for the camera.
+
+#### `mode`
+
+Type: `CameraMode` (default: `rotate`)
+
+Mode of the camera.
+
+#### `ref`
+
+Type: `Ref<CameraControlsContextProps>`
+
+
+---
+
+### Node
+
+Component for Node
+
+**Source:** `src/symbols/Node.tsx`
+
+**Props:**
+
+#### `id` *(required)*
+
+Type: `string`
+
+The unique identifier for the node.
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the node is animated.
+
+#### `constrainDragging`
+
+Type: `boolean`
+
+Constrain dragging to the cluster bounds.
+
+#### `contextMenu`
+
+Type: `(event: ContextMenuEvent) => ReactNode`
+
+The context menu for the node.
+
+#### `disabled`
+
+Type: `boolean`
+
+Whether the node is disabled.
+
+#### `draggable`
+
+Type: `boolean` (default: `false`)
+
+Whether the node is draggable.
+
+#### `labelFontUrl`
+
+Type: `string`
+
+The url for the label font.
+
+#### `onClick`
+
+Type: `(node: InternalGraphNode, props?: CollapseProps, event?: ThreeEvent<MouseEvent>) => void`
+
+The function to call when the node is clicked.
+
+#### `onContextMenu`
+
+Type: `(node?: InternalGraphNode, props?: NodeContextMenuProps) => void`
+
+The function to call when the node is right clicked.
+
+#### `onDoubleClick`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<MouseEvent>) => void`
+
+The function to call when the node is double clicked.
+
+#### `onDragged`
+
+Type: `(node: InternalGraphNode) => void`
+
+Triggered after a node was dragged.
+
+#### `onPointerOut`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+
+The function to call when the pointer is out of the node.
+
+#### `onPointerOver`
+
+Type: `(node: InternalGraphNode, event: ThreeEvent<PointerEvent>) => void`
+
+The function to call when the pointer is over the node.
+
+#### `parents`
+
+Type: `string[]`
+
+The parent nodes of the node.
+
+#### `renderNode`
+
+Type: `NodeRenderer`
+
+The function to use to render the node.
+
+
+---
+
+### Edge
+
+Component for Edge
+
+**Source:** `src/symbols/Edge.tsx`
+
+**Props:**
+
+#### `id` *(required)*
+
+Type: `string`
+
+The unique identifier of the edge.
+
+#### `interpolation` *(required)*
+
+Type: `EdgeInterpolation`
+
+The type of interpolation used to draw the edge.
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the edge should be animated.
+
+#### `arrowPlacement`
+
+Type: `EdgeArrowPosition` (default: `end`)
+
+The placement of the edge arrow.
+
+#### `contextMenu`
+
+Type: `(event: Partial<ContextMenuEvent>) => ReactNode`
+
+A function that returns the context menu for the edge.
+
+#### `disabled`
+
+Type: `boolean`
+
+Whether the edge should be disabled.
+
+#### `labelFontUrl`
+
+Type: `string`
+
+The url for the label font.
+
+#### `labelPlacement`
+
+Type: `EdgeLabelPosition` (default: `inline`)
+
+The placement of the edge label.
+
+#### `onClick`
+
+Type: `(edge: InternalGraphEdge, event: ThreeEvent<MouseEvent>) => void`
+
+A function that is called when the edge is clicked.
+
+#### `onContextMenu`
+
+Type: `(edge?: InternalGraphEdge) => void`
+
+A function that is called when the edge is right-clicked.
+
+#### `onPointerOut`
+
+Type: `(edge: InternalGraphEdge, event: ThreeEvent<PointerEvent>) => void`
+
+A function that is called when the mouse pointer is moved out of the edge.
+
+#### `onPointerOver`
+
+Type: `(edge: InternalGraphEdge, event: ThreeEvent<PointerEvent>) => void`
+
+A function that is called when the mouse pointer is moved over the edge.
+
+#### `subLabelPlacement`
+
+Type: `EdgeSubLabelPosition` (default: `below`)
+
+The placement of the edge subLabel relative to the main label.
+
+
+---
+
+### Edges
+
+Three.js rendering starts to get slower if you have an individual mesh for each edge
+and a high number of edges.
+
+Instead, we take the edges and split them into their different render states:
+
+ * - Active (any edges that are marked as "selected" or "active" in the state)
+ * - Dragging (any edges that are connected to a node that is being dragged)
+ * - Intersecting (any edges that are currently intersected by the ray from the mouse position)
+ * - Inactive (any edges that aren't active, dragging, or intersected)
+
+We generate the geometry for each edge in each of these groups, and then merge them
+into a single geometry for each group. This merged mesh is rendered as one object
+which gives much better performance. This means that we only need to update geometry
+and positions when edges move between the different states, rather than updating all
+edges whenever any other edge changes.
+
+To get this all working, we have to do a few things outside the
+
+**Source:** `src/symbols/edges/Edges.tsx`
+
+**Props:**
+
+#### `edges` *(required)*
+
+Type: `InternalGraphEdge[]`
+
+The array of edge objects.
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the edge should be animated.
+
+#### `arrowPlacement`
+
+Type: `EdgeArrowPosition` (default: `end`)
+
+The placement of the edge arrow.
+
+#### `contextMenu`
+
+Type: `(event: Partial<ContextMenuEvent>) => ReactNode`
+
+A function that returns the context menu for the edge.
+
+#### `disabled`
+
+Type: `boolean`
+
+Whether the edge should be disabled.
+
+#### `interpolation`
+
+Type: `EdgeInterpolation` (default: `linear`)
+
+The type of interpolation used to draw the edge.
+
+#### `labelFontUrl`
+
+Type: `string`
+
+The URL of the font for the edge label.
+
+#### `labelPlacement`
+
+Type: `EdgeLabelPosition` (default: `inline`)
+
+The placement of the edge label.
+
+#### `onClick`
+
+Type: `(edge: InternalGraphEdge) => void`
+
+#### `onContextMenu`
+
+Type: `(edge?: InternalGraphEdge) => void`
+
+#### `onPointerOut`
+
+Type: `(edge: InternalGraphEdge) => void`
+
+#### `onPointerOver`
+
+Type: `(edge: InternalGraphEdge) => void`
+
+
+---
+
+### Label
+
+Component for Label
+
+**Source:** `src/symbols/Label.tsx`
+
+**Props:**
+
+#### `text` *(required)*
+
+Type: `string`
+
+Text to render.
+
+#### `active`
+
+Type: `boolean`
+
+Whether the label is active ( dragging, hover, focus ).
+
+#### `color`
+
+Type: `ColorRepresentation` (default: `#2A6475`)
+
+Color of the text.
+
+#### `ellipsis`
+
+Type: `number` (default: `75`)
+
+The lenth of which to start the ellipsis.
+
+#### `fontSize`
+
+Type: `number` (default: `7`)
+
+Size of the font.
+
+#### `fontUrl`
+
+Type: `string`
+
+Font URL.
+Reference: https://github.com/reaviz/reagraph/issues/23
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+Opacity for the label.
+
+#### `rotation`
+
+Type: `Euler | [number, number, number]`
+
+Rotation of the label.
+
+#### `stroke`
+
+Type: `ColorRepresentation`
+
+Stroke of the text.
+
+
+---
+
+### Cluster
+
+Component for Cluster
+
+**Source:** `src/symbols/Cluster.tsx`
+
+**Props:**
+
+#### `label` *(required)*
+
+Type: `string`
+
+Label of the cluster.
+
+#### `nodes` *(required)*
+
+Type: `InternalGraphNode[]`
+
+Nodes in the cluster.
+
+#### `position` *(required)*
+
+Type: `CenterPositionVector`
+
+Center position of the cluster.
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the circle should be animated.
+
+#### `disabled`
+
+Type: `boolean`
+
+Whether the node is disabled.
+
+#### `draggable`
+
+Type: `boolean` (default: `false`)
+
+Whether the cluster is draggable
+
+#### `labelFontUrl`
+
+Type: `string`
+
+The url for the label font.
+
+#### `onClick`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<MouseEvent>) => void`
+
+When the cluster was clicked.
+
+#### `onDragged`
+
+Type: `(cluster: ClusterEventArgs) => void`
+
+Triggered after a cluster was dragged
+
+#### `onPointerOut`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+
+When cluster receives a pointer leave event.
+
+#### `onPointerOver`
+
+Type: `(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void`
+
+When a cluster receives a pointer over event.
+
+#### `onRender`
+
+Type: `ClusterRenderer`
+
+Render a custom cluster label
+
+#### `padding`
+
+Type: `number` (default: `40`)
+
+The padding of the circle. Default 20.
+
+#### `radius`
+
+Type: `number` (default: `2`)
+
+The radius of the circle. Default 1.
+
+
+---
+
+### Ring
+
+Component for Ring
+
+**Source:** `src/symbols/Ring.tsx`
+
+**Props:**
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the ring should be animated.
+
+#### `color`
+
+Type: `ColorRepresentation` (default: `#D8E6EA`)
+
+The color of the ring.
+
+#### `innerRadius`
+
+Type: `number` (default: `4`)
+
+The inner radius of the ring.
+Default value: 4
+
+#### `opacity`
+
+Type: `number` (default: `0.5`)
+
+The opacity of the ring.
+
+#### `segments`
+
+Type: `number` (default: `25`)
+
+The number of segments in the ring geometry.
+Default value: 25
+
+#### `size`
+
+Type: `number` (default: `1`)
+
+The size of the ring.
+
+#### `strokeWidth`
+
+Type: `number` (default: `5`)
+
+The stroke width of the ring.
+
+
+---
+
+### Arrow
+
+Component for Arrow
+
+**Source:** `src/symbols/Arrow.tsx`
+
+**Props:**
+
+#### `length` *(required)*
+
+Type: `number`
+
+The length of the arrow.
+
+#### `position` *(required)*
+
+Type: `Vector3`
+
+The position of the arrow in 3D space.
+
+#### `rotation` *(required)*
+
+Type: `Vector3`
+
+The rotation of the arrow in 3D space.
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the arrow should be animated.
+
+#### `color`
+
+Type: `ColorRepresentation` (default: `#D8E6EA`)
+
+The color of the arrow.
+
+#### `onActive`
+
+Type: `(state: boolean) => void`
+
+A function that is called when the arrow is selected or deselected.
+
+#### `onContextMenu`
+
+Type: `() => void`
+
+A function that is called when the arrow is right-clicked.
+
+#### `opacity`
+
+Type: `number` (default: `0.5`)
+
+The opacity of the arrow.
+
+#### `size`
+
+Type: `number` (default: `1`)
+
+The size of the arrow.
+
+
+---
+
+### Line
+
+Component for Line
+
+**Source:** `src/symbols/Line.tsx`
+
+**Props:**
+
+#### `curve` *(required)*
+
+Type: `Curve<Vector3>`
+
+The curve of the line in 3D space.
+
+#### `id` *(required)*
+
+Type: `string`
+
+The unique identifier of the line.
+
+#### `animated`
+
+Type: `boolean`
+
+Whether the line should be animated.
+
+#### `color`
+
+Type: `ColorRepresentation` (default: `#000`)
+
+The color of the line.
+
+#### `curved`
+
+Type: `boolean` (default: `false`)
+
+Whether the line should be curved.
+
+#### `curveOffset`
+
+Type: `number`
+
+The offset of the curve.
+
+#### `onClick`
+
+Type: `(event: ThreeEvent<MouseEvent>) => void`
+
+A function that is called when the line is clicked.
+
+#### `onContextMenu`
+
+Type: `() => void`
+
+A function that is called when the line is right-clicked.
+
+#### `onPointerOut`
+
+Type: `(event: ThreeEvent<PointerEvent>) => void`
+
+A function that is called when the mouse pointer is moved out of the line.
+
+#### `onPointerOver`
+
+Type: `(event: ThreeEvent<PointerEvent>) => void`
+
+A function that is called when the mouse pointer is moved over the line.
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+The opacity of the line.
+
+#### `size`
+
+Type: `number` (default: `1`)
+
+The size of the line.
+
+
+---
+
+### Icon
+
+Component for Icon
+
+**Source:** `src/symbols/nodes/Icon.tsx`
+
+**Props:**
+
+#### `active` *(required)*
+
+Type: `boolean`
+
+Whether the node is active or not.
+
+#### `animated` *(required)*
+
+Type: `boolean`
+
+Animation of the node.
+
+#### `color` *(required)*
+
+Type: `ColorRepresentation`
+
+Color of the node. Handles selected/etc.
+
+#### `id` *(required)*
+
+Type: `string`
+
+ID of the node.
+
+#### `image` *(required)*
+
+Type: `string`
+
+The image to display on the icon.
+
+#### `node` *(required)*
+
+Type: `InternalGraphNode`
+
+The internal node model.
+
+#### `selected` *(required)*
+
+Type: `boolean`
+
+Whether the node is selected or not.
+
+#### `size` *(required)*
+
+Type: `number`
+
+Size of the node.
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+Opacity of the node. Mainly used for selection.
+
+
+---
+
+### Sphere
+
+Component for Sphere
+
+**Source:** `src/symbols/nodes/Sphere.tsx`
+
+**Props:**
+
+#### `active` *(required)*
+
+Type: `boolean`
+
+Whether the node is active or not.
+
+#### `animated` *(required)*
+
+Type: `boolean`
+
+Animation of the node.
+
+#### `color` *(required)*
+
+Type: `ColorRepresentation`
+
+Color of the node. Handles selected/etc.
+
+#### `id` *(required)*
+
+Type: `string`
+
+ID of the node.
+
+#### `node` *(required)*
+
+Type: `InternalGraphNode`
+
+The internal node model.
+
+#### `selected` *(required)*
+
+Type: `boolean`
+
+Whether the node is selected or not.
+
+#### `size` *(required)*
+
+Type: `number`
+
+Size of the node.
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+Opacity of the node. Mainly used for selection.
+
+
+---
+
+### SphereWithIcon
+
+Component for SphereWithIcon
+
+**Source:** `src/symbols/nodes/SphereWithIcon.tsx`
+
+**Props:**
+
+#### `animated` *(required)*
+
+Type: `boolean`
+
+Animation of the node.
+
+#### `color` *(required)*
+
+Type: `ColorRepresentation`
+
+Color of the node. Handles selected/etc.
+
+#### `id` *(required)*
+
+Type: `string`
+
+ID of the node.
+
+#### `image` *(required)*
+
+Type: `string`
+
+The image to display on the icon.
+
+#### `node` *(required)*
+
+Type: `InternalGraphNode`
+
+The internal node model.
+
+#### `selected` *(required)*
+
+Type: `boolean`
+
+Whether the node is selected or not.
+
+#### `size` *(required)*
+
+Type: `number`
+
+Size of the node.
+
+#### `active`
+
+Type: `boolean` (default: `false`)
+
+Whether the node is active or not.
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+Opacity of the node. Mainly used for selection.
+
+
+---
+
+### SphereWithSvg
+
+Component for SphereWithSvg
+
+**Source:** `src/symbols/nodes/SphereWithSvg.tsx`
+
+**Props:**
+
+#### `animated` *(required)*
+
+Type: `boolean`
+
+Animation of the node.
+
+#### `color` *(required)*
+
+Type: `ColorRepresentation`
+
+Color of the node. Handles selected/etc.
+
+#### `id` *(required)*
+
+Type: `string`
+
+ID of the node.
+
+#### `image` *(required)*
+
+Type: `string`
+
+The image to display on the icon.
+
+#### `node` *(required)*
+
+Type: `InternalGraphNode`
+
+The internal node model.
+
+#### `selected` *(required)*
+
+Type: `boolean`
+
+Whether the node is selected or not.
+
+#### `size` *(required)*
+
+Type: `number`
+
+Size of the node.
+
+#### `active`
+
+Type: `boolean` (default: `false`)
+
+Whether the node is active or not.
+
+#### `add`
+
+Type: `((...object: Object3D<Object3DEventMap>[]) => Object3D<Object3DEventMap>) | Readonly<(...object: Object3D<Object3DEventMap>[]) => Object3D<...>>`
+
+Adds another {@link Object3D} as child of this {@link Object3D}.
+@remarks An arbitrary number of objects may be added
+Any current parent on an {@link object } passed in here will be removed, since an {@link Object3D } can have at most one parent.
+@see {@link attach }
+@see {@link THREE.Group Group} for info on manually grouping objects.
+@param object
+
+#### `addEventListener`
+
+Type: `(<T extends keyof Object3DEventMap>(type: T, listener: EventListener<Object3DEventMap[T], T, Object3D<Object3DEventMap>>) => void) | Readonly<...>`
+
+Adds a listener to an event type.
+@param type The type of event to listen to.
+@param listener The function that gets called when the event is fired.
+
+#### `animations`
+
+Type: `AnimationClip[] | readonly AnimationClip[]`
+
+Array with object's animation clips.
+@defaultValue `[]`
+
+#### `applyMatrix4`
+
+Type: `((matrix: Matrix4) => void) | Readonly<(matrix: Matrix4) => void>`
+
+Applies the matrix transform to the object and updates the object's position, rotation and scale.
+@param matrix
+
+#### `applyQuaternion`
+
+Type: `((quaternion: Quaternion) => Object3D<Object3DEventMap>) | Readonly<(quaternion: Quaternion) => Object3D<Object3DEventMap>>`
+
+Applies the rotation represented by the quaternion to the object.
+@param quaternion
+
+#### `castShadow`
+
+Type: `Readonly<boolean>`
+
+Whether the object gets rendered into shadow map.
+@defaultValue `false`
+
+#### `clear`
+
+Type: `(() => Object3D<Object3DEventMap>) | Readonly<() => Object3D<Object3DEventMap>>`
+
+Removes all child objects.
+
+#### `clone`
+
+Type: `((recursive?: boolean) => Object3D<Object3DEventMap>) | Readonly<(recursive?: boolean) => Object3D<Object3DEventMap>>`
+
+Returns a clone of `this` object and optionally all descendants.
+@param recursive If true, descendants of the object are also cloned. Default `true`
+
+#### `copy`
+
+Type: `((object: Object3D<Object3DEventMap>, recursive?: boolean) => Object3D<Object3DEventMap>) | Readonly<(object: Object3D<Object3DEventMap>, recursive?: boolean) => Object3D<...>>`
+
+Copies the given object into this object.
+@remarks Event listeners and user-defined callbacks ({@link .onAfterRender} and {@link .onBeforeRender}) are not copied.
+@param object
+@param recursive If set to `true`, descendants of the object are copied next to the existing ones. If set to
+`false`, descendants are left unchanged. Default is `true`.
+
+#### `customDepthMaterial`
+
+Type: `Material | Readonly<Material>`
+
+Custom depth material to be used when rendering to the depth map.
+@remarks Can only be used in context of meshes.
+When shadow-casting with a {@link THREE.DirectionalLight DirectionalLight} or {@link THREE.SpotLight SpotLight},
+if you are modifying vertex positions in the vertex shader you must specify a customDepthMaterial for proper shadows.
+@defaultValue `undefined`
+
+#### `customDistanceMaterial`
+
+Type: `Material | Readonly<Material>`
+
+Same as {@link customDepthMaterial}, but used with {@link THREE.Object3DPointLight PointLight}.
+@defaultValue `undefined`
+
+#### `dispatchEvent`
+
+Type: `(<T extends keyof Object3DEventMap>(event: BaseEvent<T> & Object3DEventMap[T]) => void) | Readonly<(<T extends keyof Object3DEventMap>(event: BaseEvent<...> & Object3DEventMap[T]) => void)>`
+
+Fire an event type.
+@param event The event that gets fired.
+
+#### `frustumCulled`
+
+Type: `Readonly<boolean>`
+
+When this is set, it checks every frame if the object is in the frustum of the camera before rendering the object.
+If set to `false` the object gets rendered every frame even if it is not in the frustum of the camera.
+@defaultValue `true`
+
+#### `getObjectById`
+
+Type: `((id: number) => Object3D<Object3DEventMap>) | Readonly<(id: number) => Object3D<Object3DEventMap>>`
+
+Searches through an object and its children, starting with the object itself, and returns the first with a matching id.
+@remarks Note that ids are assigned in chronological order: 1, 2, 3, ..., incrementing by one for each new object.
+@see {@link id }
+@param id Unique number of the object instance. Expects a `Integer`
+
+#### `getObjectByName`
+
+Type: `((name: string) => Object3D<Object3DEventMap>) | Readonly<(name: string) => Object3D<Object3DEventMap>>`
+
+Searches through an object and its children, starting with the object itself, and returns the first with a matching name.
+@remarks Note that for most objects the name is an empty string by default
+You will have to set it manually to make use of this method.
+@param name String to match to the children's Object3D.name property.
+
+#### `getObjectByProperty`
+
+Type: `((name: string, value: any) => Object3D<Object3DEventMap>) | Readonly<(name: string, value: any) => Object3D<Object3DEventMap>>`
+
+Searches through an object and its children, starting with the object itself,
+and returns the first with a property that matches the value given.
+@param name - the property name to search for.
+@param value - value of the given property.
+
+#### `getObjectsByProperty`
+
+Type: `((name: string, value: any, optionalTarget?: Object3D<Object3DEventMap>[]) => Object3D<Object3DEventMap>[]) | Readonly<(name: string, value: any, optionalTarget?: Object3D<...>[]) => Object3D<...>[]>`
+
+Searches through an object and its children, starting with the object itself,
+and returns the first with a property that matches the value given.
+@param name The property name to search for.
+@param value Value of the given property.
+@param optionalTarget target to set the result. Otherwise a new Array is instantiated. If set, you must clear
+this array prior to each call (i.e., array.length = 0;).
+
+#### `getWorldDirection`
+
+Type: `((target: Vector3) => Vector3) | Readonly<(target: Vector3) => Vector3>`
+
+Returns a vector representing the direction of object's positive z-axis in world space.
+@param target The result will be copied into this Vector3.
+
+#### `getWorldPosition`
+
+Type: `((target: Vector3) => Vector3) | Readonly<(target: Vector3) => Vector3>`
+
+Returns a vector representing the position of the object in world space.
+@param target The result will be copied into this Vector3.
+
+#### `getWorldQuaternion`
+
+Type: `((target: Quaternion) => Quaternion) | Readonly<(target: Quaternion) => Quaternion>`
+
+Returns a quaternion representing the rotation of the object in world space.
+@param target The result will be copied into this Quaternion.
+
+#### `getWorldScale`
+
+Type: `((target: Vector3) => Vector3) | Readonly<(target: Vector3) => Vector3>`
+
+Returns a vector of the scaling factors applied to the object for each axis in world space.
+@param target The result will be copied into this Vector3.
+
+#### `hasEventListener`
+
+Type: `(<T extends keyof Object3DEventMap>(type: T, listener: EventListener<Object3DEventMap[T], T, Object3D<Object3DEventMap>>) => boolean) | Readonly<...>`
+
+Checks if listener is added to an event type.
+@param type The type of event to listen to.
+@param listener The function that gets called when the event is fired.
+
+#### `isObject3D`
+
+Type: `true`
+
+Flag to check if a given object is of type {@link Object3D}.
+@remarks This is a _constant_ value
+@defaultValue `true`
+
+#### `layers`
+
+Type: `Layers | [layer: number] | Readonly<number | Layers | [layer: number]>`
+
+The layer membership of the object.
+@remarks The object is only visible if it has at least one layer in common with the {@link THREE.Object3DCamera Camera} in use.
+This property can also be used to filter out unwanted objects in ray-intersection tests when using {@link THREE.Raycaster Raycaster}.
+@defaultValue `new THREE.Layers()`
+
+#### `localToWorld`
+
+Type: `((vector: Vector3) => Vector3) | Readonly<(vector: Vector3) => Vector3>`
+
+Converts the vector from this object's local space to world space.
+@param vector A vector representing a position in this object's local space.
+
+#### `lookAt`
+
+Type: `{ (vector: Vector3): void; (x: number, y: number, z: number): void; } | Readonly<{ (vector: Vector3): void; (x: number, y: number, z: number): void; }>`
+
+Rotates the object to face a point in world space.
+@remarks This method does not support objects having non-uniformly-scaled parent(s).
+@param vector A vector representing a position in world space to look at.
+@remarks This method does not support objects having non-uniformly-scaled parent(s).
+@param x Expects a `Float`
+@param y Expects a `Float`
+@param z Expects a `Float`
+
+#### `matrix`
+
+Type: `Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>`
+
+The local transform matrix.
+@defaultValue `new THREE.Matrix4()`
+
+#### `matrixAutoUpdate`
+
+Type: `Readonly<boolean>`
+
+When this is set, it calculates the matrix of position, (rotation or quaternion) and
+scale every frame and also recalculates the matrixWorld property.
+@defaultValue {@link DEFAULT_MATRIX_AUTO_UPDATE } - that is `(true)`.
+
+#### `matrixWorld`
+
+Type: `Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>`
+
+The global transform of the object.
+@remarks If the {@link Object3D } has no parent, then it's identical to the local transform {@link THREE.Object3D.matrix .matrix}.
+@defaultValue `new THREE.Matrix4()`
+
+#### `matrixWorldAutoUpdate`
+
+Type: `Readonly<boolean>`
+
+If set, then the renderer checks every frame if the object and its children need matrix updates.
+When it isn't, then you have to maintain all matrices in the object and its children yourself.
+@defaultValue {@link DEFAULT_MATRIX_WORLD_AUTO_UPDATE } - that is `(true)`.
+
+#### `matrixWorldNeedsUpdate`
+
+Type: `Readonly<boolean>`
+
+When this is set, it calculates the matrixWorld in that frame and resets this property to false.
+@defaultValue `false`
+
+#### `modelViewMatrix`
+
+Type: `Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>`
+
+@defaultValue `new THREE.Matrix4()`
+
+#### `name`
+
+Type: `string`
+
+Optional name of the object
+@remarks _(doesn't need to be unique)_.
+@defaultValue `""`
+
+#### `normalMatrix`
+
+Type: `Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | Readonly<Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number]>`
+
+@defaultValue `new THREE.Matrix3()`
+
+#### `onAfterRender`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately after a 3D object is rendered.
+@remarks This function is called with the following parameters: renderer, scene, camera, geometry, material, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `onAfterShadow`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately after a 3D object is rendered to a shadow map.
+@remarks This function is called with the following parameters: renderer, scene, camera, shadowCamera, geometry,
+depthMaterial, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `onBeforeRender`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately before a 3D object is rendered.
+@remarks This function is called with the following parameters: renderer, scene, camera, geometry, material, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `onBeforeShadow`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately before a 3D object is rendered to a shadow map.
+@remarks This function is called with the following parameters: renderer, scene, camera, shadowCamera, geometry,
+depthMaterial, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+Opacity of the node. Mainly used for selection.
+
+#### `parent`
+
+Type: `Object3D<Object3DEventMap> | Readonly<Object3D<Object3DEventMap>>`
+
+Object's parent in the {@link https://en.wikipedia.org/wiki/Scene_graph scene graph}.
+@remarks An object can have at most one parent.
+@defaultValue `null`
+
+#### `position`
+
+Type: `Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>`
+
+Object's local position.
+@defaultValue `new THREE.Vector3()` - that is `(0, 0, 0)`.
+
+#### `quaternion`
+
+Type: `Quaternion | [x: number, y: number, z: number, w: number] | Readonly<Quaternion | [x: number, y: number, z: number, w: number]>`
+
+Object's local rotation as a {@link THREE.Quaternion Quaternion}.
+@defaultValue `new THREE.Quaternion()` - that is `(0,  0, 0, 1)`.
+
+#### `raycast`
+
+Type: `((raycaster: Raycaster, intersects: Intersection<Object3D<Object3DEventMap>>[]) => void) | Readonly<(raycaster: Raycaster, intersects: Intersection<...>[]) => void>`
+
+Abstract (empty) method to get intersections between a casted ray and this object
+@remarks Subclasses such as {@link THREE.Mesh Mesh}, {@link THREE.Line Line}, and {@link THREE.Points Points} implement this method in order to use raycasting.
+@see {@link THREE.Raycaster Raycaster}
+@param raycaster
+@param intersects
+@defaultValue `() => {}`
+
+#### `receiveShadow`
+
+Type: `Readonly<boolean>`
+
+Whether the material receives shadows.
+@defaultValue `false`
+
+#### `remove`
+
+Type: `((...object: Object3D<Object3DEventMap>[]) => Object3D<Object3DEventMap>) | Readonly<(...object: Object3D<Object3DEventMap>[]) => Object3D<...>>`
+
+Removes a {@link Object3D} as child of this {@link Object3D}.
+@remarks An arbitrary number of objects may be removed.
+@see {@link THREE.Group Group} for info on manually grouping objects.
+@param object
+
+#### `removeEventListener`
+
+Type: `(<T extends keyof Object3DEventMap>(type: T, listener: EventListener<Object3DEventMap[T], T, Object3D<Object3DEventMap>>) => void) | Readonly<...>`
+
+Removes a listener from an event type.
+@param type The type of the listener that gets removed.
+@param listener The listener function that gets removed.
+
+#### `removeFromParent`
+
+Type: `(() => Object3D<Object3DEventMap>) | Readonly<() => Object3D<Object3DEventMap>>`
+
+Removes this object from its current parent.
+
+#### `renderOrder`
+
+Type: `number`
+
+This value allows the default rendering order of {@link https://en.wikipedia.org/wiki/Scene_graph scene graph}
+objects to be overridden although opaque and transparent objects remain sorted independently.
+@remarks When this property is set for an instance of {@link Group Group}, all descendants objects will be sorted and rendered together.
+Sorting is from lowest to highest renderOrder.
+@defaultValue `0`
+
+#### `rotateOnAxis`
+
+Type: `((axis: Vector3, angle: number) => Object3D<Object3DEventMap>) | Readonly<(axis: Vector3, angle: number) => Object3D<Object3DEventMap>>`
+
+Rotate an object along an axis in object space.
+@remarks The axis is assumed to be normalized.
+@param axis A normalized vector in object space.
+@param angle The angle in radians. Expects a `Float`
+
+#### `rotateOnWorldAxis`
+
+Type: `((axis: Vector3, angle: number) => Object3D<Object3DEventMap>) | Readonly<(axis: Vector3, angle: number) => Object3D<Object3DEventMap>>`
+
+Rotate an object along an axis in world space.
+@remarks The axis is assumed to be normalized
+Method Assumes no rotated parent.
+@param axis A normalized vector in world space.
+@param angle The angle in radians. Expects a `Float`
+
+#### `rotateX`
+
+Type: `((angle: number) => Object3D<Object3DEventMap>) | Readonly<(angle: number) => Object3D<Object3DEventMap>>`
+
+Rotates the object around _x_ axis in local space.
+@param rad The angle to rotate in radians. Expects a `Float`
+
+#### `rotateY`
+
+Type: `((angle: number) => Object3D<Object3DEventMap>) | Readonly<(angle: number) => Object3D<Object3DEventMap>>`
+
+Rotates the object around _y_ axis in local space.
+@param rad The angle to rotate in radians. Expects a `Float`
+
+#### `rotateZ`
+
+Type: `((angle: number) => Object3D<Object3DEventMap>) | Readonly<(angle: number) => Object3D<Object3DEventMap>>`
+
+Rotates the object around _z_ axis in local space.
+@param rad The angle to rotate in radians. Expects a `Float`
+
+#### `rotation`
+
+Type: `Euler | [x: number, y: number, z: number, order?: EulerOrder] | Readonly<number | Euler | [x: number, y: number, z: number, order?: EulerOrder]>`
+
+Object's local rotation ({@link https://en.wikipedia.org/wiki/Euler_angles Euler angles}), in radians.
+@defaultValue `new THREE.Euler()` - that is `(0, 0, 0, Euler.DEFAULT_ORDER)`.
+
+#### `scale`
+
+Type: `Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>`
+
+The object's local scale.
+@defaultValue `new THREE.Vector3( 1, 1, 1 )`
+
+#### `setRotationFromAxisAngle`
+
+Type: `((axis: Vector3, angle: number) => void) | Readonly<(axis: Vector3, angle: number) => void>`
+
+Calls {@link THREE.Quaternion.setFromAxisAngle setFromAxisAngle}({@link axis}, {@link angle}) on the {@link quaternion.quaternion}.
+@param axis A normalized vector in object space.
+@param angle Angle in radians. Expects a `Float`
+
+#### `setRotationFromEuler`
+
+Type: `((euler: Euler) => void) | Readonly<(euler: Euler) => void>`
+
+Calls {@link THREE.Quaternion.setFromEuler setFromEuler}({@link euler}) on the {@link quaternion.quaternion}.
+@param euler Euler angle specifying rotation amount.
+
+#### `setRotationFromMatrix`
+
+Type: `((m: Matrix4) => void) | Readonly<(m: Matrix4) => void>`
+
+Calls {@link THREE.Quaternion.setFromRotationMatrix setFromRotationMatrix}({@link m}) on the {@link quaternion.quaternion}.
+@remarks Note that this assumes that the upper 3x3 of m is a pure rotation matrix (i.e, unscaled).
+@param m Rotate the quaternion by the rotation component of the matrix.
+
+#### `setRotationFromQuaternion`
+
+Type: `((q: Quaternion) => void) | Readonly<(q: Quaternion) => void>`
+
+Copy the given {@link THREE.Quaternion Quaternion} into {@link quaternion.quaternion}.
+@param q Normalized Quaternion.
+
+#### `svgFill`
+
+Type: `ColorRepresentation`
+
+The color of the svg fill.
+
+#### `toJSON`
+
+Type: `((meta?: JSONMeta) => Object3DJSON) | Readonly<(meta?: JSONMeta) => Object3DJSON>`
+
+Convert the object to three.js {@link https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4 JSON Object/Scene format}.
+@param meta Object containing metadata such as materials, textures or images for the object.
+
+#### `translateOnAxis`
+
+Type: `((axis: Vector3, distance: number) => Object3D<Object3DEventMap>) | Readonly<(axis: Vector3, distance: number) => Object3D<Object3DEventMap>>`
+
+Translate an object by distance along an axis in object space
+@remarks The axis is assumed to be normalized.
+@param axis A normalized vector in object space.
+@param distance The distance to translate. Expects a `Float`
+
+#### `translateX`
+
+Type: `((distance: number) => Object3D<Object3DEventMap>) | Readonly<(distance: number) => Object3D<Object3DEventMap>>`
+
+Translates object along x axis in object space by {@link distance} units.
+@param distance Expects a `Float`
+
+#### `translateY`
+
+Type: `((distance: number) => Object3D<Object3DEventMap>) | Readonly<(distance: number) => Object3D<Object3DEventMap>>`
+
+Translates object along _y_ axis in object space by {@link distance} units.
+@param distance Expects a `Float`
+
+#### `translateZ`
+
+Type: `((distance: number) => Object3D<Object3DEventMap>) | Readonly<(distance: number) => Object3D<Object3DEventMap>>`
+
+Translates object along _z_ axis in object space by {@link distance} units.
+@param distance Expects a `Float`
+
+#### `traverse`
+
+Type: `((callback: (object: Object3D<Object3DEventMap>) => any) => void) | Readonly<(callback: (object: Object3D<Object3DEventMap>) => any) => void>`
+
+Executes the callback on this object and all descendants.
+@remarks Note: Modifying the scene graph inside the callback is discouraged.
+@param callback A function with as first argument an {@link Object3D } object.
+
+#### `traverseAncestors`
+
+Type: `((callback: (object: Object3D<Object3DEventMap>) => any) => void) | Readonly<(callback: (object: Object3D<Object3DEventMap>) => any) => void>`
+
+Executes the callback on all ancestors.
+@remarks Note: Modifying the scene graph inside the callback is discouraged.
+@param callback A function with as first argument an {@link Object3D } object.
+
+#### `traverseVisible`
+
+Type: `((callback: (object: Object3D<Object3DEventMap>) => any) => void) | Readonly<(callback: (object: Object3D<Object3DEventMap>) => any) => void>`
+
+Like traverse, but the callback will only be executed for visible objects
+@remarks Descendants of invisible objects are not traversed.
+Note: Modifying the scene graph inside the callback is discouraged.
+@param callback A function with as first argument an {@link Object3D } object.
+
+#### `type`
+
+Type: `string`
+
+A Read-only _string_ to check `this` object type.
+@remarks This can be used to find a specific type of Object3D in a scene.
+Sub-classes will update this value.
+@defaultValue `Object3D`
+
+#### `up`
+
+Type: `Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>`
+
+This is used by the {@link lookAtlookAt} method, for example, to determine the orientation of the result.
+@defaultValue {@link DEFAULT_UP Object3D.DEFAULT_UP} - that is `(0, 1, 0)`.
+
+#### `updateMatrix`
+
+Type: `(() => void) | Readonly<() => void>`
+
+Updates local transform.
+
+#### `updateMatrixWorld`
+
+Type: `((force?: boolean) => void) | Readonly<(force?: boolean) => void>`
+
+Updates the global transform of the object.
+And will update the object descendants if {@link matrixWorldNeedsUpdate.matrixWorldNeedsUpdate} is set to true or if the {@link force} parameter is set to `true`.
+@param force A boolean that can be used to bypass {@link matrixWorldAutoUpdate .matrixWorldAutoUpdate}, to recalculate the world matrix of the object and descendants on the current frame.
+Useful if you cannot wait for the renderer to update it on the next frame, assuming {@link matrixWorldAutoUpdate .matrixWorldAutoUpdate} set to `true`.
+
+#### `updateWorldMatrix`
+
+Type: `((updateParents: boolean, updateChildren: boolean) => void) | Readonly<(updateParents: boolean, updateChildren: boolean) => void>`
+
+Updates the global transform of the object.
+@param updateParents Recursively updates global transform of ancestors.
+@param updateChildren Recursively updates global transform of descendants.
+
+#### `userData`
+
+Type: `Record<string, any> | Readonly<Record<string, any>>` (default: ``{}``)
+
+An object that can be used to store custom data about the {@link Object3D}.
+@remarks It should not hold references to _functions_ as these **will not** be cloned.
+
+#### `uuid`
+
+Type: `string`
+
+{@link http://en.wikipedia.org/wiki/Universally_unique_identifier UUID} of this object instance.
+@remarks This gets automatically assigned and shouldn't be edited.
+
+#### `visible`
+
+Type: `Readonly<boolean>`
+
+Object gets rendered if `true`.
+@defaultValue `true`
+
+#### `worldToLocal`
+
+Type: `((vector: Vector3) => Vector3) | Readonly<(vector: Vector3) => Vector3>`
+
+Converts the vector from world space to this object's local space.
+@param vector A vector representing a position in world space.
+
+
+---
+
+### Svg
+
+Component for Svg
+
+**Source:** `src/symbols/nodes/Svg.tsx`
+
+**Props:**
+
+#### `active` *(required)*
+
+Type: `boolean`
+
+Whether the node is active or not.
+
+#### `animated` *(required)*
+
+Type: `boolean`
+
+Animation of the node.
+
+#### `color` *(required)*
+
+Type: `ColorRepresentation`
+
+Color of the node. Handles selected/etc.
+
+#### `id` *(required)*
+
+Type: `string`
+
+ID of the node.
+
+#### `image` *(required)*
+
+Type: `string`
+
+The image to display on the icon.
+
+#### `node` *(required)*
+
+Type: `InternalGraphNode`
+
+The internal node model.
+
+#### `selected` *(required)*
+
+Type: `boolean`
+
+Whether the node is selected or not.
+
+#### `size` *(required)*
+
+Type: `number`
+
+Size of the node.
+
+#### `add`
+
+Type: `((...object: Object3D<Object3DEventMap>[]) => Object3D<Object3DEventMap>) | Readonly<(...object: Object3D<Object3DEventMap>[]) => Object3D<...>>`
+
+Adds another {@link Object3D} as child of this {@link Object3D}.
+@remarks An arbitrary number of objects may be added
+Any current parent on an {@link object } passed in here will be removed, since an {@link Object3D } can have at most one parent.
+@see {@link attach }
+@see {@link THREE.Group Group} for info on manually grouping objects.
+@param object
+
+#### `addEventListener`
+
+Type: `(<T extends keyof Object3DEventMap>(type: T, listener: EventListener<Object3DEventMap[T], T, Object3D<Object3DEventMap>>) => void) | Readonly<...>`
+
+Adds a listener to an event type.
+@param type The type of event to listen to.
+@param listener The function that gets called when the event is fired.
+
+#### `animations`
+
+Type: `AnimationClip[] | readonly AnimationClip[]`
+
+Array with object's animation clips.
+@defaultValue `[]`
+
+#### `applyMatrix4`
+
+Type: `((matrix: Matrix4) => void) | Readonly<(matrix: Matrix4) => void>`
+
+Applies the matrix transform to the object and updates the object's position, rotation and scale.
+@param matrix
+
+#### `applyQuaternion`
+
+Type: `((quaternion: Quaternion) => Object3D<Object3DEventMap>) | Readonly<(quaternion: Quaternion) => Object3D<Object3DEventMap>>`
+
+Applies the rotation represented by the quaternion to the object.
+@param quaternion
+
+#### `castShadow`
+
+Type: `Readonly<boolean>`
+
+Whether the object gets rendered into shadow map.
+@defaultValue `false`
+
+#### `clear`
+
+Type: `(() => Object3D<Object3DEventMap>) | Readonly<() => Object3D<Object3DEventMap>>`
+
+Removes all child objects.
+
+#### `clone`
+
+Type: `((recursive?: boolean) => Object3D<Object3DEventMap>) | Readonly<(recursive?: boolean) => Object3D<Object3DEventMap>>`
+
+Returns a clone of `this` object and optionally all descendants.
+@param recursive If true, descendants of the object are also cloned. Default `true`
+
+#### `copy`
+
+Type: `((object: Object3D<Object3DEventMap>, recursive?: boolean) => Object3D<Object3DEventMap>) | Readonly<(object: Object3D<Object3DEventMap>, recursive?: boolean) => Object3D<...>>`
+
+Copies the given object into this object.
+@remarks Event listeners and user-defined callbacks ({@link .onAfterRender} and {@link .onBeforeRender}) are not copied.
+@param object
+@param recursive If set to `true`, descendants of the object are copied next to the existing ones. If set to
+`false`, descendants are left unchanged. Default is `true`.
+
+#### `customDepthMaterial`
+
+Type: `Material | Readonly<Material>`
+
+Custom depth material to be used when rendering to the depth map.
+@remarks Can only be used in context of meshes.
+When shadow-casting with a {@link THREE.DirectionalLight DirectionalLight} or {@link THREE.SpotLight SpotLight},
+if you are modifying vertex positions in the vertex shader you must specify a customDepthMaterial for proper shadows.
+@defaultValue `undefined`
+
+#### `customDistanceMaterial`
+
+Type: `Material | Readonly<Material>`
+
+Same as {@link customDepthMaterial}, but used with {@link THREE.Object3DPointLight PointLight}.
+@defaultValue `undefined`
+
+#### `dispatchEvent`
+
+Type: `(<T extends keyof Object3DEventMap>(event: BaseEvent<T> & Object3DEventMap[T]) => void) | Readonly<(<T extends keyof Object3DEventMap>(event: BaseEvent<...> & Object3DEventMap[T]) => void)>`
+
+Fire an event type.
+@param event The event that gets fired.
+
+#### `frustumCulled`
+
+Type: `Readonly<boolean>`
+
+When this is set, it checks every frame if the object is in the frustum of the camera before rendering the object.
+If set to `false` the object gets rendered every frame even if it is not in the frustum of the camera.
+@defaultValue `true`
+
+#### `getObjectById`
+
+Type: `((id: number) => Object3D<Object3DEventMap>) | Readonly<(id: number) => Object3D<Object3DEventMap>>`
+
+Searches through an object and its children, starting with the object itself, and returns the first with a matching id.
+@remarks Note that ids are assigned in chronological order: 1, 2, 3, ..., incrementing by one for each new object.
+@see {@link id }
+@param id Unique number of the object instance. Expects a `Integer`
+
+#### `getObjectByName`
+
+Type: `((name: string) => Object3D<Object3DEventMap>) | Readonly<(name: string) => Object3D<Object3DEventMap>>`
+
+Searches through an object and its children, starting with the object itself, and returns the first with a matching name.
+@remarks Note that for most objects the name is an empty string by default
+You will have to set it manually to make use of this method.
+@param name String to match to the children's Object3D.name property.
+
+#### `getObjectByProperty`
+
+Type: `((name: string, value: any) => Object3D<Object3DEventMap>) | Readonly<(name: string, value: any) => Object3D<Object3DEventMap>>`
+
+Searches through an object and its children, starting with the object itself,
+and returns the first with a property that matches the value given.
+@param name - the property name to search for.
+@param value - value of the given property.
+
+#### `getObjectsByProperty`
+
+Type: `((name: string, value: any, optionalTarget?: Object3D<Object3DEventMap>[]) => Object3D<Object3DEventMap>[]) | Readonly<(name: string, value: any, optionalTarget?: Object3D<...>[]) => Object3D<...>[]>`
+
+Searches through an object and its children, starting with the object itself,
+and returns the first with a property that matches the value given.
+@param name The property name to search for.
+@param value Value of the given property.
+@param optionalTarget target to set the result. Otherwise a new Array is instantiated. If set, you must clear
+this array prior to each call (i.e., array.length = 0;).
+
+#### `getWorldDirection`
+
+Type: `((target: Vector3) => Vector3) | Readonly<(target: Vector3) => Vector3>`
+
+Returns a vector representing the direction of object's positive z-axis in world space.
+@param target The result will be copied into this Vector3.
+
+#### `getWorldPosition`
+
+Type: `((target: Vector3) => Vector3) | Readonly<(target: Vector3) => Vector3>`
+
+Returns a vector representing the position of the object in world space.
+@param target The result will be copied into this Vector3.
+
+#### `getWorldQuaternion`
+
+Type: `((target: Quaternion) => Quaternion) | Readonly<(target: Quaternion) => Quaternion>`
+
+Returns a quaternion representing the rotation of the object in world space.
+@param target The result will be copied into this Quaternion.
+
+#### `getWorldScale`
+
+Type: `((target: Vector3) => Vector3) | Readonly<(target: Vector3) => Vector3>`
+
+Returns a vector of the scaling factors applied to the object for each axis in world space.
+@param target The result will be copied into this Vector3.
+
+#### `hasEventListener`
+
+Type: `(<T extends keyof Object3DEventMap>(type: T, listener: EventListener<Object3DEventMap[T], T, Object3D<Object3DEventMap>>) => boolean) | Readonly<...>`
+
+Checks if listener is added to an event type.
+@param type The type of event to listen to.
+@param listener The function that gets called when the event is fired.
+
+#### `isObject3D`
+
+Type: `true`
+
+Flag to check if a given object is of type {@link Object3D}.
+@remarks This is a _constant_ value
+@defaultValue `true`
+
+#### `layers`
+
+Type: `Layers | [layer: number] | Readonly<number | Layers | [layer: number]>`
+
+The layer membership of the object.
+@remarks The object is only visible if it has at least one layer in common with the {@link THREE.Object3DCamera Camera} in use.
+This property can also be used to filter out unwanted objects in ray-intersection tests when using {@link THREE.Raycaster Raycaster}.
+@defaultValue `new THREE.Layers()`
+
+#### `localToWorld`
+
+Type: `((vector: Vector3) => Vector3) | Readonly<(vector: Vector3) => Vector3>`
+
+Converts the vector from this object's local space to world space.
+@param vector A vector representing a position in this object's local space.
+
+#### `lookAt`
+
+Type: `{ (vector: Vector3): void; (x: number, y: number, z: number): void; } | Readonly<{ (vector: Vector3): void; (x: number, y: number, z: number): void; }>`
+
+Rotates the object to face a point in world space.
+@remarks This method does not support objects having non-uniformly-scaled parent(s).
+@param vector A vector representing a position in world space to look at.
+@remarks This method does not support objects having non-uniformly-scaled parent(s).
+@param x Expects a `Float`
+@param y Expects a `Float`
+@param z Expects a `Float`
+
+#### `matrix`
+
+Type: `Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>`
+
+The local transform matrix.
+@defaultValue `new THREE.Matrix4()`
+
+#### `matrixAutoUpdate`
+
+Type: `Readonly<boolean>`
+
+When this is set, it calculates the matrix of position, (rotation or quaternion) and
+scale every frame and also recalculates the matrixWorld property.
+@defaultValue {@link DEFAULT_MATRIX_AUTO_UPDATE } - that is `(true)`.
+
+#### `matrixWorld`
+
+Type: `Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>`
+
+The global transform of the object.
+@remarks If the {@link Object3D } has no parent, then it's identical to the local transform {@link THREE.Object3D.matrix .matrix}.
+@defaultValue `new THREE.Matrix4()`
+
+#### `matrixWorldAutoUpdate`
+
+Type: `Readonly<boolean>`
+
+If set, then the renderer checks every frame if the object and its children need matrix updates.
+When it isn't, then you have to maintain all matrices in the object and its children yourself.
+@defaultValue {@link DEFAULT_MATRIX_WORLD_AUTO_UPDATE } - that is `(true)`.
+
+#### `matrixWorldNeedsUpdate`
+
+Type: `Readonly<boolean>`
+
+When this is set, it calculates the matrixWorld in that frame and resets this property to false.
+@defaultValue `false`
+
+#### `modelViewMatrix`
+
+Type: `Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>`
+
+@defaultValue `new THREE.Matrix4()`
+
+#### `name`
+
+Type: `string`
+
+Optional name of the object
+@remarks _(doesn't need to be unique)_.
+@defaultValue `""`
+
+#### `normalMatrix`
+
+Type: `Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | Readonly<Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number]>`
+
+@defaultValue `new THREE.Matrix3()`
+
+#### `onAfterRender`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately after a 3D object is rendered.
+@remarks This function is called with the following parameters: renderer, scene, camera, geometry, material, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `onAfterShadow`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately after a 3D object is rendered to a shadow map.
+@remarks This function is called with the following parameters: renderer, scene, camera, shadowCamera, geometry,
+depthMaterial, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `onBeforeRender`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately before a 3D object is rendered.
+@remarks This function is called with the following parameters: renderer, scene, camera, geometry, material, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `onBeforeShadow`
+
+Type: `((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>`
+
+An optional callback that is executed immediately before a 3D object is rendered to a shadow map.
+@remarks This function is called with the following parameters: renderer, scene, camera, shadowCamera, geometry,
+depthMaterial, group.
+Please notice that this callback is only executed for `renderable` 3D objects. Meaning 3D objects which
+define their visual appearance with geometries and materials like instances of {@link Mesh }, {@link Line },
+{@link Points } or {@link Sprite }. Instances of {@link Object3D }, {@link Group } or {@link Bone } are not renderable
+and thus this callback is not executed for such objects.
+
+#### `opacity`
+
+Type: `number` (default: `1`)
+
+Opacity of the node. Mainly used for selection.
+
+#### `parent`
+
+Type: `Object3D<Object3DEventMap> | Readonly<Object3D<Object3DEventMap>>`
+
+Object's parent in the {@link https://en.wikipedia.org/wiki/Scene_graph scene graph}.
+@remarks An object can have at most one parent.
+@defaultValue `null`
+
+#### `position`
+
+Type: `Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>`
+
+Object's local position.
+@defaultValue `new THREE.Vector3()` - that is `(0, 0, 0)`.
+
+#### `quaternion`
+
+Type: `Quaternion | [x: number, y: number, z: number, w: number] | Readonly<Quaternion | [x: number, y: number, z: number, w: number]>`
+
+Object's local rotation as a {@link THREE.Quaternion Quaternion}.
+@defaultValue `new THREE.Quaternion()` - that is `(0,  0, 0, 1)`.
+
+#### `raycast`
+
+Type: `((raycaster: Raycaster, intersects: Intersection<Object3D<Object3DEventMap>>[]) => void) | Readonly<(raycaster: Raycaster, intersects: Intersection<...>[]) => void>`
+
+Abstract (empty) method to get intersections between a casted ray and this object
+@remarks Subclasses such as {@link THREE.Mesh Mesh}, {@link THREE.Line Line}, and {@link THREE.Points Points} implement this method in order to use raycasting.
+@see {@link THREE.Raycaster Raycaster}
+@param raycaster
+@param intersects
+@defaultValue `() => {}`
+
+#### `receiveShadow`
+
+Type: `Readonly<boolean>`
+
+Whether the material receives shadows.
+@defaultValue `false`
+
+#### `remove`
+
+Type: `((...object: Object3D<Object3DEventMap>[]) => Object3D<Object3DEventMap>) | Readonly<(...object: Object3D<Object3DEventMap>[]) => Object3D<...>>`
+
+Removes a {@link Object3D} as child of this {@link Object3D}.
+@remarks An arbitrary number of objects may be removed.
+@see {@link THREE.Group Group} for info on manually grouping objects.
+@param object
+
+#### `removeEventListener`
+
+Type: `(<T extends keyof Object3DEventMap>(type: T, listener: EventListener<Object3DEventMap[T], T, Object3D<Object3DEventMap>>) => void) | Readonly<...>`
+
+Removes a listener from an event type.
+@param type The type of the listener that gets removed.
+@param listener The listener function that gets removed.
+
+#### `removeFromParent`
+
+Type: `(() => Object3D<Object3DEventMap>) | Readonly<() => Object3D<Object3DEventMap>>`
+
+Removes this object from its current parent.
+
+#### `renderOrder`
+
+Type: `number`
+
+This value allows the default rendering order of {@link https://en.wikipedia.org/wiki/Scene_graph scene graph}
+objects to be overridden although opaque and transparent objects remain sorted independently.
+@remarks When this property is set for an instance of {@link Group Group}, all descendants objects will be sorted and rendered together.
+Sorting is from lowest to highest renderOrder.
+@defaultValue `0`
+
+#### `rotateOnAxis`
+
+Type: `((axis: Vector3, angle: number) => Object3D<Object3DEventMap>) | Readonly<(axis: Vector3, angle: number) => Object3D<Object3DEventMap>>`
+
+Rotate an object along an axis in object space.
+@remarks The axis is assumed to be normalized.
+@param axis A normalized vector in object space.
+@param angle The angle in radians. Expects a `Float`
+
+#### `rotateOnWorldAxis`
+
+Type: `((axis: Vector3, angle: number) => Object3D<Object3DEventMap>) | Readonly<(axis: Vector3, angle: number) => Object3D<Object3DEventMap>>`
+
+Rotate an object along an axis in world space.
+@remarks The axis is assumed to be normalized
+Method Assumes no rotated parent.
+@param axis A normalized vector in world space.
+@param angle The angle in radians. Expects a `Float`
+
+#### `rotateX`
+
+Type: `((angle: number) => Object3D<Object3DEventMap>) | Readonly<(angle: number) => Object3D<Object3DEventMap>>`
+
+Rotates the object around _x_ axis in local space.
+@param rad The angle to rotate in radians. Expects a `Float`
+
+#### `rotateY`
+
+Type: `((angle: number) => Object3D<Object3DEventMap>) | Readonly<(angle: number) => Object3D<Object3DEventMap>>`
+
+Rotates the object around _y_ axis in local space.
+@param rad The angle to rotate in radians. Expects a `Float`
+
+#### `rotateZ`
+
+Type: `((angle: number) => Object3D<Object3DEventMap>) | Readonly<(angle: number) => Object3D<Object3DEventMap>>`
+
+Rotates the object around _z_ axis in local space.
+@param rad The angle to rotate in radians. Expects a `Float`
+
+#### `rotation`
+
+Type: `Euler | [x: number, y: number, z: number, order?: EulerOrder] | Readonly<number | Euler | [x: number, y: number, z: number, order?: EulerOrder]>`
+
+Object's local rotation ({@link https://en.wikipedia.org/wiki/Euler_angles Euler angles}), in radians.
+@defaultValue `new THREE.Euler()` - that is `(0, 0, 0, Euler.DEFAULT_ORDER)`.
+
+#### `scale`
+
+Type: `Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>`
+
+The object's local scale.
+@defaultValue `new THREE.Vector3( 1, 1, 1 )`
+
+#### `setRotationFromAxisAngle`
+
+Type: `((axis: Vector3, angle: number) => void) | Readonly<(axis: Vector3, angle: number) => void>`
+
+Calls {@link THREE.Quaternion.setFromAxisAngle setFromAxisAngle}({@link axis}, {@link angle}) on the {@link quaternion.quaternion}.
+@param axis A normalized vector in object space.
+@param angle Angle in radians. Expects a `Float`
+
+#### `setRotationFromEuler`
+
+Type: `((euler: Euler) => void) | Readonly<(euler: Euler) => void>`
+
+Calls {@link THREE.Quaternion.setFromEuler setFromEuler}({@link euler}) on the {@link quaternion.quaternion}.
+@param euler Euler angle specifying rotation amount.
+
+#### `setRotationFromMatrix`
+
+Type: `((m: Matrix4) => void) | Readonly<(m: Matrix4) => void>`
+
+Calls {@link THREE.Quaternion.setFromRotationMatrix setFromRotationMatrix}({@link m}) on the {@link quaternion.quaternion}.
+@remarks Note that this assumes that the upper 3x3 of m is a pure rotation matrix (i.e, unscaled).
+@param m Rotate the quaternion by the rotation component of the matrix.
+
+#### `setRotationFromQuaternion`
+
+Type: `((q: Quaternion) => void) | Readonly<(q: Quaternion) => void>`
+
+Copy the given {@link THREE.Quaternion Quaternion} into {@link quaternion.quaternion}.
+@param q Normalized Quaternion.
+
+#### `toJSON`
+
+Type: `((meta?: JSONMeta) => Object3DJSON) | Readonly<(meta?: JSONMeta) => Object3DJSON>`
+
+Convert the object to three.js {@link https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4 JSON Object/Scene format}.
+@param meta Object containing metadata such as materials, textures or images for the object.
+
+#### `translateOnAxis`
+
+Type: `((axis: Vector3, distance: number) => Object3D<Object3DEventMap>) | Readonly<(axis: Vector3, distance: number) => Object3D<Object3DEventMap>>`
+
+Translate an object by distance along an axis in object space
+@remarks The axis is assumed to be normalized.
+@param axis A normalized vector in object space.
+@param distance The distance to translate. Expects a `Float`
+
+#### `translateX`
+
+Type: `((distance: number) => Object3D<Object3DEventMap>) | Readonly<(distance: number) => Object3D<Object3DEventMap>>`
+
+Translates object along x axis in object space by {@link distance} units.
+@param distance Expects a `Float`
+
+#### `translateY`
+
+Type: `((distance: number) => Object3D<Object3DEventMap>) | Readonly<(distance: number) => Object3D<Object3DEventMap>>`
+
+Translates object along _y_ axis in object space by {@link distance} units.
+@param distance Expects a `Float`
+
+#### `translateZ`
+
+Type: `((distance: number) => Object3D<Object3DEventMap>) | Readonly<(distance: number) => Object3D<Object3DEventMap>>`
+
+Translates object along _z_ axis in object space by {@link distance} units.
+@param distance Expects a `Float`
+
+#### `traverse`
+
+Type: `((callback: (object: Object3D<Object3DEventMap>) => any) => void) | Readonly<(callback: (object: Object3D<Object3DEventMap>) => any) => void>`
+
+Executes the callback on this object and all descendants.
+@remarks Note: Modifying the scene graph inside the callback is discouraged.
+@param callback A function with as first argument an {@link Object3D } object.
+
+#### `traverseAncestors`
+
+Type: `((callback: (object: Object3D<Object3DEventMap>) => any) => void) | Readonly<(callback: (object: Object3D<Object3DEventMap>) => any) => void>`
+
+Executes the callback on all ancestors.
+@remarks Note: Modifying the scene graph inside the callback is discouraged.
+@param callback A function with as first argument an {@link Object3D } object.
+
+#### `traverseVisible`
+
+Type: `((callback: (object: Object3D<Object3DEventMap>) => any) => void) | Readonly<(callback: (object: Object3D<Object3DEventMap>) => any) => void>`
+
+Like traverse, but the callback will only be executed for visible objects
+@remarks Descendants of invisible objects are not traversed.
+Note: Modifying the scene graph inside the callback is discouraged.
+@param callback A function with as first argument an {@link Object3D } object.
+
+#### `type`
+
+Type: `string`
+
+A Read-only _string_ to check `this` object type.
+@remarks This can be used to find a specific type of Object3D in a scene.
+Sub-classes will update this value.
+@defaultValue `Object3D`
+
+#### `up`
+
+Type: `Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>`
+
+This is used by the {@link lookAtlookAt} method, for example, to determine the orientation of the result.
+@defaultValue {@link DEFAULT_UP Object3D.DEFAULT_UP} - that is `(0, 1, 0)`.
+
+#### `updateMatrix`
+
+Type: `(() => void) | Readonly<() => void>`
+
+Updates local transform.
+
+#### `updateMatrixWorld`
+
+Type: `((force?: boolean) => void) | Readonly<(force?: boolean) => void>`
+
+Updates the global transform of the object.
+And will update the object descendants if {@link matrixWorldNeedsUpdate.matrixWorldNeedsUpdate} is set to true or if the {@link force} parameter is set to `true`.
+@param force A boolean that can be used to bypass {@link matrixWorldAutoUpdate .matrixWorldAutoUpdate}, to recalculate the world matrix of the object and descendants on the current frame.
+Useful if you cannot wait for the renderer to update it on the next frame, assuming {@link matrixWorldAutoUpdate .matrixWorldAutoUpdate} set to `true`.
+
+#### `updateWorldMatrix`
+
+Type: `((updateParents: boolean, updateChildren: boolean) => void) | Readonly<(updateParents: boolean, updateChildren: boolean) => void>`
+
+Updates the global transform of the object.
+@param updateParents Recursively updates global transform of ancestors.
+@param updateChildren Recursively updates global transform of descendants.
+
+#### `userData`
+
+Type: `Record<string, any> | Readonly<Record<string, any>>` (default: ``{}``)
+
+An object that can be used to store custom data about the {@link Object3D}.
+@remarks It should not hold references to _functions_ as these **will not** be cloned.
+
+#### `uuid`
+
+Type: `string`
+
+{@link http://en.wikipedia.org/wiki/Universally_unique_identifier UUID} of this object instance.
+@remarks This gets automatically assigned and shouldn't be edited.
+
+#### `visible`
+
+Type: `Readonly<boolean>`
+
+Object gets rendered if `true`.
+@defaultValue `true`
+
+#### `worldToLocal`
+
+Type: `((vector: Vector3) => Vector3) | Readonly<(vector: Vector3) => Vector3>`
+
+Converts the vector from world space to this object's local space.
+@param vector A vector representing a position in world space.
+
+
+---
+
+### RadialMenu
+
+Component for RadialMenu
+
+**Source:** `src/RadialMenu/RadialMenu.tsx`
+
+**Props:**
+
+#### `items` *(required)*
+
+Type: `MenuItem[]`
+
+An array of menu items to be displayed in the radial menu.
+
+#### `className`
+
+Type: `string`
+
+The CSS class name for the radial menu.
+
+#### `innerRadius`
+
+Type: `number` (default: `25`)
+
+The inner radius of the radial menu.
+
+#### `onClose`
+
+Type: `(event: MouseEvent<HTMLDivElement, MouseEvent>) => void`
+
+A function that is called when the radial menu is closed.
+The function receives the mouse event that triggered the closure.
+
+#### `radius`
+
+Type: `number` (default: `175`)
+
+The radius of the radial menu.
+
+#### `startOffsetAngle`
+
+Type: `number` (default: `0`)
+
+The starting offset angle for the first menu item.
+
+
+---
+
+### RadialSlice
+
+Component for RadialSlice
+
+**Source:** `src/RadialMenu/RadialSlice.tsx`
+
+**Props:**
+
+#### `centralAngle` *(required)*
+
+Type: `number`
+
+The central angle of the radial slice, in degrees.
+
+#### `endAngle` *(required)*
+
+Type: `number`
+
+The ending angle of the radial slice, in degrees.
+
+#### `innerRadius` *(required)*
+
+Type: `number`
+
+The inner radius of the radial slice.
+
+#### `label` *(required)*
+
+Type: `string`
+
+Label to display on the menu item.
+
+#### `polar` *(required)*
+
+Type: `boolean`
+
+Whether the radial slice is polar (true) or not (false).
+
+#### `radius` *(required)*
+
+Type: `number`
+
+The radius of the radial slice.
+
+#### `skew` *(required)*
+
+Type: `number`
+
+The skew of the radial slice.
+
+#### `startAngle` *(required)*
+
+Type: `number`
+
+The starting angle of the radial slice, in degrees.
+
+#### `className`
+
+Type: `string`
+
+CSS Classname to apply to the slice.
+
+#### `disabled`
+
+Type: `boolean`
+
+Optional callback to detemine if the menu item is active.
+
+#### `icon`
+
+Type: `ReactNode`
+
+Optional icon to display on the menu item.
+
+#### `onClick`
+
+Type: `(event: MouseEvent<HTMLDivElement, MouseEvent>) => void`
+
+Optional callback to handle when the menu item is clicked.
+
+
+---
+
+### Lasso
+
+Component for Lasso
+
+**Source:** `src/selection/Lasso.tsx`
+
+**Props:**
+
+#### `disabled`
+
+Type: `boolean`
+
+Whether the lasso tool is disabled.
+
+#### `onLasso`
+
+Type: `(selections: string[]) => void`
+
+A function that is called when the lasso tool is used to select nodes.
+The function receives an array of the ids of the selected nodes.
+
+#### `onLassoEnd`
+
+Type: `(selections: string[]) => void`
+
+A function that is called when the lasso tool is released, ending the selection.
+The function receives an array of the ids of the selected nodes.
+
+#### `type`
+
+Type: `LassoType` (default: `none`)
+
+The type of the lasso tool.
+
+
+---
+
+## Data Types
+
+### Core Interfaces
+
+#### GraphNode
+
+```typescript
+interface GraphNode {
+  // Required
+  id: string;                    // Unique identifier for the node
+
+  // Display
+  label?: string;                // Primary label text
+  subLabel?: string;             // Secondary label text
+  labelVisible?: boolean;        // Force label visibility
+
+  // Styling
+  size?: number;                 // Node size (overrides sizing strategy)
+  fill?: string;                 // Fill color (CSS color string)
+  icon?: string;                 // URL to icon image
+
+  // Hierarchy
+  parents?: string[];            // Parent node IDs for hierarchical layouts
+  cluster?: string;              // Cluster group ID
+
+  // Custom data
+  data?: any;                    // Custom data attached to node
+}
+```
+
+#### GraphEdge
+
+```typescript
+interface GraphEdge {
+  // Required
+  id: string;                    // Unique identifier for the edge
+  source: string;                // Source node ID
+  target: string;                // Target node ID
+
+  // Display
+  label?: string;                // Primary label text
+  subLabel?: string;             // Secondary label text
+  labelVisible?: boolean;        // Force label visibility
+  subLabelPlacement?: 'below' | 'above';  // SubLabel position
+
+  // Styling
+  size?: number;                 // Edge width
+  fill?: string;                 // Edge color (CSS color string)
+
+  // Custom data
+  data?: any;                    // Custom data attached to edge
+}
+```
+
+### Layout Types
+
+```typescript
+type LayoutTypes =
+  | 'forceDirected2d'    // 2D force-directed (D3-force)
+  | 'forceDirected3d'    // 3D force-directed (D3-force-3d)
+  | 'circular2d'         // 2D circular layout
+  | 'circular3d'         // 3D circular layout
+  | 'treeTd2d'          // Tree top-down 2D (deprecated, use hierarchicalTd)
+  | 'treeTd3d'          // Tree top-down 3D (deprecated)
+  | 'treeLr2d'          // Tree left-right 2D (deprecated, use hierarchicalLr)
+  | 'treeLr3d'          // Tree left-right 3D (deprecated)
+  | 'radialOut2d'       // Radial outward 2D
+  | 'radialOut3d'       // Radial outward 3D
+  | 'hierarchicalTd'    // Hierarchical top-down
+  | 'hierarchicalLr'    // Hierarchical left-right
+  | 'nooverlap'         // No overlap (Graphology)
+  | 'forceatlas2'       // ForceAtlas2 algorithm
+  | 'custom';           // Custom layout function
+```
+
+### Sizing Types
+
+```typescript
+type SizingType = 'none' | 'attribute' | 'centrality' | 'pagerank';
+
+interface SizingStrategyInputs {
+  graph: Graph;
+  defaultSize?: number;  // Default: 7
+  minSize?: number;      // Default: 5
+  maxSize?: number;      // Default: 15
+  attribute?: string;    // For 'attribute' type
+}
+```
+
+### Camera Modes
+
+```typescript
+type CameraMode = 'pan' | 'rotate' | 'orbit';
+```
+
+### Theme Interface
+
+```typescript
+interface Theme {
+  canvas?: {
+    background?: ColorRepresentation;
+    fog?: ColorRepresentation | null;
+  };
+  node: {
+    fill: ColorRepresentation;
+    activeFill: ColorRepresentation;
+    opacity: number;
+    selectedOpacity: number;
+    inactiveOpacity: number;
+    label: {
+      color: ColorRepresentation;
+      stroke?: ColorRepresentation;
+      activeColor: ColorRepresentation;
+    };
+    subLabel?: {
+      color: ColorRepresentation;
+      stroke?: ColorRepresentation;
+      activeColor: ColorRepresentation;
+    };
+  };
+  ring: {
+    fill: ColorRepresentation;
+    activeFill: ColorRepresentation;
+  };
+  edge: {
+    fill: ColorRepresentation;
+    activeFill: ColorRepresentation;
+    opacity: number;
+    selectedOpacity: number;
+    inactiveOpacity: number;
+    label: {
+      color: ColorRepresentation;
+      stroke?: ColorRepresentation;
+      activeColor: ColorRepresentation;
+      fontSize?: number;
+    };
+    subLabel?: {
+      color: ColorRepresentation;
+      stroke?: ColorRepresentation;
+      activeColor: ColorRepresentation;
+      fontSize?: number;
+    };
+  };
+  arrow: {
+    fill: ColorRepresentation;
+    activeFill: ColorRepresentation;
+  };
+  lasso: {
+    background: string;
+    border: string;
+  };
+  cluster?: {
+    stroke?: ColorRepresentation;
+    fill?: ColorRepresentation;
+    opacity?: number;
+    selectedOpacity?: number;
+    inactiveOpacity?: number;
+    label?: {
+      stroke?: ColorRepresentation;
+      color: ColorRepresentation;
+      fontSize?: number;
+      offset?: [number, number, number];
+    };
+  };
+}
+```
+
+## Layout System
+
+### Built-in Layouts
+
+#### Force-Directed Layouts
+
+```typescript
+// 2D Force-Directed
+layoutType="forceDirected2d"
+layoutOverrides={{
+  nodeStrength: -250,      // Node repulsion strength
+  linkDistance: 35,        // Ideal link distance
+  linkStrength: 1,         // Link force strength
+  centerInertia: 0.1,      // Centering force
+  alpha: 1,                // Initial alpha
+  alphaDecay: 0.01,        // Alpha decay rate
+  velocityDecay: 0.4       // Velocity damping
+}}
+
+// 3D Force-Directed
+layoutType="forceDirected3d"
+// Same options as 2D
+```
+
+#### Hierarchical Layouts
+
+```typescript
+layoutType="hierarchicalTd"  // Top-down
+layoutType="hierarchicalLr"  // Left-right
+
+layoutOverrides={{
+  nodeDistance: 50,        // Distance between nodes
+  levelDistance: 100,      // Distance between levels
+  nodeSize: 10            // Node size for spacing
+}}
+```
+
+#### Circular Layouts
+
+```typescript
+layoutType="circular2d"
+layoutType="circular3d"
+
+layoutOverrides={{
+  radius: 100,            // Circle radius
+  angleOffset: 0,         // Starting angle offset
+  sortBy: 'degree'        // Sort nodes by property
+}}
+```
+
+#### ForceAtlas2
+
+```typescript
+layoutType="forceatlas2"
+layoutOverrides={{
+  iterations: 50,         // Number of iterations
+  settings: {
+    gravity: 1,           // Gravity strength
+    scalingRatio: 10,     // Scaling ratio
+    strongGravityMode: false,
+    barnesHutOptimize: true,
+    barnesHutTheta: 0.5
+  }
+}}
+```
+
+### Custom Layouts
+
+```typescript
+<GraphCanvas
+  layoutType="custom"
+  layoutOverrides={{
+    getNodePosition: (id: string, { nodes, edges, graph }) => {
+      // Custom positioning logic
+      const index = nodes.findIndex(n => n.id === id);
+      const angle = (index / nodes.length) * Math.PI * 2;
+      const radius = 100;
+
+      return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius,
+        z: 0
+      };
+    }
+  }}
+/>
+```
+
+## Sizing System
+
+### Attribute-based Sizing
+
+```typescript
+<GraphCanvas
+  sizingType="attribute"
+  sizingAttribute="importance"  // Node property to use
+  defaultNodeSize={7}
+  minNodeSize={3}
+  maxNodeSize={20}
+  nodes={[
+    { id: '1', label: 'Node 1', importance: 10 },
+    { id: '2', label: 'Node 2', importance: 5 }
+  ]}
+/>
+```
+
+### Centrality-based Sizing
+
+```typescript
+<GraphCanvas
+  sizingType="centrality"
+  // Sizes based on degree centrality
+/>
+```
+
+### PageRank Sizing
+
+```typescript
+<GraphCanvas
+  sizingType="pagerank"
+  // Sizes based on PageRank algorithm
+/>
+```
+
+## Event System
+
+### Node Events
+
+```typescript
+<GraphCanvas
+  // Click events
+  onNodeClick={(node: GraphNode, event: MouseEvent) => {
+    console.log('Clicked node:', node.id);
+  }}
+
+  onNodeDoubleClick={(node: GraphNode, event: MouseEvent) => {
+    console.log('Double clicked node:', node.id);
+  }}
+
+  onNodeRightClick={(node: GraphNode, event: MouseEvent) => {
+    console.log('Right clicked node:', node.id);
+  }}
+
+  // Hover events
+  onNodePointerOver={(node: GraphNode, event: PointerEvent) => {
+    console.log('Hovering node:', node.id);
+  }}
+
+  onNodePointerOut={(node: GraphNode, event: PointerEvent) => {
+    console.log('Left node:', node.id);
+  }}
+
+  // Drag events
+  onNodeDragStart={(node: GraphNode, event: PointerEvent) => {
+    console.log('Started dragging:', node.id);
+  }}
+
+  onNodeDrag={(node: GraphNode, offset: Vector3, event: PointerEvent) => {
+    console.log('Dragging:', node.id, offset);
+  }}
+
+  onNodeDragEnd={(node: GraphNode, event: PointerEvent) => {
+    console.log('Stopped dragging:', node.id);
+  }}
+/>
+```
+
+### Edge Events
+
+```typescript
+<GraphCanvas
+  onEdgeClick={(edge: GraphEdge, event: MouseEvent) => {
+    console.log('Clicked edge:', edge.id);
+  }}
+
+  onEdgeDoubleClick={(edge: GraphEdge, event: MouseEvent) => {
+    console.log('Double clicked edge:', edge.id);
+  }}
+
+  onEdgeRightClick={(edge: GraphEdge, event: MouseEvent) => {
+    console.log('Right clicked edge:', edge.id);
+  }}
+
+  onEdgePointerOver={(edge: GraphEdge, event: PointerEvent) => {
+    console.log('Hovering edge:', edge.id);
+  }}
+
+  onEdgePointerOut={(edge: GraphEdge, event: PointerEvent) => {
+    console.log('Left edge:', edge.id);
+  }}
+/>
+```
+
+### Canvas Events
+
+```typescript
+<GraphCanvas
+  onCanvasClick={(event: MouseEvent) => {
+    console.log('Clicked canvas background');
+  }}
+
+  onLasso={(selections: string[]) => {
+    console.log('Lasso selecting:', selections);
+  }}
+
+  onLassoEnd={(selections: string[]) => {
+    console.log('Lasso selected:', selections);
+  }}
+/>
+```
+
+## Advanced Usage
+
+### Custom Node Renderers
+
+```typescript
+import { NodeRendererProps } from 'reagraph';
+
+const CustomNode: FC<NodeRendererProps> = ({
+  node,
+  color,
+  size,
+  active,
+  selected,
+  opacity,
+  animated
+}) => {
+  return (
+    <group position={[node.position.x, node.position.y, node.position.z]}>
+      {/* Custom geometry */}
+      <mesh>
+        <boxGeometry args={[size, size, size]} />
+        <meshStandardMaterial
+          color={color}
+          opacity={opacity}
+          transparent
+          emissive={active ? color : undefined}
+          emissiveIntensity={active ? 0.3 : 0}
+        />
+      </mesh>
+
+      {/* Custom label */}
+      {node.label && (
+        <Html center>
+          <div style={{ color: 'white', fontSize: 12 }}>
+            {node.label}
+          </div>
+        </Html>
+      )}
+    </group>
+  );
+};
+
+<GraphCanvas
+  renderNode={CustomNode}
+  nodes={nodes}
+  edges={edges}
+/>
+```
+
+### Custom Edge Renderers
+
+```typescript
+const CustomEdge: FC<EdgeRendererProps> = ({
+  edge,
+  source,
+  target,
+  color,
+  size,
+  active,
+  selected,
+  opacity,
+  animated
+}) => {
+  const points = [
+    new Vector3(source.position.x, source.position.y, source.position.z),
+    new Vector3(target.position.x, target.position.y, target.position.z)
+  ];
+
+  const curve = new CatmullRomCurve3(points);
+
+  return (
+    <mesh>
+      <tubeGeometry args={[curve, 20, size / 2, 8, false]} />
+      <meshBasicMaterial
+        color={color}
+        opacity={opacity}
+        transparent
+      />
+    </mesh>
+  );
+};
+
+<GraphCanvas
+  renderEdge={CustomEdge}
+  nodes={nodes}
+  edges={edges}
+/>
+```
+
+### State Management Integration
+
+#### With Redux
+
+```typescript
+import { useSelector, useDispatch } from 'react-redux';
+
+const GraphVisualization = () => {
+  const dispatch = useDispatch();
+  const { nodes, edges, selections } = useSelector(state => state.graph);
+
+  return (
+    <GraphCanvas
+      nodes={nodes}
+      edges={edges}
+      selections={selections}
+      onNodeClick={(node) => {
+        dispatch({ type: 'SELECT_NODE', payload: node.id });
+      }}
+      onLassoEnd={(selections) => {
+        dispatch({ type: 'SELECT_MULTIPLE', payload: selections });
+      }}
+    />
+  );
+};
+```
+
+#### With Zustand
+
+```typescript
+import { create } from 'zustand';
+
+const useGraphStore = create((set) => ({
+  nodes: [],
+  edges: [],
+  selections: [],
+  selectNode: (id) => set((state) => ({
+    selections: [id]
+  })),
+  addNode: (node) => set((state) => ({
+    nodes: [...state.nodes, node]
+  }))
+}));
+
+const GraphVisualization = () => {
+  const { nodes, edges, selections, selectNode } = useGraphStore();
+
+  return (
+    <GraphCanvas
+      nodes={nodes}
+      edges={edges}
+      selections={selections}
+      onNodeClick={(node) => selectNode(node.id)}
+    />
+  );
+};
+```
+
+### Dynamic Graph Updates
+
+```typescript
+const DynamicGraph = () => {
+  const [nodes, setNodes] = useState(initialNodes);
+  const [edges, setEdges] = useState(initialEdges);
+
+  // Real-time updates
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8080');
+
+    ws.onmessage = (event) => {
+      const update = JSON.parse(event.data);
+
+      if (update.type === 'addNode') {
+        setNodes(prev => [...prev, update.node]);
+      } else if (update.type === 'addEdge') {
+        setEdges(prev => [...prev, update.edge]);
+      } else if (update.type === 'updateNode') {
+        setNodes(prev => prev.map(n =>
+          n.id === update.node.id ? { ...n, ...update.node } : n
+        ));
+      }
+    };
+
+    return () => ws.close();
+  }, []);
+
+  return <GraphCanvas nodes={nodes} edges={edges} animated />;
+};
+```
+
+### Clustering
+
+```typescript
+// Basic clustering
+const nodes = [
+  { id: '1', label: 'Node 1', cluster: 'A' },
+  { id: '2', label: 'Node 2', cluster: 'A' },
+  { id: '3', label: 'Node 3', cluster: 'B' },
+  { id: '4', label: 'Node 4', cluster: 'B' }
+];
+
+<GraphCanvas
+  nodes={nodes}
+  edges={edges}
+  clusterAttribute="cluster"
+/>
+
+// Custom cluster rendering
+<GraphCanvas
+  nodes={nodes}
+  edges={edges}
+  clusterAttribute="cluster"
+  renderCluster={({ outerRadius, innerRadius, label }) => (
+    <group>
+      <mesh>
+        <ringGeometry args={[innerRadius, outerRadius, 32]} />
+        <meshBasicMaterial color="#444" opacity={0.2} transparent />
+      </mesh>
+      {label && <Label {...label} />}
+    </group>
+  )}
+/>
+```
+
+### Path Finding
+
+```typescript
+import { useRef, useState } from 'react';
+import { GraphCanvasRef } from 'reagraph';
+
+const PathFindingExample = () => {
+  const graphRef = useRef<GraphCanvasRef>();
+  const [path, setPath] = useState<string[]>([]);
+
+  const findPath = (startId: string, endId: string) => {
+    const graph = graphRef.current?.getGraph();
+    if (!graph) return;
+
+    // Use Graphology's built-in shortest path
+    try {
+      const shortestPath = bidirectional(graph, startId, endId);
+      setPath(shortestPath);
+
+      // Highlight the path
+      graphRef.current?.setSelections(shortestPath);
+    } catch (e) {
+      console.log('No path found');
+    }
+  };
+
+  return (
+    <GraphCanvas
+      ref={graphRef}
+      nodes={nodes}
+      edges={edges}
+      selections={path}
+      onNodeClick={(node) => {
+        // Click two nodes to find path between them
+      }}
+    />
+  );
+};
+```
+
+## Performance Optimization
+
+### Large Graph Strategies
+
+#### 1. Progressive Loading
+
+```typescript
+const ProgressiveGraph = () => {
+  const [visibleNodes, setVisibleNodes] = useState([]);
+  const [visibleEdges, setVisibleEdges] = useState([]);
+
+  useEffect(() => {
+    // Load initial subset
+    setVisibleNodes(allNodes.slice(0, 100));
+    setVisibleEdges(allEdges.filter(e =>
+      visibleNodes.some(n => n.id === e.source) &&
+      visibleNodes.some(n => n.id === e.target)
+    ));
+
+    // Progressively load more
+    const timer = setInterval(() => {
+      setVisibleNodes(prev => {
+        const next = allNodes.slice(0, prev.length + 100);
+        return next;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return <GraphCanvas nodes={visibleNodes} edges={visibleEdges} />;
+};
+```
+
+#### 2. Level of Detail (LOD)
+
+```typescript
+const LODGraph = () => {
+  const [zoomLevel, setZoomLevel] = useState(1);
+
+  return (
+    <GraphCanvas
+      nodes={nodes}
+      edges={edges}
+      // Hide labels when zoomed out
+      labelType={zoomLevel > 0.5 ? 'auto' : 'none'}
+      // Simplify edges when zoomed out
+      edgeInterpolation={zoomLevel > 0.3 ? 'curved' : 'straight'}
+      // Hide small nodes when zoomed out
+      nodeFilter={(node) => zoomLevel > 0.2 || node.size > 10}
+      onZoomChange={setZoomLevel}
+    />
+  );
+};
+```
+
+#### 3. Virtualization
+
+```typescript
+const VirtualizedGraph = () => {
+  const graphRef = useRef<GraphCanvasRef>();
+  const [viewport, setViewport] = useState({ x: 0, y: 0, width: 0, height: 0 });
+
+  // Only render nodes in viewport
+  const visibleNodes = useMemo(() => {
+    return nodes.filter(node => {
+      const pos = node.position;
+      return pos.x >= viewport.x && pos.x <= viewport.x + viewport.width &&
+             pos.y >= viewport.y && pos.y <= viewport.y + viewport.height;
+    });
+  }, [nodes, viewport]);
+
+  return (
+    <GraphCanvas
+      ref={graphRef}
+      nodes={visibleNodes}
+      edges={edges}
+      onCameraChange={(camera) => {
+        // Update viewport based on camera
+      }}
+    />
+  );
+};
+```
+
+### Memory Management
+
+1. **Dispose unused resources**:
+```typescript
+useEffect(() => {
+  return () => {
+    // Cleanup will be handled automatically by reagraph
+    // But you can force cleanup if needed:
+    graphRef.current?.destroy();
+  };
+}, []);
+```
+
+2. **Batch updates**:
+```typescript
+// Bad - Multiple renders
+nodes.forEach(node => {
+  setNodes(prev => [...prev, node]);
+});
+
+// Good - Single render
+setNodes(prev => [...prev, ...newNodes]);
+```
+
+3. **Use memo for expensive calculations**:
+```typescript
+const processedNodes = useMemo(() => {
+  return nodes.map(node => ({
+    ...node,
+    // Expensive calculation
+    importance: calculateImportance(node, edges)
+  }));
+}, [nodes, edges]);
+```
+
+## Troubleshooting
+
+### Common Issues
+
+#### 1. Graph not rendering
+
+```typescript
+// Ensure container has dimensions
+<div style={{ width: '100%', height: '600px' }}>
+  <GraphCanvas nodes={nodes} edges={edges} />
+</div>
+
+// Or use absolute positioning
+<div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+  <GraphCanvas nodes={nodes} edges={edges} />
+</div>
+```
+
+#### 2. Performance issues
+
+```typescript
+// Disable animations for large graphs
+<GraphCanvas
+  nodes={nodes}
+  edges={edges}
+  animated={false}
+  draggable={false}
+/>
+
+// Use simpler layouts
+<GraphCanvas
+  layoutType="circular2d"  // Faster than force-directed
+/>
+
+// Reduce visual complexity
+<GraphCanvas
+  labelType="none"
+  edgeArrowPosition={undefined}
+  sizingType="none"
+/>
+```
+
+#### 3. Layout not updating
+
+```typescript
+// Force re-layout
+const [layoutKey, setLayoutKey] = useState(0);
+
+<GraphCanvas
+  key={layoutKey}
+  nodes={nodes}
+  edges={edges}
+/>
+
+// Trigger re-layout
+setLayoutKey(prev => prev + 1);
+```
+
+#### 4. WebGL context lost
+
+```typescript
+<GraphCanvas
+  onWebGLContextLost={() => {
+    console.error('WebGL context lost');
+    // Reload or notify user
+  }}
+  onWebGLContextRestored={() => {
+    console.log('WebGL context restored');
+  }}
+/>
+```
+
+### Debug Mode
+
+```typescript
+// Enable debug information
+<GraphCanvas
+  nodes={nodes}
+  edges={edges}
+  debug={true}  // Shows FPS, node count, etc.
+/>
+
+// Custom debug overlay
+const DebugOverlay = () => {
+  const graphRef = useRef<GraphCanvasRef>();
+  const [stats, setStats] = useState({});
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const graph = graphRef.current?.getGraph();
+      if (graph) {
+        setStats({
+          nodes: graph.order,
+          edges: graph.size,
+          fps: graphRef.current.getFPS?.() || 0
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <>
+      <GraphCanvas ref={graphRef} nodes={nodes} edges={edges} />
+      <div style={{ position: 'absolute', top: 10, left: 10 }}>
+        Nodes: {stats.nodes}, Edges: {stats.edges}, FPS: {stats.fps}
+      </div>
+    </>
+  );
+};
+```
+
+## Migration Guide
+
+### From v3 to v4
+
+#### Breaking Changes
+
+1. **Layout type names**:
+```typescript
+// v3
+layoutType="treeTd2d"
+
+// v4
+layoutType="hierarchicalTd"
+```
+
+2. **Ref API**:
+```typescript
+// v3
+ref.centerGraph()
+
+// v4
+ref.current?.centerGraph()
+```
+
+3. **Theme structure**:
+```typescript
+// v3
+theme={{
+  node: { color: '#fff' }
+}}
+
+// v4
+theme={{
+  node: { fill: '#fff' }
+}}
+```
+
+### From Other Libraries
+
+#### From vis.js
+
+```typescript
+// vis.js
+const options = {
+  nodes: { shape: 'dot', size: 30 },
+  edges: { arrows: 'to' }
+};
+
+// Reagraph equivalent
+<GraphCanvas
+  nodes={nodes.map(n => ({ ...n, size: 30 }))}
+  edges={edges}
+  edgeArrowPosition="end"
+/>
+```
+
+#### From D3
+
+```typescript
+// D3
+const simulation = d3.forceSimulation(nodes)
+  .force("link", d3.forceLink(edges).id(d => d.id))
+  .force("charge", d3.forceManyBody())
+  .force("center", d3.forceCenter(width / 2, height / 2));
+
+// Reagraph equivalent
+<GraphCanvas
+  layoutType="forceDirected2d"
+  layoutOverrides={{
+    linkStrength: 1,
+    nodeStrength: -30,
+    centerInertia: 0.1
+  }}
+/>
+```
+
+## Best Practices
+
+1. **Use memoization** for expensive computations
+2. **Batch updates** to minimize re-renders
+3. **Choose appropriate layouts** for your data structure
+4. **Enable progressive rendering** for large graphs
+5. **Optimize images** used in custom nodes
+6. **Use TypeScript** for better development experience
+7. **Test performance** with realistic data sizes
+8. **Handle edge cases** (empty graphs, single nodes, etc.)
+
+## Resources
+
+- GitHub: https://github.com/reaviz/reagraph
+- Documentation: https://reagraph.dev
+- NPM: https://www.npmjs.com/package/reagraph
+- Discord: https://discord.gg/tt8wGExq35
+- Examples: https://reagraph.dev/?path=/story/docs-getting-started-installing--docs
+- License: Apache-2.0
+
+---
+
+Generated on 2025-07-07T17:15:25.658Z
