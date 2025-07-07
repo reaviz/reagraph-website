@@ -13,6 +13,10 @@ const theme = {
         ...reablocksTheme.components.button.sizes,
         large: `${reablocksTheme.components.button.sizes.large} py-4 rounded-none`,
       },
+      variants: {
+        ...reablocksTheme.components.button.variants,
+        outline: `${reablocksTheme.components.button.variants.outline} hover:border-primary-hover`,
+      },
     },
   },
 };
