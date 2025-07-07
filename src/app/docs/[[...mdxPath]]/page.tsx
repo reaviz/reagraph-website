@@ -6,6 +6,7 @@ export const generateStaticParams = generateStaticParamsFor("mdxPath");
 export async function generateMetadata(props: any) {
   const params = await props.params;
   const { metadata } = await importPage(params.mdxPath);
+
   return metadata;
 }
 
