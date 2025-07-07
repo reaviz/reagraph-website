@@ -5,6 +5,7 @@ const meta = {
   "Layouts": "",
   "NextJS": "",
   "Theme": "",
+  "Figma": "",
 };
 
 export default meta;
