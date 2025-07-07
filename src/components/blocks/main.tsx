@@ -44,7 +44,7 @@ export const Main: FC = () => {
         />
       </motion.div>
 
-      <section className='relative flex w-full -mt-16 md:-mt-26 lg:-mt-32 justify-center px-0 py-4 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
+      <section className='relative flex w-full -mt-16 md:-mt-26 lg:-mt-35 justify-center px-0 py-4 md:px-24 md:py-10 border-t border-b border-gray-400/30'>
         <div className='grid w-full xl:container  grid-cols-2 grid-rows-2 gap-8 lg:gap-4 lg:grid-cols-4 lg:grid-rows-1'>
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
             <Count
