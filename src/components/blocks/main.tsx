@@ -13,7 +13,15 @@ export const Main: FC = () => {
       className='w-full bg-cover bg-center flex flex-col items-center font-inter overflow-clip'
       style={{ backgroundImage: `url(${DotGrid.src})` }}
     >
-      <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-8 md:mt-16 lg:mt-20 xl:mt-32 z-10'>
+      <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-8 md:mt-16 lg:mt-20 xl:mt-32 z-10 relative'>
+        <div className='absolute -top-10 flex gap-2 left-1/2 -translate-x-1/2'>
+          <a href='https://npm.im/reagraph' target='_blank'>
+            <img
+              alt='Reagraph npm tag'
+              src='https://img.shields.io/npm/v/reagraph?style=social'
+            />
+          </a>
+        </div>
         <motion.h3
           className='text-4xl lg:text-5xl xl:text-6xl font-bold text-[#F2F3F7]'
           initial={{ opacity: 0, scale: 0.5 }}
@@ -83,7 +91,7 @@ export const Main: FC = () => {
               className='min-h-9 text-5xl lg:text-3xl font-bold'
               from={199}
               to={700}
-              suffix="+"
+              suffix='+'
             />
             <motion.h2
               className='text-base text-center'
@@ -94,7 +102,11 @@ export const Main: FC = () => {
             </motion.h2>
           </div>
           <div className='flex flex-1 flex-col items-center gap-4 px-2'>
-            <Count className='min-h-9 text-5xl lg:text-3xl font-bold' from={0} to={1} />
+            <Count
+              className='min-h-9 text-5xl lg:text-3xl font-bold'
+              from={0}
+              to={1}
+            />
             <motion.h2
               className='text-base text-center'
               initial={{ opacity: 0, y: 10 }}
