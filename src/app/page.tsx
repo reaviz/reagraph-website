@@ -12,12 +12,6 @@ import { Layouts } from '@/components/blocks/layouts';
 import { ReactReady } from '@/components/blocks/react-ready';
 import { GettingStarted } from '@/components/blocks/getting-started';
 
-export const metadata: Metadata = {
-  title: 'Reagraph',
-  description:
-    'Reagraph is a high-performance network graph visualization built in WebGL for React.',
-};
-
 /**
  * Home page component
  * @returns Home page component

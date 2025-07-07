@@ -9,9 +9,10 @@ import 'reablocks-docs-theme/style.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Reagraph',
+  title:
+    'Reagraph - a high-performance network graph visualization built in WebGL for React',
   description:
-    'Reagraph is a high-performance network graph visualization built in WebGL for React.',
+    'Reagraph is a high-performance network graph visualization built in WebGL for React with 2D & 3D support, and complex clustering capabilities. It features smart defaults for zero configuration, full customization options, and smooth Motion animations.',
 };
 
 const footer = (
@@ -24,7 +25,12 @@ const navbar = (
   <Navbar
     logo={
       <div className='flex items-center gap-2'>
-        <img src='/assets/logo-full.png' alt='Reagraph' width={112} height={24} />
+        <img
+          src='/assets/logo-full.png'
+          alt='Reagraph'
+          width={112}
+          height={24}
+        />
       </div>
     }
     projectLink='https://github.com/reaviz/reagraph'
