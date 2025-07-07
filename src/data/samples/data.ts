@@ -1,7 +1,7 @@
 'use client';
 import { GraphEdge, GraphNode } from 'reagraph';
-import demonSvg from './demon.svg';
-import computerSvg from './computer.svg';
+import demonSvg from './demon.svg?url';
+import computerSvg from './computer.svg?url';
 
 export const random = (floor: number, ceil: number) => Math.floor(Math.random() * ceil) + floor;
 
