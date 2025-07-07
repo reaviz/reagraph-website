@@ -15,12 +15,17 @@ export const Main: FC = () => {
     >
       <div className='w-full md:max-w-[700px] lg:max-w-[1000px] text-center mt-8 md:mt-16 lg:mt-20 xl:mt-32 z-10 relative'>
         <div className='absolute -top-7 lg:-top-10 flex gap-2 left-1/2 -translate-x-1/2'>
-          <a href='https://npm.im/reagraph' target='_blank'>
+          <motion.a
+            href='https://npm.im/reagraph'
+            target='_blank'
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
             <img
               alt='Reagraph npm tag'
               src='https://img.shields.io/npm/v/reagraph?style=social'
             />
-          </a>
+          </motion.a>
         </div>
         <motion.h3
           className='text-4xl lg:text-5xl xl:text-6xl font-bold text-[#F2F3F7]'
