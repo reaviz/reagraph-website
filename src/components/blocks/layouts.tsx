@@ -38,7 +38,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
                 Get Started
               </Button>
             </Link>
-            <Link href='https://reagraph.dev/'>
+            <Link href='https://storybook.reagraph.dev'>
               <Button variant='outline' color='primary' size='large'>
                 Preview
               </Button>
