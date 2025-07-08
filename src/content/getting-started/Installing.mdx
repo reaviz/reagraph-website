@@ -1,11 +1,14 @@
+import { Steps } from 'nextra/components'
+
 # Getting Started
 
 ## Installing
 
 You can install reagraph with [NPM](https://www.npmjs.com/package/reagraph) or Yarn.
 
-- NPM: `npm install reagraph --save`
-- YARN: `yarn add reagraph`
+```sh copy npm2yarn
+npm install reagraph --save
+```
 
 ## Compatibility
 
@@ -14,13 +17,26 @@ reagraph is compatible with React v16+ and works with ReactDOM. React Native is 
 ## Developing
 
 If you want to run the project locally, its really easy!
-
 The project uses Storybook for its demos and development
 environment. To run it locally:
 
-- Clone repo
-- `npm i`
-- `npm start`
+
+<Steps>
+### Clone repo
+```sh
+git clone git@github.com:reaviz/reagraph.git
+```
+
+### Install dependencies
+```sh copy npm2yarn
+npm i
+```
+
+### Start the development server
+```sh copy npm2yarn
+npm run start
+```
+</Steps>
 
 Once started the browser will open to the storybook url.
 From here you can tweak the charts and see them build

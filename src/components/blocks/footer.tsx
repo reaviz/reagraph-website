@@ -9,7 +9,7 @@ import { ResponsiveContainer } from '../responsive-container';
 
 export const Footer: FC = () => {
   return (
-    <div className='w-full justify-center items-center'>
+    <div className='w-full justify-center items-center font-inter'>
       <ResponsiveContainer className='flex items-center justify-between gap-4'>
         <Image
           src={'/assets/logo-full.png'}
