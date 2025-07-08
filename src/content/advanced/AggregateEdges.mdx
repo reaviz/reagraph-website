@@ -1,0 +1,99 @@
+---
+title: Aggregate Edges
+description: Combine multiple edges between the same nodes for cleaner visualizations
+---
+
+# Aggregate Edges
+
+When visualizing complex graphs, you may have multiple edges connecting the same pair of nodes. This can lead to visual clutter and make the graph harder to understand. ReaGraph provides an `aggregateEdges` prop that allows you to combine multiple edges between the same nodes into a single visual edge.
+
+## Basic Usage
+
+To enable edge aggregation, simply set the `aggregateEdges` prop to `true` on your `GraphCanvas` component:
+
+```jsx
+<GraphCanvas nodes={nodes} edges={edges} aggregateEdges={true} />
+```
+
+## How It Works
+
+When `aggregateEdges` is enabled:
+
+1. Multiple edges between the same source and target nodes are combined into a single visual edge
+2. The edge label shows the count of aggregated edges (e.g., "3 edges")
+3. The edge size is increased proportionally to represent the combined edges
+4. Directionality is preserved (edges from A→B and B→A are kept separate)
+
+## Example
+
+Here's a simple example showing how to toggle edge aggregation:
+
+```jsx
+import React, { useState } from "react";
+import { GraphCanvas } from "reagraph";
+
+const AggregateEdgesExample = () => {
+  const [aggregateEdges, setAggregateEdges] = useState(false);
+
+  const nodes = [
+    { id: "1", label: "Node 1" },
+    { id: "2", label: "Node 2" },
+  ];
+
+  const edges = [
+    { source: "1", target: "2", id: "1-2-1" },
+    { source: "1", target: "2", id: "1-2-2" },
+    { source: "1", target: "2", id: "1-2-3" },
+    { source: "2", target: "1", id: "2-1-1" },
+    { source: "2", target: "1", id: "2-1-2" },
+  ];
+
+  return (
+    <div>
+      <button onClick={() => setAggregateEdges((prev) => !prev)}>
+        {aggregateEdges ? "Ungroup Edges" : "Group Edges"}
+      </button>
+
+      <GraphCanvas
+        nodes={nodes}
+        edges={edges}
+        aggregateEdges={aggregateEdges}
+      />
+    </div>
+  );
+};
+```
+
+## Visual Impact
+
+Without aggregation, each edge is rendered individually, which can create visual clutter:
+
+```
+Node 1 ======> Node 2
+      ======>
+      ======>
+      <======
+      <======
+```
+
+With aggregation, edges are combined into a cleaner representation:
+
+```
+Node 1 =====> Node 2
+      <=====
+```
+
+## When to Use
+
+Edge aggregation is particularly useful for:
+
+- Network diagrams with many connections between the same nodes
+- Social graphs where multiple relationships exist between entities
+- System architecture diagrams with multiple communication paths
+- Any graph visualization where edge clutter reduces readability
+
+## Considerations
+
+- Edge labels are only visible when using `labelType="all"` or `labelType="edges"`
+- For graphs with many edges, aggregation can improve rendering performance
+- You can access the original edges via the `data.originalEdges` property of an aggregated edge
