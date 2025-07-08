@@ -41,7 +41,7 @@ export const Header = () => {
           <Stack className='gap-8'>
             {NAV_LINKS.map((link) => (
               <NextLink
-                className='px-4 hover:text-primary transition-colors duration-200 ease-in-out'
+                className='px-4 text-base text-text-secondary hover:text-text-primary font-semibold transition-colors duration-200 ease-in-out'
                 href={link.href}
                 target={link.target}
                 key={link.label}

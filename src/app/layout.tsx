@@ -44,7 +44,14 @@ const navbar = (
  */
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => (
   <html lang='en' dir='ltr' suppressHydrationWarning className='h-full'>
-    <Head />
+    <Head>
+      <link rel='preconnect' href='https://fonts.googleapis.com' />
+      <link rel='preconnect' href='https://fonts.gstatic.com' />
+      <link
+        href='https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap'
+        rel='stylesheet'
+      />
+    </Head>
     <body className='flex flex-col bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] antialiased overflow-x-hidden text-white'>
       <Layout
         navbar={navbar}
