@@ -11,6 +11,21 @@ const withNextra = nextra({
 const nextConfig: NextConfig = withNextra({
   reactStrictMode: true,
 
+  // Headers configuration to serve .txt files as plain text
+  async headers() {
+    return [
+      {
+        source: '/:path*.txt',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'text/plain; charset=utf-8',
+          },
+        ],
+      },
+    ];
+  },
+
   // Rewrites required for PostHog ingestion endpoints
   async rewrites() {
     return [
