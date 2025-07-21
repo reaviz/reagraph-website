@@ -52,7 +52,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => (
         rel='stylesheet'
       />
     </Head>
-    <body className='flex flex-col bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] antialiased overflow-x-hidden text-white'>
+    <body className='flex flex-col bg-gradient-to-b dark:from-[#11111F] dark:from-50% dark:via-[#11111F] dark:to-[#121212] antialiased text-white'>
       <Layout
         navbar={navbar}
         pageMap={await getPageMap()}
