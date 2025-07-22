@@ -1,22 +1,21 @@
 import Link from 'next/link';
 import { FC } from 'react';
-import Image from 'next/image';
 
 import DribbbleIcon from '@/icons/Dribbble';
 import GithubIcon from '@/icons/Github';
 import LinkedinIcon from '@/icons/LinkedIn';
 import { ResponsiveContainer } from '../responsive-container';
+import LogoIcon from '../../../public/assets/logo-full.svg';
 
-export const Footer: FC = () => {
+export interface FooterProps {
+  containerClassName?: string;
+}
+
+export const Footer: FC<FooterProps> = ({ containerClassName }) => {
   return (
     <div className='w-full justify-center items-center font-inter'>
-      <ResponsiveContainer className='flex items-center justify-between gap-4'>
-        <Image
-          src={'/assets/logo-full.png'}
-          alt='Reagraph'
-          width={112}
-          height={24}
-        />
+      <ResponsiveContainer className={`flex items-center justify-between gap-4 ${containerClassName}`}>
+        <LogoIcon className='h-fit w-[150px] text-[var(--foreground)]' />
         <span className='hidden md:block'>
           Made with ❤️ by{' '}
           <Link

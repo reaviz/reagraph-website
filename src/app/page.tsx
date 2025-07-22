@@ -19,7 +19,7 @@ import { GettingStarted } from '@/components/blocks/getting-started';
 const Home: FC = () => {
   return (
     <ThemeWrapper>
-      <div className='w-full flex flex-1 items-center justify-center overflow-y-hidden font-gilroy'>
+      <div className='w-full flex flex-1 items-center justify-center overflow-y-hidden font-gilroy bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] text-white'>
         <TracingBeams className='hidden md:block'>
           <Header />
           <div className='mt-[72px] flex flex-col items-center'>

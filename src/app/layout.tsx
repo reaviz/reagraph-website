@@ -1,10 +1,11 @@
-import Link from 'next/link';
 import { Footer, Layout, Navbar } from 'reablocks-docs-theme';
 import { Head } from 'nextra/components';
 import { getPageMap } from 'nextra/page-map';
 import { Footer as LandingFooter } from '@/components/blocks';
 import type { Metadata } from 'next';
-import type { FC, PropsWithChildren, ReactNode } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import LogoIcon from '../../public/assets/logo-full.svg';
+
 import 'reablocks-docs-theme/style.css';
 import './globals.css';
 
@@ -16,8 +17,8 @@ export const metadata: Metadata = {
 };
 
 const footer = (
-  <Footer className='w-full flex justify-center'>
-    <LandingFooter />
+  <Footer className='w-full flex justify-center py-6'>
+    <LandingFooter containerClassName='xl:max-w-[1440px]' />
   </Footer>
 );
 
@@ -25,12 +26,7 @@ const navbar = (
   <Navbar
     logo={
       <div className='flex items-center gap-2'>
-        <img
-          src='/assets/logo-full.png'
-          alt='Reagraph'
-          width={112}
-          height={24}
-        />
+        <LogoIcon className='h-fit w-[150px] text-[var(--foreground)]' />
       </div>
     }
     projectLink='https://github.com/reaviz/reagraph'
@@ -52,7 +48,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => (
         rel='stylesheet'
       />
     </Head>
-    <body className='flex flex-col bg-gradient-to-b from-[#11111F] from-50% via-[#11111F] to-[#121212] antialiased overflow-x-hidden text-white'>
+    <body className='flex flex-col bg-gradient-to-b dark:from-[#11111F] dark:from-50% dark:via-[#11111F] dark:to-[#121212] antialiased text-white'>
       <Layout
         navbar={navbar}
         pageMap={await getPageMap()}
