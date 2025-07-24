@@ -6,7 +6,7 @@ import {
   HierarchicalTopDown2D,
   NoOverlap2D,
   ForceAtlas2D,
-  HierarchicalLeftRight2D,
+  Concentric2D,
   ForceDirected3D,
   TreeTopDown3D,
   RadialOut3D,
@@ -19,6 +19,7 @@ reagraph has the following layout types:
 - [Force Directed 2D](#force-directed-2d)
 - [Force Directed 3D](#force-directed-3d)
 - [Circular 2D](#circular-2d)
+- [Concentric 2D](#concentric-2d)
 - [Tree Top Down 2D](#tree-2d)
 - [Tree Left Right 2D](#tree-2d)
 - [Tree Top Down 3D](#tree-3d)
@@ -187,6 +188,27 @@ export interface CircularLayoutInputs extends LayoutFactoryProps {
    * Radius of the circle.
    */
   radius: 300;
+}
+```
+
+### Concentric 2D
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <Concentric2D />
+</div>
+
+The concentric layout organises the nodes into concentric circles, based on the specified metric (`data.level`). The nodes with the lowest metric values are placed in the innermost circle, and the metric values of the nodes acend for each outward circle. Each circle has nodes with metric values between a specified range. This layout is useful for highlighting relative importance of the nodes, and its visual effect can be reinforced by creating a style mapper to the metric — e.g. nodes with larger metric values are darker in colour.
+
+This layout supports the following configuration options:
+```ts
+export interface ConcentricLayoutInputs extends LayoutFactoryProps {
+  /**
+   * Base radius of the innermost circle.
+   */
+  radius: number;
+  /**
+   * Distance between circles.
+   */
+  concentricSpacing?: number;
 }
 ```
 

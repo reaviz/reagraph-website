@@ -54,8 +54,8 @@ importers:
         specifier: ^15.6.1
         version: 15.6.1(react@19.1.0)
       reagraph:
-        specifier: ^4.24.2
-        version: 4.24.2(@types/react@19.1.8)(@types/three@0.177.0)(graphology-types@0.24.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)(use-sync-external-store@1.5.0(react@19.1.0))
+        specifier: ^4.26.0
+        version: 4.26.0(@types/react@19.1.8)(@types/three@0.177.0)(graphology-types@0.24.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)(use-sync-external-store@1.5.0(react@19.1.0))
       tailwindcss:
         specifier: ^4.1.10
         version: 4.1.10
@@ -3503,8 +3503,8 @@ packages:
   reading-time@1.5.0:
     resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
 
-  reagraph@4.24.2:
-    resolution: {integrity: sha512-5Ymf9tcyqOlB1+yGuTP9A6UTR029vIgu11/r9a0EUQUhmYlnenujksSD3WrCfGpUBhHBXz3gcGuShhH2nCJHfw==}
+  reagraph@4.26.0:
+    resolution: {integrity: sha512-GDIdiagh/RR6jqeyJRaEBbbBILBP+Sq3ZPAcbBtIMq6+/aiMNRrDvZO+Ywi3Uig6KaF+q5NHGcBn/ER+ykUpQw==}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
@@ -8185,7 +8185,7 @@ snapshots:
 
   reading-time@1.5.0: {}
 
-  reagraph@4.24.2(@types/react@19.1.8)(@types/three@0.177.0)(graphology-types@0.24.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)(use-sync-external-store@1.5.0(react@19.1.0)):
+  reagraph@4.26.0(@types/react@19.1.8)(@types/three@0.177.0)(graphology-types@0.24.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14)(use-sync-external-store@1.5.0(react@19.1.0)):
     dependencies:
       '@react-spring/three': 10.0.1(@react-three/fiber@9.1.2(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.177.0))(react@19.1.0)(three@0.177.0)
       '@react-three/drei': 10.3.0(@react-three/fiber@9.1.2(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.177.0))(@types/react@19.1.8)(@types/three@0.177.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.177.0)

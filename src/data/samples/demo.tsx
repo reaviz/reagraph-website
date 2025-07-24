@@ -399,6 +399,14 @@ export const Circular2D = () => (
   />
 );
 
+export const Concentric2D = () => (
+  <GraphCanvas
+    layoutType='concentric2d'
+    nodes={complexNodes}
+    edges={complexEdges}
+  />
+);
+
 export const TreeTopDown2D = () => (
   <GraphCanvas layoutType='treeTd2d' nodes={simpleNodes} edges={treeEdges} />
 );
