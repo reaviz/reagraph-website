@@ -10,6 +10,20 @@ import {
 } from './data';
 import { NodePositionArgs } from 'reagraph';
 
+function getConcentricLevel(current: number, total: number, ratio: number) {
+  let level = 1;
+  let levelSize = 20;
+  let covered = 0;
+
+  while (covered + levelSize < current && covered < total) {
+    covered += levelSize;
+    levelSize = Math.floor(levelSize * ratio); // grow geometrically
+    level++;
+  }
+
+  return level;
+}
+
 export const Basic = () => (
   <GraphCanvas
     labelType='all'
@@ -405,6 +419,15 @@ export const Concentric2D = () => (
     nodes={complexNodes}
     edges={complexEdges}
   />
+);
+
+export const Concentric3D = () => (
+  <GraphCanvas layoutType="concentric3d" nodes={Array.from({ length: 300 }, (_, i) => i + 1).map(i => ({
+    id: `${i}`,
+    label: `Node ${i}`,
+    fill: `hsl(${getConcentricLevel(i, 300, 7) * 100}, 100%, 50%)`,
+    data: { level: getConcentricLevel(i, 300, 7)}
+  }))} edges={complexEdges} />
 );
 
 export const TreeTopDown2D = () => (

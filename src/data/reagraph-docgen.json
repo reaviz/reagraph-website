@@ -485,6 +485,25 @@
           "name": "LayoutOverrides"
         }
       },
+      "aggregateEdges": {
+        "defaultValue": null,
+        "description": "Whether to aggregate edges with the same source and target.",
+        "name": "aggregateEdges",
+        "parent": {
+          "fileName": "src/GraphScene.tsx",
+          "name": "GraphSceneProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/GraphScene.tsx",
+            "name": "GraphSceneProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "onNodeClick": {
         "defaultValue": null,
         "description": "When a node was clicked.",
@@ -1115,6 +1134,25 @@
         "required": false,
         "type": {
           "name": "(event: MouseEvent) => void"
+        }
+      },
+      "aggregateEdges": {
+        "defaultValue": null,
+        "description": "Whether to aggregate edges with the same source and target.",
+        "name": "aggregateEdges",
+        "parent": {
+          "fileName": "src/GraphCanvas/GraphCanvas.tsx",
+          "name": "GraphCanvasProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/GraphCanvas/GraphCanvas.tsx",
+            "name": "GraphCanvasProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "layoutType": {
@@ -3161,6 +3199,128 @@
           "name": "ColorRepresentation"
         }
       },
+      "backgroundColor": {
+        "defaultValue": null,
+        "description": "Background color of the label.",
+        "name": "backgroundColor",
+        "parent": {
+          "fileName": "src/symbols/Label.tsx",
+          "name": "LabelProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Label.tsx",
+            "name": "LabelProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "ColorRepresentation"
+        }
+      },
+      "backgroundOpacity": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "Opacity of the background.",
+        "name": "backgroundOpacity",
+        "parent": {
+          "fileName": "src/symbols/Label.tsx",
+          "name": "LabelProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Label.tsx",
+            "name": "LabelProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "padding": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "Padding around the text for background sizing.",
+        "name": "padding",
+        "parent": {
+          "fileName": "src/symbols/Label.tsx",
+          "name": "LabelProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Label.tsx",
+            "name": "LabelProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "strokeColor": {
+        "defaultValue": null,
+        "description": "Color of the background stroke/border.",
+        "name": "strokeColor",
+        "parent": {
+          "fileName": "src/symbols/Label.tsx",
+          "name": "LabelProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Label.tsx",
+            "name": "LabelProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "ColorRepresentation"
+        }
+      },
+      "strokeWidth": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Size of the background stroke/border.",
+        "name": "strokeWidth",
+        "parent": {
+          "fileName": "src/symbols/Label.tsx",
+          "name": "LabelProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Label.tsx",
+            "name": "LabelProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "radius": {
+        "defaultValue": {
+          "value": "0.1"
+        },
+        "description": "Corner radius of the background.",
+        "name": "radius",
+        "parent": {
+          "fileName": "src/symbols/Label.tsx",
+          "name": "LabelProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Label.tsx",
+            "name": "LabelProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "opacity": {
         "defaultValue": {
           "value": "1"
@@ -3328,6 +3488,48 @@
         "required": true,
         "type": {
           "name": "Curve<Vector3>"
+        }
+      },
+      "dashed": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether the line should be dashed.",
+        "name": "dashed",
+        "parent": {
+          "fileName": "src/symbols/Line.tsx",
+          "name": "LineProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Line.tsx",
+            "name": "LineProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "dashArray": {
+        "defaultValue": {
+          "value": "[3, 1]"
+        },
+        "description": "Dash pattern for the line: [dashSize, gapSize]",
+        "name": "dashArray",
+        "parent": {
+          "fileName": "src/symbols/Line.tsx",
+          "name": "LineProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Line.tsx",
+            "name": "LineProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "[number, number]"
         }
       },
       "id": {
@@ -4259,6 +4461,25 @@
         "type": {
           "name": "number"
         }
+      },
+      "active": {
+        "defaultValue": null,
+        "description": "Whether the edge is active.",
+        "name": "active",
+        "parent": {
+          "fileName": "src/symbols/edges/Edge.tsx",
+          "name": "EdgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/Edge.tsx",
+            "name": "EdgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   },
@@ -4455,6 +4676,559 @@
         "required": false,
         "type": {
           "name": "(edge: InternalGraphEdge) => void"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "src/symbols/edges/SelfLoop.tsx",
+    "description": "",
+    "displayName": "SelfLoop",
+    "methods": [],
+    "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "The unique identifier of the edge.",
+        "name": "id",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "curve": {
+        "defaultValue": null,
+        "description": "The color of the edge.",
+        "name": "curve",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "any"
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "The size of the edge.",
+        "name": "size",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "color": {
+        "defaultValue": {
+          "value": "#000"
+        },
+        "description": "The color of the edge.",
+        "name": "color",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "ColorRepresentation"
+        }
+      },
+      "opacity": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "The opacity of the edge.",
+        "name": "opacity",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "animated": {
+        "defaultValue": null,
+        "description": "Whether the edge is animated.",
+        "name": "animated",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onPointerOver": {
+        "defaultValue": null,
+        "description": "A function that is called when the mouse pointer is moved over the line.",
+        "name": "onPointerOver",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "(event: ThreeEvent<PointerEvent>) => void"
+        }
+      },
+      "onPointerOut": {
+        "defaultValue": null,
+        "description": "A function that is called when the mouse pointer is moved out of the line.",
+        "name": "onPointerOut",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "(event: ThreeEvent<PointerEvent>) => void"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "A function that is called when the line is clicked.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "(event: ThreeEvent<MouseEvent>) => void"
+        }
+      },
+      "onContextMenu": {
+        "defaultValue": null,
+        "description": "A function that is called when the line is right-clicked.",
+        "name": "onContextMenu",
+        "parent": {
+          "fileName": "src/symbols/edges/SelfLoop.tsx",
+          "name": "SelfLoopProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/edges/SelfLoop.tsx",
+            "name": "SelfLoopProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "src/symbols/nodes/Badge.tsx",
+    "description": "",
+    "displayName": "Badge",
+    "methods": [],
+    "props": {
+      "label": {
+        "defaultValue": null,
+        "description": "The text to display in the badge.",
+        "name": "label",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "backgroundColor": {
+        "defaultValue": {
+          "value": "#ffffff"
+        },
+        "description": "Background color of the badge.",
+        "name": "backgroundColor",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "textColor": {
+        "defaultValue": {
+          "value": "#000000"
+        },
+        "description": "Text color of the badge.",
+        "name": "textColor",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "strokeColor": {
+        "defaultValue": null,
+        "description": "Stroke color of the badge border.",
+        "name": "strokeColor",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "strokeWidth": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Size of the badge border stroke.",
+        "name": "strokeWidth",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "radius": {
+        "defaultValue": {
+          "value": "0.12"
+        },
+        "description": "Corner radius of the badge.",
+        "name": "radius",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "badgeSize": {
+        "defaultValue": {
+          "value": "1.5"
+        },
+        "description": "Size multiplier for the badge relative to the node size.",
+        "name": "badgeSize",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "position": {
+        "defaultValue": {
+          "value": "top-right"
+        },
+        "description": "Position offset from the node center or preset position.",
+        "name": "position",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "[number, number, number] | BadgePosition"
+        }
+      },
+      "padding": {
+        "defaultValue": {
+          "value": "0.3"
+        },
+        "description": "Padding around the badge text.",
+        "name": "padding",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "Color of the node. Handles selected/etc.",
+        "name": "color",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "ColorRepresentation"
+        }
+      },
+      "node": {
+        "defaultValue": null,
+        "description": "The internal node model.",
+        "name": "node",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "InternalGraphNode"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Size of the node.",
+        "name": "size",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "number"
+        }
+      },
+      "active": {
+        "defaultValue": null,
+        "description": "Whether the node is active or not.",
+        "name": "active",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "selected": {
+        "defaultValue": null,
+        "description": "Whether the node is selected or not.",
+        "name": "selected",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "opacity": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "Opacity of the node. Mainly used for selection.",
+        "name": "opacity",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "animated": {
+        "defaultValue": null,
+        "description": "Animation of the node.",
+        "name": "animated",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "ID of the node.",
+        "name": "id",
+        "parent": {
+          "fileName": "reagraph/src/types.ts",
+          "name": "NodeRendererProps"
+        },
+        "declarations": [
+          {
+            "fileName": "reagraph/src/types.ts",
+            "name": "NodeRendererProps"
+          }
+        ],
+        "required": true,
+        "type": {
+          "name": "string"
         }
       }
     }
