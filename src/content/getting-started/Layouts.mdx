@@ -7,6 +7,7 @@ import {
   NoOverlap2D,
   ForceAtlas2D,
   Concentric2D,
+  Concentric3D,
   ForceDirected3D,
   TreeTopDown3D,
   RadialOut3D,
@@ -20,6 +21,7 @@ reagraph has the following layout types:
 - [Force Directed 3D](#force-directed-3d)
 - [Circular 2D](#circular-2d)
 - [Concentric 2D](#concentric-2d)
+- [Concentric 3D](#concentric-3d)
 - [Tree Top Down 2D](#tree-2d)
 - [Tree Left Right 2D](#tree-2d)
 - [Tree Top Down 3D](#tree-3d)
@@ -211,6 +213,15 @@ export interface ConcentricLayoutInputs extends LayoutFactoryProps {
   concentricSpacing?: number;
 }
 ```
+
+### Concentric 3D
+
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <Concentric3D />
+</div>
+
+This layout works just like [Concentric 2D](#concentric-2d), using the same interface and configuration. The only difference is that it arranges nodes on spheres instead of circles.
+
 
 ### Tree Top Down 2D
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
