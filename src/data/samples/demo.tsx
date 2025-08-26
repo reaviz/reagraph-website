@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useCallback } from 'react';
-import { GraphCanvas } from 'reagraph';
+import { GraphCanvas, LayoutFactoryProps } from 'reagraph';
 import {
   complexEdges,
   complexNodes,
@@ -422,12 +422,16 @@ export const Concentric2D = () => (
 );
 
 export const Concentric3D = () => (
-  <GraphCanvas layoutType="concentric3d" nodes={Array.from({ length: 300 }, (_, i) => i + 1).map(i => ({
-    id: `${i}`,
-    label: `Node ${i}`,
-    fill: `hsl(${getConcentricLevel(i, 300, 7) * 100}, 100%, 50%)`,
-    data: { level: getConcentricLevel(i, 300, 7)}
-  }))} edges={complexEdges} />
+  <GraphCanvas
+    layoutType='concentric3d'
+    nodes={Array.from({ length: 300 }, (_, i) => i + 1).map((i) => ({
+      id: `${i}`,
+      label: `Node ${i}`,
+      fill: `hsl(${getConcentricLevel(i, 300, 7) * 100}, 100%, 50%)`,
+      data: { level: getConcentricLevel(i, 300, 7) },
+    }))}
+    edges={complexEdges}
+  />
 );
 
 export const TreeTopDown2D = () => (
@@ -492,4 +496,32 @@ export const RadialOut3D = () => (
 
 export const TreeTopDown3D = () => (
   <GraphCanvas layoutType='treeTd3d' nodes={simpleNodes} edges={simpleEdges} />
+);
+
+export const CustomLayoutDraggable = () => (
+  <>
+    <GraphCanvas
+      draggable
+      layoutType='custom'
+      layoutOverrides={
+        {
+          getNodePosition: (id: string, { nodes, drags }: NodePositionArgs) => {
+            const dragPosition = drags?.[id]?.position;
+            if (dragPosition) {
+              return dragPosition;
+            }
+
+            const idx = nodes.findIndex((n) => n.id === id);
+            return {
+              x: 25 * idx,
+              y: idx % 2 === 0 ? 0 : 50,
+              z: 1,
+            };
+          },
+        } as LayoutFactoryProps
+      }
+      nodes={simpleNodes}
+      edges={simpleEdges}
+    />
+  </>
 );

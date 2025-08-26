@@ -12,6 +12,7 @@ import {
   TreeTopDown3D,
   RadialOut3D,
   TreeLeftRight2D,
+  CustomLayoutDraggable,
 } from '../../data/samples/demo';
 
 # Layouts
@@ -76,7 +77,21 @@ getNodePosition: (
 ) => InternalGraphPosition;
 ```
 
-See custom layouts for more information.
+### Custom Layout Draggable
+<div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
+  <CustomLayoutDraggable />
+</div>
+
+To keep draggable nodes in place, you can use the `drags` property to get the position of the node when it is dragged.
+```ts
+getNodePosition: (id: string, { nodes, drags }: NodePositionArgs) => {
+  const dragPosition = drags?.[id]?.position;
+  if (dragPosition) {
+    return dragPosition;
+  }
+  // ...
+}
+```
 
 ## Layout Types
 Below are examples of each layout type and corresponding descriptions.
