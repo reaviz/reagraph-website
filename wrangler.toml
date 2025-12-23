@@ -6,4 +6,4 @@ compatibility_flags = ["nodejs_compat"]
 NODE_ENV = "production"
 
 # Pages-specific configuration
-pages_build_output_dir = ".vercel/output/static"
+pages_build_output_dir = "out"
