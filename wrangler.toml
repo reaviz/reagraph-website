@@ -1,12 +1,6 @@
 name = "reagraph-website"
-main = ".open-next/worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
 NODE_ENV = "production"
-
-# Static assets configuration
-[assets]
-directory = ".open-next/assets"
-binding = "ASSETS"

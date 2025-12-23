@@ -87,9 +87,6 @@ web_modules/
 .next
 out
 
-# OpenNext Cloudflare build output
-.open-next
-
 # Nuxt.js build / generate output
 .nuxt
 dist
