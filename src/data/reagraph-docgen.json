@@ -769,21 +769,6 @@
         "type": {
           "name": "(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void"
         }
-      },
-      "ref": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ref",
-        "declarations": [
-          {
-            "fileName": "src/GraphScene.tsx",
-            "name": "TypeLiteral"
-          }
-        ],
-        "required": false,
-        "type": {
-          "name": "Ref<GraphSceneRef>"
-        }
       }
     }
   },
@@ -876,7 +861,7 @@
         "defaultValue": {
           "value": "50000"
         },
-        "description": "The maximum distance for the camera.",
+        "description": "The maximum distance for the camera (perspective mode).",
         "name": "maxDistance",
         "parent": {
           "fileName": "src/CameraControls/CameraControls.tsx",
@@ -897,7 +882,7 @@
         "defaultValue": {
           "value": "1000"
         },
-        "description": "The minimum distance for the camera.",
+        "description": "The minimum distance for the camera (perspective mode).",
         "name": "minDistance",
         "parent": {
           "fileName": "src/CameraControls/CameraControls.tsx",
@@ -914,19 +899,46 @@
           "name": "number"
         }
       },
-      "ref": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ref",
+      "maxZoom": {
+        "defaultValue": {
+          "value": "100"
+        },
+        "description": "The maximum zoom level for orthographic cameras.",
+        "name": "maxZoom",
+        "parent": {
+          "fileName": "src/CameraControls/CameraControls.tsx",
+          "name": "CameraControlsProps"
+        },
         "declarations": [
           {
             "fileName": "src/CameraControls/CameraControls.tsx",
-            "name": "TypeLiteral"
+            "name": "CameraControlsProps"
           }
         ],
         "required": false,
         "type": {
-          "name": "Ref<CameraControlsContextProps>"
+          "name": "number"
+        }
+      },
+      "minZoom": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "The minimum zoom level for orthographic cameras.",
+        "name": "minZoom",
+        "parent": {
+          "fileName": "src/CameraControls/CameraControls.tsx",
+          "name": "CameraControlsProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/CameraControls/CameraControls.tsx",
+            "name": "CameraControlsProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
         }
       }
     }
@@ -1018,6 +1030,44 @@
           "name": "number"
         }
       },
+      "minZoom": {
+        "defaultValue": null,
+        "description": "The minimum zoom level for the camera. Default is 1.",
+        "name": "minZoom",
+        "parent": {
+          "fileName": "src/GraphCanvas/GraphCanvas.tsx",
+          "name": "GraphCanvasProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/GraphCanvas/GraphCanvas.tsx",
+            "name": "GraphCanvasProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "maxZoom": {
+        "defaultValue": null,
+        "description": "The maximum zoom level for the camera. Default is 100.",
+        "name": "maxZoom",
+        "parent": {
+          "fileName": "src/GraphCanvas/GraphCanvas.tsx",
+          "name": "GraphCanvasProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/GraphCanvas/GraphCanvas.tsx",
+            "name": "GraphCanvasProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "lassoType": {
         "defaultValue": {
           "value": "none"
@@ -1076,7 +1126,7 @@
         ],
         "required": false,
         "type": {
-          "name": "Object"
+          "name": "object"
         }
       },
       "onLasso": {
@@ -1908,21 +1958,6 @@
         "required": false,
         "type": {
           "name": "(cluster: ClusterEventArgs, event: ThreeEvent<PointerEvent>) => void"
-        }
-      },
-      "ref": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ref",
-        "declarations": [
-          {
-            "fileName": "src/GraphCanvas/GraphCanvas.tsx",
-            "name": "TypeLiteral"
-          }
-        ],
-        "required": false,
-        "type": {
-          "name": "Ref<GraphCanvasRef>"
         }
       }
     }
@@ -3593,6 +3628,27 @@
           "name": "number"
         }
       },
+      "renderOrder": {
+        "defaultValue": {
+          "value": "-1"
+        },
+        "description": "The render order of the line. Useful when edges are rendered on top of each other.",
+        "name": "renderOrder",
+        "parent": {
+          "fileName": "src/symbols/Line.tsx",
+          "name": "LineProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/Line.tsx",
+            "name": "LineProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "onClick": {
         "defaultValue": null,
         "description": "A function that is called when the line is clicked.",
@@ -4932,6 +4988,27 @@
           "name": "string"
         }
       },
+      "opacity": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "Opacity of the badge background and stroke (0-1).\nDefault: 1",
+        "name": "opacity",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "textColor": {
         "defaultValue": {
           "value": "#000000"
@@ -5058,10 +5135,132 @@
       },
       "padding": {
         "defaultValue": {
+          "value": "0.15"
+        },
+        "description": "Padding around the badge text.\nDefault: 0.15",
+        "name": "padding",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "SVG icon path or URL to display in the badge.",
+        "name": "icon",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "iconSize": {
+        "defaultValue": {
+          "value": "0.35"
+        },
+        "description": "Size of the icon in the badge.",
+        "name": "iconSize",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "iconPosition": {
+        "defaultValue": {
+          "value": "start"
+        },
+        "description": "Position of the icon relative to the text or custom coordinates [x, y].\n- 'start': Icon appears before the text (left side)\n- 'end': Icon appears after the text (right side)\n- [x, y]: Custom coordinates within the badge. When using custom coordinates,\n  the text remains centered and only the icon moves to the specified position.",
+        "name": "iconPosition",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "IconPosition | [number, number]"
+        }
+      },
+      "fontSize": {
+        "defaultValue": {
           "value": "0.3"
         },
-        "description": "Padding around the badge text.",
-        "name": "padding",
+        "description": "Font size for the badge text.",
+        "name": "fontSize",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "fontWeight": {
+        "defaultValue": null,
+        "description": "Font weight for the badge text (100-900).\nValues outside this range will be clamped to the nearest valid value.\nCommon values: 400 (normal), 700 (bold), 900 (extra bold).",
+        "name": "fontWeight",
+        "parent": {
+          "fileName": "src/symbols/nodes/Badge.tsx",
+          "name": "BadgeProps"
+        },
+        "declarations": [
+          {
+            "fileName": "src/symbols/nodes/Badge.tsx",
+            "name": "BadgeProps"
+          }
+        ],
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "iconTextGap": {
+        "defaultValue": {
+          "value": "0.01"
+        },
+        "description": "Gap between icon and text.\nDefault: 0.01",
+        "name": "iconTextGap",
         "parent": {
           "fileName": "src/symbols/nodes/Badge.tsx",
           "name": "BadgeProps"
@@ -5170,27 +5369,6 @@
         "required": true,
         "type": {
           "name": "boolean"
-        }
-      },
-      "opacity": {
-        "defaultValue": {
-          "value": "1"
-        },
-        "description": "Opacity of the node. Mainly used for selection.",
-        "name": "opacity",
-        "parent": {
-          "fileName": "reagraph/src/types.ts",
-          "name": "NodeRendererProps"
-        },
-        "declarations": [
-          {
-            "fileName": "reagraph/src/types.ts",
-            "name": "NodeRendererProps"
-          }
-        ],
-        "required": false,
-        "type": {
-          "name": "number"
         }
       },
       "animated": {
@@ -5970,7 +6148,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Layers | [layer: number] | Readonly<number | Layers | [layer: number]>"
+          "name": "number | Layers | [layer: number] | readonly [layer: number] | Readonly<Layers>"
         }
       },
       "quaternion": {
@@ -5980,7 +6158,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Quaternion | [x: number, y: number, z: number, w: number] | Readonly<Quaternion | [x: number, y: number, z: number, w: number]>"
+          "name": "Quaternion | [x: number, y: number, z: number, w: number] | readonly [x: number, y: number, z: number, w: number] | Readonly<Quaternion>"
         }
       },
       "type": {
@@ -6040,7 +6218,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>"
+          "name": "number | Vector3 | [x: number, y: number, z: number] | readonly [x: number, y: number, z: number] | Readonly<Vector3>"
         }
       },
       "position": {
@@ -6050,7 +6228,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>"
+          "name": "number | Vector3 | [x: number, y: number, z: number] | readonly [x: number, y: number, z: number] | Readonly<Vector3>"
         }
       },
       "rotation": {
@@ -6060,7 +6238,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Euler | [x: number, y: number, z: number, order?: EulerOrder] | Readonly<number | Euler | [x: number, y: number, z: number, order?: EulerOrder]>"
+          "name": "number | Euler | [x: number, y: number, z: number, order?: EulerOrder] | readonly [x: number, y: number, z: number, order?: EulerOrder] | Readonly<Euler>"
         }
       },
       "scale": {
@@ -6070,7 +6248,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>"
+          "name": "number | Vector3 | [x: number, y: number, z: number] | readonly [x: number, y: number, z: number] | Readonly<Vector3>"
         }
       },
       "modelViewMatrix": {
@@ -6080,7 +6258,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>"
+          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | readonly [n11: number, n12: number, n13: ... 13 more ..., n14: number] | Readonly<...>"
         }
       },
       "normalMatrix": {
@@ -6090,7 +6268,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | Readonly<Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number]>"
+          "name": "Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | readonly [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | Readonly<...>"
         }
       },
       "matrix": {
@@ -6100,7 +6278,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>"
+          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | readonly [n11: number, n12: number, n13: ... 13 more ..., n14: number] | Readonly<...>"
         }
       },
       "matrixWorld": {
@@ -6110,7 +6288,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>"
+          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | readonly [n11: number, n12: number, n13: ... 13 more ..., n14: number] | Readonly<...>"
         }
       },
       "matrixAutoUpdate": {
@@ -6242,7 +6420,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "onAfterShadow": {
@@ -6252,7 +6430,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "onBeforeRender": {
@@ -6262,7 +6440,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, material: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "onAfterRender": {
@@ -6272,7 +6450,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, material: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "applyMatrix4": {
@@ -6885,7 +7063,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Layers | [layer: number] | Readonly<number | Layers | [layer: number]>"
+          "name": "number | Layers | [layer: number] | readonly [layer: number] | Readonly<Layers>"
         }
       },
       "quaternion": {
@@ -6895,7 +7073,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Quaternion | [x: number, y: number, z: number, w: number] | Readonly<Quaternion | [x: number, y: number, z: number, w: number]>"
+          "name": "Quaternion | [x: number, y: number, z: number, w: number] | readonly [x: number, y: number, z: number, w: number] | Readonly<Quaternion>"
         }
       },
       "type": {
@@ -6955,7 +7133,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>"
+          "name": "number | Vector3 | [x: number, y: number, z: number] | readonly [x: number, y: number, z: number] | Readonly<Vector3>"
         }
       },
       "position": {
@@ -6965,7 +7143,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>"
+          "name": "number | Vector3 | [x: number, y: number, z: number] | readonly [x: number, y: number, z: number] | Readonly<Vector3>"
         }
       },
       "rotation": {
@@ -6975,7 +7153,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Euler | [x: number, y: number, z: number, order?: EulerOrder] | Readonly<number | Euler | [x: number, y: number, z: number, order?: EulerOrder]>"
+          "name": "number | Euler | [x: number, y: number, z: number, order?: EulerOrder] | readonly [x: number, y: number, z: number, order?: EulerOrder] | Readonly<Euler>"
         }
       },
       "scale": {
@@ -6985,7 +7163,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Vector3 | [x: number, y: number, z: number] | Readonly<number | Vector3 | [x: number, y: number, z: number]>"
+          "name": "number | Vector3 | [x: number, y: number, z: number] | readonly [x: number, y: number, z: number] | Readonly<Vector3>"
         }
       },
       "modelViewMatrix": {
@@ -6995,7 +7173,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>"
+          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | readonly [n11: number, n12: number, n13: ... 13 more ..., n14: number] | Readonly<...>"
         }
       },
       "normalMatrix": {
@@ -7005,7 +7183,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | Readonly<Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number]>"
+          "name": "Matrix3 | [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | readonly [n11: number, n12: number, n13: number, n21: number, n22: number, n23: number, n31: number, n32: number, n33: number] | Readonly<...>"
         }
       },
       "matrix": {
@@ -7015,7 +7193,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>"
+          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | readonly [n11: number, n12: number, n13: ... 13 more ..., n14: number] | Readonly<...>"
         }
       },
       "matrixWorld": {
@@ -7025,7 +7203,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | Readonly<Matrix4 | [n11: ...]>"
+          "name": "Matrix4 | [n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number] | readonly [n11: number, n12: number, n13: ... 13 more ..., n14: number] | Readonly<...>"
         }
       },
       "matrixAutoUpdate": {
@@ -7157,7 +7335,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "onAfterShadow": {
@@ -7167,7 +7345,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, shadowCamera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, depthMaterial: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "onBeforeRender": {
@@ -7177,7 +7355,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, material: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "onAfterRender": {
@@ -7187,7 +7365,7 @@
         "declarations": [],
         "required": false,
         "type": {
-          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes>, material: Material, group: Group<...>) => void) | Readonly<...>"
+          "name": "((renderer: WebGLRenderer, scene: Scene, camera: Camera, geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>, material: Material, group: Group<...>) => void) | Readonly<...>"
         }
       },
       "applyMatrix4": {
