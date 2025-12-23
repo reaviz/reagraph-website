@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:cloudflare": "npx @cloudflare/next-on-pages",
     "start": "next start",
     "postinstall": "cp node_modules/reagraph/dist/docs/docgen.json src/data/reagraph-docgen.json",
     "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "lint": "next lint",
-    "preview": "wrangler pages dev .next"
+    "preview": "npx wrangler pages dev .vercel/output/static"
   },
   "browser": {
     "fs": false,

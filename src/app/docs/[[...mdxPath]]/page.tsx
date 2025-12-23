@@ -1,25 +1,39 @@
-import { importPage } from "nextra/pages";
-import { useMDXComponents } from "@/mdx-components";
+import { generateStaticParamsFor, importPage } from 'nextra/pages';
+import { useMDXComponents } from '@/mdx-components';
+import { notFound } from 'next/navigation';
 
-export const runtime = 'nodejs';
+export const generateStaticParams = generateStaticParamsFor('mdxPath');
 
 export async function generateMetadata(props: any) {
   const params = await props.params;
-  const { metadata } = await importPage(params.mdxPath);
-  metadata.title = `${metadata?.title} - Reagraph`;
 
-  return metadata;
+  try {
+    const { metadata } = await importPage(params.mdxPath);
+    metadata.title = `${metadata?.title} - Reagraph`;
+    return metadata;
+  } catch (error) {
+    return {
+      title: 'Not Found - Reagraph',
+      description: 'Page not found'
+    };
+  }
 }
 
 const Wrapper = useMDXComponents().wrapper;
 
 export default async function Page(props: any) {
   const params = await props.params;
-  const result = await importPage(params.mdxPath);
-  const { default: MDXContent, toc, metadata } = result;
-  return (
-    <Wrapper toc={toc} metadata={metadata}>
-      <MDXContent {...props} params={params} />
-    </Wrapper>
-  );
+
+  try {
+    const result = await importPage(params.mdxPath);
+    const { default: MDXContent, toc, metadata } = result;
+
+    return (
+      <Wrapper toc={toc} metadata={metadata}>
+        <MDXContent {...props} params={params} />
+      </Wrapper>
+    );
+  } catch (error) {
+    notFound();
+  }
 }
