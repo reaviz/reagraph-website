@@ -1,10 +1,12 @@
 name = "reagraph-website"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
 
 [vars]
 NODE_ENV = "production"
 
-# Pages-specific configuration
-pages_build_output_dir = ".vercel/output/static"
-
+# Static assets configuration
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"

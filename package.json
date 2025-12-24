@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:cloudflare": "npx @cloudflare/next-on-pages",
+    "build:cloudflare": "pnpm build && opennextjs-cloudflare build",
     "start": "next start",
     "postinstall": "cp node_modules/reagraph/dist/docs/docgen.json src/data/reagraph-docgen.json",
     "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
     "lint": "next lint",
-    "preview": "npx wrangler pages dev .vercel/output/static"
+    "preview": "pnpm build:cloudflare && wrangler dev"
   },
   "browser": {
     "fs": false,
@@ -23,7 +23,7 @@
     "@mdx-js/react": "^3.1.0",
     "@types/react-syntax-highlighter": "^15.5.13",
     "motion": "^12.19.1",
-    "next": "^15.3.3",
+    "next": "^15.3.8",
     "nextra": "^4.2.17",
     "nextra-theme-docs": "^4.2.17",
     "postcss": "^8.5.6",
@@ -38,6 +38,7 @@
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.14.7",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "24.0.3",
