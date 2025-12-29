@@ -1,10 +1,6 @@
 name = "reagraph-website"
 compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat"]
 
-[vars]
-NODE_ENV = "production"
-
-# Pages-specific configuration
-pages_build_output_dir = ".vercel/output/static"
+# Pages-specific configuration - point to static export output
+pages_build_output_dir = "out"
 
