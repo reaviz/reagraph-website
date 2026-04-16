@@ -1,0 +1,102 @@
+# AI Skills
+
+[AI Skills](https://github.com/reaviz/skills) are Claude Code skill files that provide
+AI-assistant reference guides for Reagraph. Skills contain component APIs,
+usage patterns, theming details, and code examples derived from source code and stories.
+
+When installed, Claude Code automatically loads the relevant skill files when it encounters
+Reagraph components in your code, giving it deep knowledge of the component APIs, props, and
+usage patterns.
+
+## Available Components
+
+| Category | Components |
+|----------|------------|
+| **Graph** | GraphCanvas, Sphere, SphereWithIcon, SphereWithSvg, Svg, Badge, Edge, Arrow, Label, Cluster |
+| **Layout** | forceDirected2d/3d, circular, concentric, tree, radial, hierarchical, nooverlap, forceatlas2, custom |
+| **Interaction** | useSelection, Lasso, CameraControls, useCenterGraph, RadialMenu, useCollapse |
+| **Styling** | lightTheme, darkTheme, SizingType (pagerank, centrality, attribute) |
+
+## Installation
+
+Choose one of the following methods to make skills available in your project.
+
+### Option 1: Project-level (recommended for teams)
+
+Copy or symlink the Reagraph skills into your project's `.claude/skills/` folder:
+
+```bash
+# From your project root
+mkdir -p .claude/skills
+
+# Symlink the reagraph skill tree
+ln -s /path/to/reaviz/skills/reagraph .claude/skills/reagraph
+```
+
+Skills placed in `.claude/skills/` are committed to version control and shared with all team members.
+
+### Option 2: User-level (personal, all projects)
+
+Copy or symlink skills into `~/.claude/skills/` to make them available across all your projects:
+
+```bash
+mkdir -p ~/.claude/skills
+
+# Symlink the library
+ln -s /path/to/reaviz/skills/reagraph ~/.claude/skills/reagraph
+```
+
+User-level skills are not shared with other team members.
+
+### Option 3: `--add-dir` flag (per-session)
+
+Point Claude Code to the skills repository at launch. Skills inside `.claude/skills/` of added
+directories are discovered automatically:
+
+```bash
+claude --add-dir /path/to/reaviz/skills
+```
+
+This grants file access for the current session only.
+
+## Verifying Installation
+
+Once installed, Claude Code will automatically load the relevant skill files when it encounters
+Reagraph components in your code. You can verify by asking Claude Code about a specific component:
+
+```
+> How do I use the reagraph GraphCanvas component?
+```
+
+Claude Code should respond with API details, props, and examples sourced from the skill files.
+
+## Skill Structure
+
+Skills are organized into category directories with per-component skill files:
+
+```
+reagraph/
+├── SKILL.md                        # Library overview, data shapes, setup
+├── graph/
+│   ├── SKILL.md                    # Graph category overview
+│   ├── graph-canvas/SKILL.md       # GraphCanvas (main entry, all props, ref methods)
+│   ├── nodes/SKILL.md              # Sphere, SphereWithIcon, SphereWithSvg, Svg, Badge
+│   ├── edges/SKILL.md              # Edge config, arrows, dashed, curved, aggregation
+│   ├── labels/SKILL.md             # Label visibility, fonts, styling
+│   └── clusters/SKILL.md           # Cluster grouping, custom rendering
+├── layout/
+│   ├── SKILL.md                    # Layout category overview
+│   └── layouts/SKILL.md            # 16 layout algorithms + custom + overrides
+├── interaction/
+│   ├── SKILL.md                    # Interaction category overview
+│   ├── selection/SKILL.md          # useSelection, lasso, single/multi/path
+│   ├── camera/SKILL.md             # CameraControls, modes, centering, zoom
+│   ├── context-menu/SKILL.md       # RadialMenu, RadialSlice
+│   └── collapse/SKILL.md           # useCollapse, expand/collapse hierarchies
+└── styling/
+    ├── SKILL.md                    # Styling category overview
+    ├── themes/SKILL.md             # lightTheme, darkTheme, Theme interface
+    └── sizing/SKILL.md             # SizingType: pagerank, centrality, attribute
+```
+
+For more details, see the [skills repository on GitHub](https://github.com/reaviz/skills).
