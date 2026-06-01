@@ -55,7 +55,7 @@ importers:
         specifier: ^15.6.1
         version: 15.6.1(react@19.1.0)
       reagraph:
-        specifier: 4.30.8
+        specifier: ^4.30.8
         version: 4.30.8(@types/react@19.1.8)(@types/three@0.184.1)(graphology-types@0.24.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
       tailwindcss:
         specifier: ^4.1.10
