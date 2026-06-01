@@ -2,8 +2,8 @@ name = "reagraph-website"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
-# Cloudflare Pages output of `@cloudflare/next-on-pages` (run via `build:cloudflare`).
-pages_build_output_dir = ".vercel/output/static"
+# Static HTML produced by `pnpm build` (`next build`); served as-is by Cloudflare Pages.
+pages_build_output_dir = ".next/server/app"
 
 [vars]
 NODE_ENV = "production"
