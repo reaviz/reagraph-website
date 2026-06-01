@@ -10,6 +10,10 @@ const withNextra = nextra({
 
 const nextConfig: NextConfig = withNextra({
   reactStrictMode: true,
+  // Static HTML export to `out/`, deployed as-is on Cloudflare Pages.
+  // All routes are static/SSG, so no server runtime is needed and `_next/`
+  // assets land at the correct paths.
+  output: 'export',
   images: {
     unoptimized: true,
   },

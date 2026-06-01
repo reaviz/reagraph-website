@@ -2,8 +2,8 @@ name = "reagraph-website"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
-# Static HTML produced by `pnpm build` (`next build`); served as-is by Cloudflare Pages.
-pages_build_output_dir = ".next/server/app"
+# Static HTML export produced by `pnpm build` (`output: 'export'` in next.config.ts).
+pages_build_output_dir = "out"
 
 [vars]
 NODE_ENV = "production"

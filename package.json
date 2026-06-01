@@ -8,7 +8,7 @@
     "build": "next build",
     "build:cloudflare": "next build && pagefind --site .next/server/app --output-path public/_pagefind && npx @cloudflare/next-on-pages",
     "preview": "npx wrangler pages dev .vercel/output/static",
-    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind",
+    "postbuild": "pagefind --site out --output-path out/_pagefind",
     "start": "next start",
     "lint": "next lint"
   },
