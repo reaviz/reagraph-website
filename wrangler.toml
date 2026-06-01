@@ -7,6 +7,10 @@ pages_build_output_dir = "out"
 
 [vars]
 NODE_ENV = "production"
+# Switches next.config.ts to `output: 'export'` so `pnpm build` emits the static
+# `out/` dir for Pages. Only set here (the Cloudflare build), so local
+# `next start` / `next dev` keep working with the normal Next.js server.
+STATIC_EXPORT = "true"
 # Cloudflare applies the [vars] above to the BUILD environment too, and
 # `NODE_ENV=production` makes `pnpm install` skip devDependencies — which breaks
 # the build (no typescript/tailwind/pagefind/@svgr). This override forces pnpm to

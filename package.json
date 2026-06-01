@@ -8,7 +8,7 @@
     "build": "next build",
     "build:cloudflare": "next build && pagefind --site .next/server/app --output-path public/_pagefind && npx @cloudflare/next-on-pages",
     "preview": "npx wrangler pages dev .vercel/output/static",
-    "postbuild": "pagefind --site out --output-path out/_pagefind",
+    "postbuild": "test ! -d out || pagefind --site out --output-path out/_pagefind",
     "start": "next start",
     "lint": "next lint"
   },
@@ -32,7 +32,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-syntax-highlighter": "^15.6.1",
-    "reagraph": "4.30.8",
+    "reagraph": "^4.30.8",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {

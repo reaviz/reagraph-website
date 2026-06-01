@@ -6,6 +6,7 @@ const meta = {
   "NextJS": "",
   "Theme": "",
   "Figma": "",
+  "Skills": "AI Skills",
 };
 
 export default meta;

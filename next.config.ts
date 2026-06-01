@@ -10,10 +10,11 @@ const withNextra = nextra({
 
 const nextConfig: NextConfig = withNextra({
   reactStrictMode: true,
-  // Static HTML export to `out/`, deployed as-is on Cloudflare Pages.
-  // All routes are static/SSG, so no server runtime is needed and `_next/`
-  // assets land at the correct paths.
-  output: 'export',
+  // Static HTML export to `out/` for Cloudflare Pages (set via STATIC_EXPORT in
+  // wrangler.toml). Left off locally so `next dev` / `next start` keep working —
+  // `output: 'export'` disables the Next.js server. All routes are static/SSG,
+  // so the export needs no runtime and `_next/` assets land at correct paths.
+  output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
   images: {
     unoptimized: true,
   },

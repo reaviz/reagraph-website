@@ -3,7 +3,6 @@ const meta = {
   "getting-started": "🚀 ⏐ Getting Started",
   "API": "📚 ⏐ API",
   advanced: "⚡️ ⏐ Advanced",
-  skills: "🤖 ⏐ AI Skills",
   support: "💬 ⏐ Support",
 };
 

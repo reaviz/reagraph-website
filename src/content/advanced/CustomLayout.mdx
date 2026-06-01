@@ -1,4 +1,5 @@
 import { CustomLayout } from '../../data/samples/demo';
+import { PropsTable } from '../../components/props-table';
 
 # Custom Layout
 You can provide a custom layout for the graph. This is useful if
@@ -41,40 +42,15 @@ In this example, the `getNodePosition` function returns a position
 based on the index found in the graph. This is just a simple example
 to show how to use the `getNodePosition` function.
 
-The interface for this is as follows:
+The interfaces for this are as follows:
 
-```ts
-// NOTE: Abbreviated version of the interface
-export interface LayoutFactoryProps {
-  /**
-   * Get the node position for a given node id.
-   */
-  getNodePosition: (id: string, args: NodePositionArgs) => InternalGraphNode;
-}
+**`LayoutFactoryProps`**
 
-export interface NodePositionArgs {
-  /**
-   * The graphology object. Useful for any graph manipulation.
-   */
-  graph: Graph;
+<PropsTable typeName="LayoutFactoryProps" />
 
-  /**
-   * Any nodes that were dragged. This is useful if you want to override
-   * the position of a node when dragged.
-   */
-  drags?: DragReferences;
+**`NodePositionArgs`**
 
-  /**
-   * The nodes for the graph.
-   */
-  nodes: InternalGraphNode[];
-
-  /**
-   * The edges for the graph.
-   */
-  edges: InternalGraphEdge[];
-}
-```
+<PropsTable typeName="NodePositionArgs" />
 
 ## Example
 
