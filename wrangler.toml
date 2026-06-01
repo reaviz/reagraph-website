@@ -1,6 +1,19 @@
 name = "reagraph-website"
 compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
 
-# Pages-specific configuration - point to static export output
+# Static HTML export produced by `pnpm build` (`output: 'export'` in next.config.ts).
 pages_build_output_dir = "out"
 
+[vars]
+NODE_ENV = "production"
+# Switches next.config.ts to `output: 'export'` so `pnpm build` emits the static
+# `out/` dir for Pages. Only set here (the Cloudflare build), so local
+# `next start` / `next dev` keep working with the normal Next.js server.
+STATIC_EXPORT = "true"
+# Cloudflare applies the [vars] above to the BUILD environment too, and
+# `NODE_ENV=production` makes `pnpm install` skip devDependencies — which breaks
+# the build (no typescript/tailwind/pagefind/@svgr). This override forces pnpm to
+# install devDependencies anyway, so the build keeps working while the deployed
+# worker still gets NODE_ENV=production at runtime.
+NPM_CONFIG_PRODUCTION = "false"

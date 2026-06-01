@@ -1,3 +1,5 @@
+import { PropsTable } from '../../components/props-table';
+
 # Custom Nodes
 reagraph supports the ability to override the Node shape and
 pass your own custom node component.
@@ -5,44 +7,7 @@ pass your own custom node component.
 In the `GraphCanvas` you can pass a callback to the `renderNode` function
 which passes the following attributes:
 
-```ts
-export interface NodeRendererProps {
-  /**
-   * Color of the node. Handles selected/etc.
-   */
-  color: ColorRepresentation;
-
-  /**
-   * The internal node model.
-   */
-  node: InternalGraphNode;
-
-  /**
-   * Size of the node.
-   */
-  size: number;
-
-  /**
-   * Whether the node is active or not.
-   */
-  active: boolean;
-
-  /**
-   * Opacity of the node. Mainly used for selection.
-   */
-  opacity: number;
-
-  /**
-   * Animation of the node.
-   */
-  animated: boolean;
-
-  /**
-   * ID of the node.
-   */
-  id: string;
-}
-```
+<PropsTable typeName="NodeRendererProps" />
 
 Using [react-three-fiber](https://github.com/pmndrs/react-three-fiber) you can
 use JSX to create your own WebGL custom node like:

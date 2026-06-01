@@ -10,10 +10,17 @@ const withNextra = nextra({
 
 const nextConfig: NextConfig = withNextra({
   reactStrictMode: true,
-  output: 'export',
+  // Static HTML export to `out/` for Cloudflare Pages (set via STATIC_EXPORT in
+  // wrangler.toml). Left off locally so `next dev` / `next start` keep working —
+  // `output: 'export'` disables the Next.js server. All routes are static/SSG,
+  // so the export needs no runtime and `_next/` assets land at correct paths.
+  output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
   images: {
     unoptimized: true,
   },
+  // ts-morph (via reablocks-docs-theme/tsdoc) is Node-only; keep it out of the
+  // RSC/edge bundler so its optional deps don't trigger build warnings.
+  serverExternalPackages: ['ts-morph', '@ts-morph/common'],
 
   webpack(config) {
     // Grab the existing rule that handles SVG imports
@@ -39,6 +46,13 @@ const nextConfig: NextConfig = withNextra({
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
     fileLoaderRule.exclude = /\.svg$/i;
+
+    // ts-morph's @ts-morph/common references `source-map-support` as an
+    // optional dep; webpack warns when it can't resolve it. Stub it out.
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      'source-map-support': false,
+    };
 
     return config;
   },

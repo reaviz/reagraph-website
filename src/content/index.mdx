@@ -2,10 +2,22 @@
 title: Introduction
 ---
 
-<div className="mx-auto mt-5 text-white text-center">
+<div className="mx-auto mt-5 text-black dark:text-white text-center">
+  {/* Light theme: dark-colored logo. Toggled purely via Tailwind's `dark:`
+      variant (wired to the `.dark` class in globals.css), so it's SSR-safe
+      with no theme-switch flash. */}
   <img
+    className="block dark:hidden"
+    style={{ width: '75%', margin: '0 auto 2em auto' }}
+    src="https://github.com/reaviz/reagraph/raw/master/stories/assets/logo-light.png"
+    alt="Reagraph"
+  />
+  {/* Dark theme: white logo */}
+  <img
+    className="hidden dark:block"
     style={{ width: '75%', margin: '0 auto 2em auto' }}
     src="https://github.com/reaviz/reagraph/raw/master/stories/assets/logo.png"
+    alt="Reagraph"
   />
   <br />
   <br />

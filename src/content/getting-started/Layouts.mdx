@@ -14,6 +14,7 @@ import {
   TreeLeftRight2D,
   CustomLayoutDraggable,
 } from '../../data/samples/demo';
+import { PropsTable } from '../../components/props-table';
 
 # Layouts
 reagraph has the following layout types:
@@ -44,38 +45,18 @@ description, it will list the available overrides for that layout if applicable.
 You can override the position in any layout by passing the `getNodePosition` property
 to the canvas.
 
+The `getNodePosition` property has the following signature:
+
 ```ts
-export interface NodePositionArgs {
-  /**
-   * The graphology object. Useful for any graph manipulation.
-   */
-  graph: Graph;
-
-  /**
-   * Any nodes that were dragged. This is useful if you want to override
-   * the position of a node when dragged.
-   */
-  drags?: DragReferences;
-
-  /**
-   * The nodes for the graph.
-   */
-  nodes: InternalGraphNode[];
-
-  /**
-   * The edges for the graph.
-   */
-  edges: InternalGraphEdge[];
-}
-
-/**
- * Get the node position for a given node id.
- */
 getNodePosition: (
   id: string,
   args: NodePositionArgs
 ) => InternalGraphPosition;
 ```
+
+where `NodePositionArgs` is:
+
+<PropsTable typeName="NodePositionArgs" />
 
 ### Custom Layout Draggable
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
@@ -109,74 +90,7 @@ can support.
 
 This layout supports the following overrides:
 
-```ts
-export interface ForceDirectedLayoutInputs extends LayoutFactoryProps {
-  /**
-   * Center inertia for the layout. Default: 1.
-   */
-  centerInertia?: number;
-
-  /**
-   * Number of dimensions for the layout. 2d or 3d.
-   */
-  dimensions?: number;
-
-  /**
-   * Mode for the dag layout. Only applicable for dag layouts.
-   */
-  mode?: DagMode;
-
-  /**
-   * Distance between links.
-   */
-  linkDistance?: number;
-
-  /**
-   * Strength of the node repulsion.
-   */
-  nodeStrength?: number;
-
-  /**
-   * Strength of the cluster repulsion.
-   */
-  clusterStrength?: number;
-
-  /**
-   * The type of clustering.
-   */
-  clusterType?: 'force' | 'treemap';
-
-  /**
-   * Ratio of the distance between nodes on the same level.
-   */
-  nodeLevelRatio?: number;
-
-  /**
-   * LinkStrength between nodes of different clusters
-   */
-  linkStrengthInterCluster?: number;
-
-  /**
-   * LinkStrength between nodes of the same cluster
-   */
-  linkStrengthIntraCluster?: number;
-
-  /**
-   * Charge between the meta-nodes (Force template only)
-   */
-  forceLinkDistance?: number;
-
-  /**
-   * Used to compute the template force nodes size (Force template only)
-   */
-  forceLinkStrength?: number;
-
-  /**
-   * Used to compute the template force nodes size (Force template only)
-   */
-  forceCharge?: number;
-}
-```
+<PropsTable typeName="ForceDirectedLayoutInputs" />
 
 ### Force Directed 3D
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
@@ -199,14 +113,7 @@ on the outside of the circle.
 
 This layout supports the following overrides:
 
-```ts
-export interface CircularLayoutInputs extends LayoutFactoryProps {
-  /**
-   * Radius of the circle.
-   */
-  radius: 300;
-}
-```
+<PropsTable typeName="CircularLayoutInputs" />
 
 ### Concentric 2D
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
@@ -216,18 +123,8 @@ export interface CircularLayoutInputs extends LayoutFactoryProps {
 The concentric layout organises the nodes into concentric circles, based on the specified metric (`data.level`). The nodes with the lowest metric values are placed in the innermost circle, and the metric values of the nodes acend for each outward circle. Each circle has nodes with metric values between a specified range. This layout is useful for highlighting relative importance of the nodes, and its visual effect can be reinforced by creating a style mapper to the metric — e.g. nodes with larger metric values are darker in colour.
 
 This layout supports the following configuration options:
-```ts
-export interface ConcentricLayoutInputs extends LayoutFactoryProps {
-  /**
-   * Base radius of the innermost circle.
-   */
-  radius: number;
-  /**
-   * Distance between circles.
-   */
-  concentricSpacing?: number;
-}
-```
+
+<PropsTable typeName="ConcentricLayoutInputs" />
 
 ### Concentric 3D
 
@@ -292,22 +189,7 @@ This layout uses [d3-hierarchy](https://www.npmjs.com/package/d3-hierarchy).
 
 This layout supports the following overrides:
 
-```ts
-export interface HierarchicalLayoutInputs extends LayoutFactoryProps {
-  /**
-   * Direction of the layout. Default 'td'.
-   */
-  mode?: 'td' | 'lr';
-  /**
-  * Factor of distance between nodes. Default 1.
-  */
-  nodeSeparation?: number;
-  /**
-  * Size of each node. Default [50,50]
-  */
-  nodeSize?: [number, number];
-}
-```
+<PropsTable typeName="HierarchicalLayoutInputs" />
 
 ### No Overlap
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
@@ -318,29 +200,7 @@ This layout uses [graphology-layout-nooverlap](https://graphology.github.io/stan
 
 This layout supports the following overrides:
 
-```ts
-export interface NoOverlapLayoutInputs extends LayoutFactoryProps {
-  /**
-   * Grid size. Default 20.
-   */
-  gridSize?: number;
-
-  /**
-   * Ratio of the layout. Default 10.
-   */
-  ratio?: number;
-
-  /**
-   * Maximum number of iterations. Default 50.
-   */
-  maxIterations?: number;
-
-  /**
-   * Margin between nodes. Default 10.
-   */
-  margin?: number;
-}
-```
+<PropsTable typeName="NoOverlapLayoutInputs" />
 
 ### Force Atlas 2
 <div style={{ height: 400, width: '100%', position: 'relative', background: 'white', borderRadius: 4, border: '1px solid rgba(0,0,0,.1)', boxShadow: 'rgb(0 0 0 / 10%) 0 1px 3px 0', overflow: 'hidden' }}>
@@ -351,67 +211,7 @@ This layout uses [graphology-layout-forceatlas2](https://graphology.github.io/st
 
 This layout supports the following overrides:
 
-```ts
-export interface ForceAtlas2LayoutInputs extends LayoutFactoryProps {
-  /**
-   * Should the node’s sizes be taken into account. Default: false.
-   */
-  adjustSizes?: boolean;
-
-  /**
-   * whether to use the Barnes-Hut approximation to compute
-   * repulsion in O(n*log(n)) rather than default O(n^2),
-   * n being the number of nodes. Default: false.
-   */
-  barnesHutOptimize?: boolean;
-
-  /**
-   * Barnes-Hut approximation theta parameter. Default: 0.5.
-   */
-  barnesHutTheta?: number;
-
-  /**
-   * Influence of the edge’s weights on the layout. To consider edge weight, don’t
-   *  forget to pass weighted as true. Default: 1.
-   */
-  edgeWeightInfluence?: number;
-
-  /**
-   * Strength of the layout’s gravity. Default: 10.
-   */
-  gravity?: number;
-
-  /**
-   * Whether to use Noack’s LinLog model. Default: false.
-   */
-  linLogMode?: boolean;
-
-  /**
-   * Whether to consider edge weights when calculating repulsion. Default: false.
-   */
-  outboundAttractionDistribution?: boolean;
-
-  /**
-   * Scaling ratio for repulsion. Default: 100.
-   */
-  scalingRatio?: number;
-
-  /**
-   * Speed of the slowdown. Default: 1.
-   */
-  slowDown?: number;
-
-  /**
-   * Whether to use the strong gravity mode. Default: false.
-   */
-  strongGravityMode?: boolean;
-
-  /**
-   * Number of iterations to perform. Default: 50.
-   */
-  iterations?: number;
-}
-```
+<PropsTable typeName="ForceAtlas2LayoutInputs" />
 
 ### Custom Layouts
 
