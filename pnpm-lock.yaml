@@ -43,8 +43,8 @@ importers:
         specifier: ^9.1.1
         version: 9.1.1(@types/react@19.1.8)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       reablocks-docs-theme:
-        specifier: 2.3.2
-        version: 2.3.2(@types/react@19.1.8)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.6.1(acorn@8.15.0)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(prop-types@15.8.1)(react-compiler-runtime@19.1.0-rc.3(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
+        specifier: 2.3.3
+        version: 2.3.3(@types/react@19.1.8)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.6.1(acorn@8.15.0)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(prop-types@15.8.1)(react-compiler-runtime@19.1.0-rc.3(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3202,8 +3202,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  reablocks-docs-theme@2.3.2:
-    resolution: {integrity: sha512-N/1EOVc2mxG2koAssSBj1y6tWaNpQHbbM7vap+jb0CjN6/y4ZPpNut2F8xJ2GBophsUfJaKV813zU7L76915YA==}
+  reablocks-docs-theme@2.3.3:
+    resolution: {integrity: sha512-QwxDppoJjHFhebWX59kuR70pzO5ZpAinVec4tO0kcljKMJaO0yRNOIJCzO/NvPZuSmHny8kFHz7s9DRvbACHKQ==}
     peerDependencies:
       next: '>=14'
       nextra: '>=4.6.0'
@@ -7550,7 +7550,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  reablocks-docs-theme@2.3.2(@types/react@19.1.8)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.6.1(acorn@8.15.0)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(prop-types@15.8.1)(react-compiler-runtime@19.1.0-rc.3(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0)):
+  reablocks-docs-theme@2.3.3(@types/react@19.1.8)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(nextra@4.6.1(acorn@8.15.0)(next@15.5.18(@babel/core@7.27.4)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(prop-types@15.8.1)(react-compiler-runtime@19.1.0-rc.3(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0)):
     dependencies:
       '@headlessui/react': 2.2.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
