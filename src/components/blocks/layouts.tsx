@@ -1,5 +1,5 @@
 'use client';
-import { Button, cn, Stack } from 'reablocks';
+import { Button, cn } from 'reablocks';
 import { FC } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
@@ -19,10 +19,11 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
       <ResponsiveContainer
         className={cn('gap-6 flex-col lg:flex-row', className)}
       >
-        <Stack
-          direction='column'
-          className='flex-1 gap-7 self-center'
-          alignItems='start'
+        <div
+          className={cn(
+            'flex flex-col items-start justify-center gap-2.5',
+            'flex-1 gap-7 self-center'
+          )}
         >
           <motion.h3 className='text-4xl lg:text-5xl xl:text-6xl font-bold text-text-primary'>
             Custom Graphs At Your Finger Tips.
@@ -32,7 +33,12 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
             intuitive interface allows anyone to turn complex data into
             appealing visualizations without extensive coding.
           </motion.p>
-          <Stack direction='row' className='self-center xl:self-start'>
+          <div
+            className={cn(
+              'flex flex-row items-center justify-center gap-2.5',
+              'self-center xl:self-start'
+            )}
+          >
             <Link href='/docs/getting-started/Installing'>
               <Button variant='filled' color='primary' size='large'>
                 Get Started
@@ -43,10 +49,13 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
                 Preview
               </Button>
             </Link>
-          </Stack>
-        </Stack>
-        <Stack
-          className='flex-1 relative backdrop-bg w-full xl:w-auto before:scale-125 md:before:scale-110 scale-125 -translate-x-3 my-13 sm:my-0 sm:scale-100 sm:translate-x-0'
+          </div>
+        </div>
+        <div
+          className={cn(
+            'flex flex-row items-center justify-center gap-2.5',
+            'flex-1 relative backdrop-bg w-full xl:w-auto before:scale-125 md:before:scale-110 scale-125 -translate-x-3 my-13 sm:my-0 sm:scale-100 sm:translate-x-0'
+          )}
           style={
             {
               '--backdrop-url': `url(${Backdrop.src})`,
@@ -54,7 +63,7 @@ export const Layouts: FC<LayoutsProps> = ({ className }) => {
           }
         >
           <LayoutGraphic className='w-full relative z-10 h-auto max-w-full' />
-        </Stack>
+        </div>
       </ResponsiveContainer>
     </AnimateIn>
   );

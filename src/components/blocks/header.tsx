@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { Stack } from 'reablocks';
+import { cn } from 'reablocks';
 import { MobileNav } from '../mobile-nav';
 
 const NAV_LINKS = [
@@ -23,14 +23,17 @@ const NAV_LINKS = [
 export const Header = () => {
   return (
     <>
-      <Stack
-        className='flex fixed top-0 left-0 right-0 z-40 font-inter w-full md:min-h-[72px] border-b-2 border-gray-400/30 transition-[backdrop-filter] backdrop-blur-md'
-        justifyContent='center'
+      <div
+        className={cn(
+          'flex flex-row items-center justify-center gap-2.5',
+          'flex fixed top-0 left-0 right-0 z-40 font-inter w-full md:min-h-[72px] border-b-2 border-gray-400/30 transition-[backdrop-filter] backdrop-blur-md'
+        )}
       >
-        <Stack
-          className='hidden md:flex w-full xl:container m-5 md:mx-15 xl:mx-23'
-          direction='row'
-          justifyContent='spaceBetween'
+        <div
+          className={cn(
+            'flex flex-row items-center justify-between gap-2.5',
+            'hidden md:flex w-full xl:container m-5 md:mx-15 xl:mx-23'
+          )}
         >
           <Image
             src={'/assets/logo-full.png'}
@@ -38,7 +41,12 @@ export const Header = () => {
             width={112}
             height={24}
           />
-          <Stack className='gap-8'>
+          <div
+            className={cn(
+              'flex flex-row items-center justify-center gap-2.5',
+              'gap-8'
+            )}
+          >
             {NAV_LINKS.map((link) => (
               <NextLink
                 className='px-4 text-base text-text-secondary hover:text-text-primary font-semibold transition-colors duration-200 ease-in-out'
@@ -49,16 +57,16 @@ export const Header = () => {
                 {link.label}
               </NextLink>
             ))}
-          </Stack>
+          </div>
           <div />
-        </Stack>
+        </div>
         <MobileNav
           className='md:hidden'
           logoSrc='/assets/logo-full.png'
           name='Reagraph'
           links={NAV_LINKS}
         />
-      </Stack>
+      </div>
     </>
   );
 };

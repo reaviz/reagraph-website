@@ -27,12 +27,12 @@
     "postcss": "^8.5.6",
     "posthog-js": "^1.256.2",
     "posthog-node": "^5.2.1",
-    "reablocks": "^9.1.1",
+    "reablocks": "^10.3.0",
     "reablocks-docs-theme": "2.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-syntax-highlighter": "^15.6.1",
-    "reagraph": "^4.30.8",
+    "reagraph": "^4.31.0",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
